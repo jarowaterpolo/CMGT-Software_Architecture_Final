@@ -1502,6 +1502,18 @@
       <Project>{774F76F3-BF8A-E36D-5C58-A7231C1208FB}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Test.csproj">
+      <Project>{99B5D50F-BD21-7691-18B6-A82C80DE9D72}</Project>
+      <Name>NaughtyAttributes.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Core.csproj">
+      <Project>{B2CD7163-AA81-38BB-8C88-8E3334EB58C3}</Project>
+      <Name>NaughtyAttributes.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
+      <Project>{5DE076E7-BEF2-C124-BB35-99D0C879A99E}</Project>
+      <Name>NaughtyAttributes.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

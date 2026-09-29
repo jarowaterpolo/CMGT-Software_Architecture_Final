@@ -65,7 +65,35 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\BCLExtensions\TargetingPacks\netstandard2.1\analyzers\dotnet\roslyn4.0\cs\System.Text.Json.SourceGeneration.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\SearchAlgorithms.cs" />
+    <Compile Include="Assets\Scripts\PathFinder.cs" />
+    <Compile Include="Assets\Scripts\AddFloors.cs" />
+    <Compile Include="Assets\Scripts\DeleteRooms.cs" />
+    <Compile Include="Assets\Scripts\DungeonGraph\Graph.cs" />
+    <Compile Include="Assets\Scripts\DeleteDoors.cs" />
+    <Compile Include="Assets\Scripts\SearchDungeon.cs" />
+    <Compile Include="Assets\Scripts\Cam.cs" />
+    <Compile Include="Assets\Scripts\Generator.cs" />
+    <Compile Include="Assets\Scripts\AddDungeonAssets.cs" />
+    <Compile Include="Assets\Scripts\DungeonSplitting\DungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\HelloDebugDrawing.cs" />
+    <Compile Include="Assets\Scripts\TileMapGraph.cs" />
+    <Compile Include="Assets\Scripts\DebugDrawingBatcher.cs" />
+    <Compile Include="Assets\DebugDrawingExtension\Example\Example.cs" />
+    <Compile Include="Assets\DebugDrawingExtension\DebugExtension.cs" />
+    <Compile Include="Assets\Scripts\FollowPath.cs" />
+    <Compile Include="Assets\Scripts\AlgorithmsUtils.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\BakeNavMesh.cs" />
+    <Compile Include="Assets\Scripts\MouseClickController.cs" />
+    <Compile Include="Assets\Scripts\AddWalls.cs" />
+    <Compile Include="Assets\Scripts\DungeonSplitting\NewDungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\DungeonGraph\GraphGenerator.cs" />
+    <Compile Include="Assets\Scripts\TileMapGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\DebugDrawingExtension\readme.txt" />
+    <None Include="Assets\KatsBits-fantasy-base\Docs\KatsBits_Fantasy_ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1418,6 +1446,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="NaughtyAttributes.Test.csproj">
+      <Project>{99B5D50F-BD21-7691-18B6-A82C80DE9D72}</Project>
+      <Name>NaughtyAttributes.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Core.csproj">
+      <Project>{B2CD7163-AA81-38BB-8C88-8E3334EB58C3}</Project>
+      <Name>NaughtyAttributes.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
+      <Project>{5DE076E7-BEF2-C124-BB35-99D0C879A99E}</Project>
+      <Name>NaughtyAttributes.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -9,8 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{A4B2BE94-043F-A813-E770-863774EAD85A}</ProjectGuid>
+    <RootNamespace>PlayerSystem</RootNamespace>
+    <ProjectGuid>{774F76F3-BF8A-E36D-5C58-A7231C1208FB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -65,35 +65,76 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\BCLExtensions\TargetingPacks\netstandard2.1\analyzers\dotnet\roslyn4.0\cs\System.Text.Json.SourceGeneration.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\NameItemSortingStrategyAToZ.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\ItemSortingStrategy.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\IconViewItemPresenter.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\ItemInfoDisplayer.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\ItemData.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddDungeonAssets.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonSplitting\DungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ListViewItemPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\BakeNavMesh.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonCam.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonRemoveal\DeleteDoors.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\AttackItemSortingStrategyHighToLow.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonSplitting\NewDungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ListViewInventoryPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonGraph\Graph.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ModelViewInventoryPresenter.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\ObtainedItemSortingStrategyNewToOld.cs" />
     <Compile Include="Assets\Scripts\HelloDebugDrawing.cs" />
     <Compile Include="Assets\Scripts\DebugDrawingBatcher.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\PathFinder.cs" />
     <Compile Include="Assets\DebugDrawingExtension\Example\Example.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddFloors.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonRemoveal\DeleteRooms.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ItemPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonSearch\SearchDungeon.cs" />
     <Compile Include="Assets\DebugDrawingExtension\DebugExtension.cs" />
     <Compile Include="Assets\Scripts\AlgorithmsUtils.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\SingletonPlayerInventoryController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTileMap\TileMapGenerator.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTileMap\TileMapGraph.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\DefenseItemSortingStrategyHighToLow.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ModelViewItemPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddWalls.cs" />
     <Compile Include="Assets\Scripts\Dungeon\MouseClickController.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\InventoryPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\FollowPath.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\ItemContainer.cs" />
     <Compile Include="Assets\Scripts\Dungeon\Generator.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\NameItemSortingStrategyZToA.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\DummyItemSortingStrategy.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonGraph\GraphGenerator.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonSearch\SearchAlgorithms.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\DebugDrawingExtension\readme.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\KatsBits-fantasy-base\Docs\KatsBits_Fantasy_ReadMe.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1447,15 +1488,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NaughtyAttributes.Test.csproj">
-      <Project>{60B41F78-7EF0-0D62-D934-321D80D7633B}</Project>
+      <Project>{99B5D50F-BD21-7691-18B6-A82C80DE9D72}</Project>
       <Name>NaughtyAttributes.Test</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Core.csproj">
-      <Project>{411C67BC-C6CE-0761-9010-F2D5AE55F5D8}</Project>
+      <Project>{B2CD7163-AA81-38BB-8C88-8E3334EB58C3}</Project>
       <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Editor.csproj">
-      <Project>{635C3799-BE2F-7536-ACE4-6872044C832B}</Project>
+      <Project>{5DE076E7-BEF2-C124-BB35-99D0C879A99E}</Project>
       <Name>NaughtyAttributes.Editor</Name>
     </ProjectReference>
   </ItemGroup>

@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Inventory
+namespace PlayerSystem.Inventory
 {
+    public enum ItemType { Weapon, Shield, Helmet, Chestplate, Leggings, Boots, Potion}
     /// <summary>
     /// This is the script for creating an ItemData scriptable object, which is
     /// "blueprint" to create item objects with the properties set up in the inspector,
@@ -17,6 +18,7 @@ namespace Player.Inventory
 
         [Header("Core properties")]
         public string itemName;
+        public ItemType type;
         public int attack;
         public int defense;
 
@@ -44,6 +46,9 @@ namespace Player.Inventory
         [SerializeField]
         private string itemName;
         public string ItemName => itemName;
+        [SerializeField]
+        private ItemType itemType;
+        public ItemType ItemType => itemType;
         [SerializeField]
         private int attack;
         public int Attack => attack;

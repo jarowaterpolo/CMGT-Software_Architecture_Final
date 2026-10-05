@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>PlayerSystem</RootNamespace>
-    <ProjectGuid>{774F76F3-BF8A-E36D-5C58-A7231C1208FB}</ProjectGuid>
+    <ProjectGuid>{A4B2BE94-043F-A813-E770-863774EAD85A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,11 +68,10 @@
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\NameItemSortingStrategyAToZ.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\ItemSortingStrategy.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\IconViewItemPresenter.cs" />
-    <Compile Include="Assets\Scripts\PlayerSystem\ItemInfoDisplayer.cs" />
-    <Compile Include="Assets\Scripts\PlayerSystem\ItemData.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddDungeonAssets.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonSplitting\DungeonGenerator.cs" />
-    <Compile Include="Assets\Scripts\PlayerSystem\Inventory.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SingletonPlayerInventoryController.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\ItemData.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ListViewItemPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\BakeNavMesh.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonCam.cs" />
@@ -80,30 +79,32 @@
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\AttackItemSortingStrategyHighToLow.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonSplitting\NewDungeonGenerator.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ListViewInventoryPresenter.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\ItemContainer.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonGraph\Graph.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ModelViewInventoryPresenter.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\ObtainedItemSortingStrategyNewToOld.cs" />
     <Compile Include="Assets\Scripts\HelloDebugDrawing.cs" />
     <Compile Include="Assets\Scripts\DebugDrawingBatcher.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Movement\NavMeshMovement.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\PathFinder.cs" />
     <Compile Include="Assets\DebugDrawingExtension\Example\Example.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddFloors.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\ItemInfoDisplayer.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonRemoveal\DeleteRooms.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ItemPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonSearch\SearchDungeon.cs" />
     <Compile Include="Assets\DebugDrawingExtension\DebugExtension.cs" />
     <Compile Include="Assets\Scripts\AlgorithmsUtils.cs" />
-    <Compile Include="Assets\Scripts\PlayerSystem\SingletonPlayerInventoryController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTileMap\TileMapGenerator.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTileMap\TileMapGraph.cs" />
+    <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Inventory.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\DefenseItemSortingStrategyHighToLow.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\ModelViewItemPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddWalls.cs" />
     <Compile Include="Assets\Scripts\Dungeon\MouseClickController.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\Presenters\InventoryPresenter.cs" />
     <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\FollowPath.cs" />
-    <Compile Include="Assets\Scripts\PlayerSystem\ItemContainer.cs" />
     <Compile Include="Assets\Scripts\Dungeon\Generator.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\NameItemSortingStrategyZToA.cs" />
     <Compile Include="Assets\Scripts\PlayerSystem\Inventory\SortingStrategies\DummyItemSortingStrategy.cs" />
@@ -1492,15 +1493,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NaughtyAttributes.Test.csproj">
-      <Project>{99B5D50F-BD21-7691-18B6-A82C80DE9D72}</Project>
+      <Project>{60B41F78-7EF0-0D62-D934-321D80D7633B}</Project>
       <Name>NaughtyAttributes.Test</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Core.csproj">
-      <Project>{B2CD7163-AA81-38BB-8C88-8E3334EB58C3}</Project>
+      <Project>{411C67BC-C6CE-0761-9010-F2D5AE55F5D8}</Project>
       <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Editor.csproj">
-      <Project>{5DE076E7-BEF2-C124-BB35-99D0C879A99E}</Project>
+      <Project>{635C3799-BE2F-7536-ACE4-6872044C832B}</Project>
       <Name>NaughtyAttributes.Editor</Name>
     </ProjectReference>
   </ItemGroup>

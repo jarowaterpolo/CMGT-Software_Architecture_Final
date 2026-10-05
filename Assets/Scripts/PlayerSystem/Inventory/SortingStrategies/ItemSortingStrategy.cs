@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Player.Inventory {
+namespace PlayerSystem.Inventory {
 
     /// <summary>
     /// Abstract class for item sorting strategies.

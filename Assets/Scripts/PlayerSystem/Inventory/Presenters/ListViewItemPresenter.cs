@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Player.Inventory
+namespace PlayerSystem.Inventory
 {
     /// <summary>
     /// This class presents an item in a list in the GUI.

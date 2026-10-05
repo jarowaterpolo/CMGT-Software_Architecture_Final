@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.ItemData
   id: great_hp_potion
   itemName: Great HP Potion
+  type: 6
   attack: 0
   defense: 0
   itemIcon: {fileID: 1813999333, guid: ce0bb48b3835906499355a8731f9d7a1, type: 3}

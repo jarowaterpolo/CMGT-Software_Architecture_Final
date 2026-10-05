@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.Inventory
+namespace PlayerSystem.Inventory
 {
     /// <summary>
     /// This class presents items of an inventory as 3D models defined in the item data.

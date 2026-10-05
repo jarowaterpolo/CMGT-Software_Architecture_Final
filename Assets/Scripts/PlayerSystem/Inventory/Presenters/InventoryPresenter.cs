@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.Inventory {
+namespace PlayerSystem.Inventory {
     /// <summary>
     /// This class presents inventory items to GUI, it can change item's sorting
     /// order by using different sorting strategies of the inventory class.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.Inventory {
+namespace PlayerSystem.Inventory {
 
     /// <summary>
     /// Abstract item presenter, an item presenter presents an item as different

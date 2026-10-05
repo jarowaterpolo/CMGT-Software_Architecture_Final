@@ -1,5 +1,5 @@
 using UnityEngine;
-using Player.Inventory;
+using PlayerSystem.Inventory;
 
 /// <summary>
 /// A singleton player inventory controller, it ensures that player's inventory

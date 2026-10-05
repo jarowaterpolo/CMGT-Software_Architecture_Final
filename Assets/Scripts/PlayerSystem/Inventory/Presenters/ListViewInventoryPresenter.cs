@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
-namespace Player.Inventory
+namespace PlayerSystem.Inventory
 {
     // This class presents items of an inventory in a ListView format.
     public class ListViewInventoryPresenter : InventoryPresenter

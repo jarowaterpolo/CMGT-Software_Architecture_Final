@@ -65,31 +65,31 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\BCLExtensions\TargetingPacks\netstandard2.1\analyzers\dotnet\roslyn4.0\cs\System.Text.Json.SourceGeneration.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\SearchAlgorithms.cs" />
-    <Compile Include="Assets\Scripts\PathFinder.cs" />
-    <Compile Include="Assets\Scripts\AddFloors.cs" />
-    <Compile Include="Assets\Scripts\DeleteRooms.cs" />
-    <Compile Include="Assets\Scripts\DungeonGraph\Graph.cs" />
-    <Compile Include="Assets\Scripts\DeleteDoors.cs" />
-    <Compile Include="Assets\Scripts\SearchDungeon.cs" />
-    <Compile Include="Assets\Scripts\Cam.cs" />
-    <Compile Include="Assets\Scripts\Generator.cs" />
-    <Compile Include="Assets\Scripts\AddDungeonAssets.cs" />
-    <Compile Include="Assets\Scripts\DungeonSplitting\DungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddDungeonAssets.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonSplitting\DungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\BakeNavMesh.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonCam.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonRemoveal\DeleteDoors.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonSplitting\NewDungeonGenerator.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonGraph\Graph.cs" />
     <Compile Include="Assets\Scripts\HelloDebugDrawing.cs" />
-    <Compile Include="Assets\Scripts\TileMapGraph.cs" />
     <Compile Include="Assets\Scripts\DebugDrawingBatcher.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\PathFinder.cs" />
     <Compile Include="Assets\DebugDrawingExtension\Example\Example.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddFloors.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonRemoveal\DeleteRooms.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonSearch\SearchDungeon.cs" />
     <Compile Include="Assets\DebugDrawingExtension\DebugExtension.cs" />
-    <Compile Include="Assets\Scripts\FollowPath.cs" />
     <Compile Include="Assets\Scripts\AlgorithmsUtils.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\BakeNavMesh.cs" />
-    <Compile Include="Assets\Scripts\MouseClickController.cs" />
-    <Compile Include="Assets\Scripts\AddWalls.cs" />
-    <Compile Include="Assets\Scripts\DungeonSplitting\NewDungeonGenerator.cs" />
-    <Compile Include="Assets\Scripts\DungeonGraph\GraphGenerator.cs" />
-    <Compile Include="Assets\Scripts\TileMapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonTileMap\TileMapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonTileMap\TileMapGraph.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonBuildingWithAssets\AddWalls.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\MouseClickController.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonTraversal\FollowPath.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\Generator.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonGraph\GraphGenerator.cs" />
+    <Compile Include="Assets\Scripts\Dungeon\DungeonSearch\SearchAlgorithms.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DebugDrawingExtension\readme.txt" />

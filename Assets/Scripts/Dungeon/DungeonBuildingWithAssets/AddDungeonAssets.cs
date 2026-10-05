@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -246,5 +248,7 @@ public class AddDungeonAssets : Generator
 
         return floorPiece;
     }
+
+}
 
 }

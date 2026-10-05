@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using System;
 using System.Collections;
 using UnityEngine;
@@ -86,4 +88,6 @@ public class AddWalls : Generator
         if (wall == null) return;
         Instantiate(wall, new Vector3(pos.y, 0, pos.x), Quaternion.identity, dungeonParent);
     }
+}
+
 }

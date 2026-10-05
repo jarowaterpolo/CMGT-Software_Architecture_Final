@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,5 +52,7 @@ public class FollowPathController : MonoBehaviour
         }
         isMoving = false;
     }
+
+}
 
 }

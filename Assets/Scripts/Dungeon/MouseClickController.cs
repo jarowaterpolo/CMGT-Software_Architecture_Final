@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,5 +30,7 @@ public class MouseClickController : MonoBehaviour
         DebugExtension.DebugCircle(clickPosition, Color.blue, 2);
 
     }
+
+}
 
 }

@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -142,4 +144,6 @@ public class SearchAlgorithms<T>
 
         return path;
     }
+}
+
 }

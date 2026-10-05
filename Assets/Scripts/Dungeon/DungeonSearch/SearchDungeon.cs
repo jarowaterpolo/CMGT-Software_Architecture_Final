@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -76,4 +78,6 @@ public class SearchDungeon : Generator
 
         if (waitingType != WaitingType.Instant) yield return CustomWait(waitingType, splitDelay);
     }
+}
+
 }

@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using UnityEngine;
 public class TileMapGenerator : Generator
 {
@@ -53,4 +55,6 @@ public class TileMapGenerator : Generator
     {
         return tileMap;
     }
+}
+
 }

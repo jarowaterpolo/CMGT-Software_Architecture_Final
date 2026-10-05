@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using System;
 using Unity.AI.Navigation;
 using UnityEngine;
@@ -41,4 +43,6 @@ public class BakeNavMesh : Generator
     {
         navMesh.BuildNavMesh();
     }
+}
+
 }

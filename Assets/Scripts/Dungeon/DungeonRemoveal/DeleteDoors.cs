@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,4 +62,6 @@ public class DeleteDoors : Generator
         yield return searchDungeon.Search();
         if (waitingType != WaitingType.Instant) yield return CustomWait(waitingType, splitDelay);
     }
+}
+
 }

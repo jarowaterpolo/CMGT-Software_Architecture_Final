@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -137,4 +139,6 @@ public class AddFloors : Generator
         }
         return neighbors;
     }
+}
+
 }

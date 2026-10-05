@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -152,4 +154,6 @@ public class TileMapGraph : Generator
             }
         }
     }
+}
+
 }

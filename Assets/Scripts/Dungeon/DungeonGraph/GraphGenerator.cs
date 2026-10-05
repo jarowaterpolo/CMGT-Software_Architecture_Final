@@ -1,3 +1,5 @@
+namespace JJNDungeonGeneration
+{
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -149,4 +151,6 @@ public class GraphGenerator : Generator
             }
         }
     }
+}
+
 }

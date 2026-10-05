@@ -1,8 +1,11 @@
+namespace JJNDungeonGeneration
+{
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+
 public class NewDungeonGenerator : Generator
 {
     public RectInt startRoom;
@@ -36,11 +39,11 @@ public class NewDungeonGenerator : Generator
     private SearchDungeon searchDungeon;
 
 
-    private Cam cameraScript;
+    private DungeonCam cameraScript;
 
     public void Start()
     {
-        cameraScript = GetComponent<Cam>();
+        cameraScript = GetComponent<DungeonCam>();
 
         searchDungeon = GetComponent<SearchDungeon>();
     }
@@ -225,4 +228,6 @@ public class NewDungeonGenerator : Generator
         //Drawing Current Room
         AlgorithmsUtils.DebugRectInt(currentRoom, colors[2], 0, false, dungeonDrawHeight);
     }
+}
+
 }

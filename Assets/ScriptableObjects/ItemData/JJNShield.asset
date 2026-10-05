@@ -15,7 +15,7 @@ MonoBehaviour:
   id: jjn_shield
   itemName: JJN Shield
   attack: 0
-  defense: 1000000
-  itemIcon: {fileID: 0}
+  defense: 1
+  itemIcon: {fileID: -1604467706, guid: ce0bb48b3835906499355a8731f9d7a1, type: 3}
   itemModel: {fileID: 0}
   isStackable: 0

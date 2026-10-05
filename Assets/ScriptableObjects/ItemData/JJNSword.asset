@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.ItemData
   id: jjn_sword
   itemName: JJN Sword
-  attack: 1000000
+  attack: 1
   defense: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -2082140927, guid: ce0bb48b3835906499355a8731f9d7a1, type: 3}
   itemModel: {fileID: 0}
   isStackable: 0

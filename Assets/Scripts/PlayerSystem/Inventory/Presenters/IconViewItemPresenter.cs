@@ -37,11 +37,11 @@ namespace Player.Inventory
 
             if (currentItem.Attack > 0)
             {
-                ItemInfoDisplayer.itemInfo += $"{currentItem.Attack} \n";
+                ItemInfoDisplayer.itemInfo += $"{currentItem.Attack} Attack \n";
             }
             if (currentItem.Defense > 0)
             {
-                ItemInfoDisplayer.itemInfo += $"{currentItem.Defense} \n";
+                ItemInfoDisplayer.itemInfo += $"{currentItem.Defense} Defense \n";
             }
             if (currentItem.isStackable && currentItemCount > 1)
             {

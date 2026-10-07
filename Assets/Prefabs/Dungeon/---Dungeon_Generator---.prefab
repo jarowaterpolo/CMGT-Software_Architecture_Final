@@ -73,6 +73,7 @@ MonoBehaviour:
     height: 128
   Player: {fileID: 0}
   doneRooms: []
+  Overlaps: []
   doors: []
   minRoomSize:
     x: 0
@@ -157,7 +158,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   audioSource: {fileID: 0}
   DoDebugDraw: 0
-  deletePercent: 10
+  deletePercent: 50
   deleteSmallestRoom: 1
 --- !u!114 &5627960783092873626
 MonoBehaviour:

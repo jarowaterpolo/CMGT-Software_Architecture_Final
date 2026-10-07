@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7273713539288740622}
   - component: {fileID: 1966862302005157275}
   - component: {fileID: 5172487278447316643}
+  - component: {fileID: 4872141258332412035}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -236,6 +237,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4872141258332412035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465982432517273028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefbf243e973ee044bcbb696ffeed966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Inventory.PlayerEquipmentController
+  playerInventory: {fileID: 0}
+  weaponData:
+    id: 
+    itemName: 
+    itemType: 0
+    attack: 0
+    defense: 0
+    itemIcon: {fileID: 0}
+    itemModel: {fileID: 0}
+    isStackable: 0
+  shieldData:
+    id: 
+    itemName: 
+    itemType: 0
+    attack: 0
+    defense: 0
+    itemIcon: {fileID: 0}
+    itemModel: {fileID: 0}
+    isStackable: 0
+  itemData:
+    id: 
+    itemName: 
+    itemType: 0
+    attack: 0
+    defense: 0
+    itemIcon: {fileID: 0}
+    itemModel: {fileID: 0}
+    isStackable: 0
 --- !u!1 &2353601573894389016
 GameObject:
   m_ObjectHideFlags: 0

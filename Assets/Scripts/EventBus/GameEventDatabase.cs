@@ -62,11 +62,13 @@ public class DefendEventData : EventData
 {
     public Item shieldData;
     public GameObject shieldUser;
-    public DefendEventData(Item pShieldData, GameObject pShieldUser)
+    public bool isBlocking;
+    public DefendEventData(Item pShieldData, GameObject pShieldUser, bool pIsBlocking)
     {
         name = "DefendEvent";
         shieldData = pShieldData;
         shieldUser = pShieldUser;
+        isBlocking = pIsBlocking;
     }
 
     //Overriding ToString method to display event information for debugging

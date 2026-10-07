@@ -31,7 +31,7 @@ using UnityEngine;
 
         private void searchDungeonOnEndGeneration()
         {
-            Debug.Log("Start deleting rooms");
+            //Debug.Log("Start deleting rooms");
             StartCoroutine(StartDeleting());
         }
 

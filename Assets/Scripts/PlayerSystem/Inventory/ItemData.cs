@@ -65,6 +65,9 @@ namespace PlayerSystem.Inventory
         {
             id = itemData.id;
             itemName = itemData.itemName;
+
+            itemType = itemData.type;
+
             attack = itemData.attack;
             defense = itemData.defense;
 

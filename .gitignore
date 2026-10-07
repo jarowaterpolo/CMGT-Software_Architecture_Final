@@ -4,3 +4,9 @@ Temp
 UserSettings
 .vs
 obj
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+CMGT-Software_Architecture_Final.sln
+NaughtyAttributes.Core.csproj
+NaughtyAttributes.Editor.csproj
+NaughtyAttributes.Test.csproj

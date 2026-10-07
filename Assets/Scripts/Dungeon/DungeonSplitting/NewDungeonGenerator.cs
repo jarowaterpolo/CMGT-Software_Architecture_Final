@@ -113,11 +113,11 @@ using UnityEngine.UIElements;
             if (useRandomSeed)
             {
                 Seed = System.DateTime.Now.GetHashCode();
-                Debug.Log("Random Seed used = " + Seed);
+                //Debug.Log("Random Seed used = " + Seed);
             }
             else
             {
-                Debug.Log("Seed from inspector used = " + Seed);
+                //Debug.Log("Seed from inspector used = " + Seed);
             }
 
             Random.InitState(Seed);
@@ -151,7 +151,7 @@ using UnityEngine.UIElements;
 
             currentRoom = new();
 
-            Player.position = new(doneRooms[0].position.x + doneRooms[0].width / 2, 1, doneRooms[0].position.y + doneRooms[0].height / 2);
+            SetPlayerPos();
 
             DispatchOnEndGenerationEvent();
         }
@@ -199,6 +199,11 @@ using UnityEngine.UIElements;
 
             currentRoom = overlap;
             doors.Add(overlap);
+        }
+
+        public void SetPlayerPos()
+        {
+            Player.position = new(doneRooms[0].position.x + doneRooms[0].width / 2, 1, doneRooms[0].position.y + doneRooms[0].height / 2);
         }
 
         void DrawAll()

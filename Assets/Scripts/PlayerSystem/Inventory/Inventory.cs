@@ -116,5 +116,21 @@ namespace PlayerSystem.Inventory
             return itemSortingStrategies[strategyIndex].StrategyName;
         }
         #endregion
+
+        public void RemoveOneUseItem(EventData eventData)
+        {
+            ItemUseEventData itemUseEventData = (ItemUseEventData)eventData;
+            RemoveItem(itemUseEventData.itemData);
+        }
+
+        private void OnEnable()
+        {
+            EventBus<ItemUseEventData>.OnEventPublished += RemoveOneUseItem;
+        }
+
+        private void OnDisable()
+        {
+            EventBus<ItemUseEventData>.OnEventPublished -= RemoveOneUseItem;
+        }
     }
 }

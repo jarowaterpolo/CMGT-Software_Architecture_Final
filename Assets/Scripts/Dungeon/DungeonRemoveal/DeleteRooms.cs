@@ -4,129 +4,149 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteRooms : Generator
-{
-    private NewDungeonGenerator dungeonGen;
-    private GraphGenerator graphGen;
-    private SearchDungeon searchDungeon;
-
-    public float deletePercent = 10;
-    public bool deleteSmallestRoom = true;
-
-    private RectInt savedDoor;
-    private RectInt savedRoom;
-
-    private List<RectInt> savedDoors = new();
-
-    private int amountOfRoomsToDelete;
-
-    private HashSet<RectInt> checkedRooms = new();
-
-    private void Start()
+    public class DeleteRooms : Generator
     {
-        dungeonGen = GetComponent<NewDungeonGenerator>();
-        graphGen = GetComponent<GraphGenerator>();
-        searchDungeon = GetComponent<SearchDungeon>();
+        private NewDungeonGenerator dungeonGen;
+        private GraphGenerator graphGen;
+        private SearchDungeon searchDungeon;
 
-        searchDungeon.OnEndGeneration += searchDungeonOnEndGeneration;
-    }
+        public float deletePercent = 10;
+        public bool deleteSmallestRoom = true;
 
-    private void searchDungeonOnEndGeneration()
-    {
-        Debug.Log("Start deleting rooms");
-        StartCoroutine(StartDeleting());
-    }
+        private RectInt savedRoom;
+        private List<RectInt> savedDoors = new();
 
-    private IEnumerator StartDeleting()
-    {
-        checkedRooms.Clear();
+        private int amountOfRoomsToDelete;
 
-        DispatchOnStartGenerationEvent();
+        private HashSet<RectInt> checkedRooms = new();
 
-
-        amountOfRoomsToDelete = (int)(dungeonGen.doneRooms.Count * deletePercent / 100);
-        Debug.Log("need to delete " + amountOfRoomsToDelete + " Rooms");
-
-        for (int i = 0; i < amountOfRoomsToDelete; i++)
+        private void Start()
         {
-            yield return null;
-            if (searchDungeon.allRoomsReachable)
-            {
-                DeleteRoom();
-                Debug.Log("room deleted");
-            }
-            else
-            {
-                AddRoom();
-                Debug.Log("room added");
-            }
+            dungeonGen = GetComponent<NewDungeonGenerator>();
+            graphGen = GetComponent<GraphGenerator>();
+            searchDungeon = GetComponent<SearchDungeon>();
 
-            yield return graphGen.ReBuildGraph();
-            yield return searchDungeon.Search();
-            if (waitingType != WaitingType.Instant) yield return CustomWait(waitingType, splitDelay);
+            searchDungeon.OnEndGeneration += searchDungeonOnEndGeneration;
         }
 
-        DispatchOnEndGenerationEvent();
-    }
-
-    void DeleteRoom()
-    {
-        if (!deleteSmallestRoom)
+        private void searchDungeonOnEndGeneration()
         {
-            savedRoom = dungeonGen.doneRooms[Random.Range(0, dungeonGen.doneRooms.Count)];
+            Debug.Log("Start deleting rooms");
+            StartCoroutine(StartDeleting());
         }
-        else
+
+        private IEnumerator StartDeleting()
         {
-            savedDoors.Clear();
-            RectInt smallestRoom = dungeonGen.doneRooms[0];
+            checkedRooms.Clear();
 
-            foreach (var room in dungeonGen.doneRooms)
+            DispatchOnStartGenerationEvent();
+
+
+            amountOfRoomsToDelete = (int)(dungeonGen.doneRooms.Count * deletePercent / 100);
+            //Debug.Log("need to delete " + amountOfRoomsToDelete + " Rooms");
+
+            while (amountOfRoomsToDelete > 0)
             {
-                int smallestRoomSize = smallestRoom.width * smallestRoom.height;
-                int currentRoomSize = room.width * room.height;
+                yield return null;
 
-                if (currentRoomSize < smallestRoomSize && !checkedRooms.Contains(room))
+                bool addBackRoom = false;
+
+                if (searchDungeon.allRoomsReachable)
                 {
-                    smallestRoom = room;
+                    DeleteRoom();
+                    //Debug.Log("room deleted");
+                }
+                else
+                {
+                    AddRoom();
+                    amountOfRoomsToDelete++;
+                    addBackRoom = true;
+                }
+
+                yield return StartCoroutine(graphGen.ReBuildGraph());
+                yield return StartCoroutine(searchDungeon.Search());
+                if (waitingType != WaitingType.Instant) yield return CustomWait(waitingType, splitDelay);
+
+                if (searchDungeon.allRoomsReachable && addBackRoom == true)
+                {
+                    break;
                 }
             }
 
-            savedRoom = smallestRoom;
-            checkedRooms.Add(savedRoom);
-        }
-
-        for (int i = 0; i < dungeonGen.doors.Count; i++)
-        {
-            if (savedRoom.Overlaps(dungeonGen.doors[i]))
+            if (!searchDungeon.allRoomsReachable)
             {
-                //Debug.Log("door " + i + " was added " + dungeonGen.doors[i].ToString());
-                savedDoors.Add(dungeonGen.doors[i]);
+                AddRoom();
+                amountOfRoomsToDelete++;
+
             }
+
+            yield return StartCoroutine(graphGen.ReBuildGraph());
+            yield return StartCoroutine(searchDungeon.Search());
+            //Debug.Log("room added");
+            //Debug.Log($"there are {dungeonGen.Overlaps.Count} overlaps");
+            dungeonGen.Overlaps.Clear();
+            yield return StartCoroutine(dungeonGen.MakeOverlaps());
+            //Debug.Log($"there are {dungeonGen.Overlaps.Count} overlaps");
+
+            DispatchOnEndGenerationEvent();
         }
 
-        dungeonGen.doneRooms.Remove(savedRoom);
-
-        foreach (var door in savedDoors)
+        void DeleteRoom()
         {
-            dungeonGen.doors.Remove(door);
+            if (!deleteSmallestRoom)
+            {
+                savedRoom = dungeonGen.doneRooms[Random.Range(0, dungeonGen.doneRooms.Count)];
+            }
+            else
+            {
+                savedDoors.Clear();
+                RectInt smallestRoom = dungeonGen.doneRooms[0];
+
+                foreach (var room in dungeonGen.doneRooms)
+                {
+                    int smallestRoomSize = smallestRoom.width * smallestRoom.height;
+                    int currentRoomSize = room.width * room.height;
+
+                    if (currentRoomSize < smallestRoomSize && !checkedRooms.Contains(room))
+                    {
+                        smallestRoom = room;
+                    }
+                }
+
+                savedRoom = smallestRoom;
+                checkedRooms.Add(savedRoom);
+            }
+
+            for (int i = 0; i < dungeonGen.doors.Count; i++)
+            {
+                if (savedRoom.Overlaps(dungeonGen.doors[i]))
+                {
+                    //Debug.Log("door " + i + " was added " + dungeonGen.doors[i].ToString());
+                    savedDoors.Add(dungeonGen.doors[i]);
+                }
+            }
+
+            dungeonGen.doneRooms.Remove(savedRoom);
+
+            foreach (var door in savedDoors)
+            {
+                dungeonGen.doors.Remove(door);
+            }
+
+            amountOfRoomsToDelete--;
         }
 
-        amountOfRoomsToDelete--;
-    }
-
-    public void AddRoom()
-    {
-        dungeonGen.doneRooms.Add(savedRoom);
-
-        foreach (var door in savedDoors)
+        public void AddRoom()
         {
-            dungeonGen.doors.Add(door);
+            dungeonGen.doneRooms.Add(savedRoom);
+
+            foreach (var door in savedDoors)
+            {
+                dungeonGen.doors.Add(door);
+            }
+
+            savedDoors.Clear();
         }
-
-        //amountOfRoomsToDelete++;
-
-        savedDoors.Clear();
     }
-}
 
 }

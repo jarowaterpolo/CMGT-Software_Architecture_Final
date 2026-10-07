@@ -766,6 +766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2353601573894389016, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4178829607780011803, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.12699
@@ -978,16 +982,56 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: Seed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1590851101}
+    - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: DoDebugDraw
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: showOverlaps
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: showDoneRooms
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: useRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: dungeonParent
       value: 
       objectReference: {fileID: 1654560255}
+    - target: {fileID: 6039778383020056355, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: DoDebugDraw
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039778383020056355, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: waitingType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039778383020056355, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: deletePercent
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6979452253434566875, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: m_Name
       value: ---Dungeon_Generator---
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208972303280217700, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: DoDebugDraw
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208972303280217700, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: waitingType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7473206168061209009, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: dungeonParent

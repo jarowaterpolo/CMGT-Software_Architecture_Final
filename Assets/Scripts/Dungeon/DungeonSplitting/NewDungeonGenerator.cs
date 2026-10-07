@@ -14,8 +14,9 @@ using UnityEngine.UIElements;
         private List<RectInt> toDoRooms = new();
         [HideInInspector]
         public List<RectInt> doneRooms = new();
-        private List<RectInt> Overlaps = new();
-        //[HideInInspector]
+        [HideInInspector]
+        public List<RectInt> Overlaps = new();
+        [HideInInspector]
         public List<RectInt> doors = new();
 
         private RectInt currentRoom;
@@ -140,16 +141,7 @@ using UnityEngine.UIElements;
             }
 
             //O(n^2)
-            for (int i = 0; i < doneRooms.Count; i++)
-            {
-                for (int j = i + 1; j < doneRooms.Count; j++)
-                {
-                    if (AlgorithmsUtils.Intersect(doneRooms[i], doneRooms[j]).width < 1 && AlgorithmsUtils.Intersect(doneRooms[i], doneRooms[j]).height < 1) continue;
-
-                    if (waitingType != WaitingType.Instant) yield return CustomWait(waitingType, splitDelay);
-                    GetOverlaps(i, j);
-                }
-            }
+            yield return StartCoroutine(MakeOverlaps());
 
             for (int i = 0; i < Overlaps.Count; i++)
             {
@@ -162,6 +154,20 @@ using UnityEngine.UIElements;
             Player.position = new(doneRooms[0].position.x + doneRooms[0].width / 2, 1, doneRooms[0].position.y + doneRooms[0].height / 2);
 
             DispatchOnEndGenerationEvent();
+        }
+
+        public IEnumerator MakeOverlaps()
+        {
+            for (int i = 0; i < doneRooms.Count; i++)
+            {
+                for (int j = i + 1; j < doneRooms.Count; j++)
+                {
+                    if (AlgorithmsUtils.Intersect(doneRooms[i], doneRooms[j]).width < 1 && AlgorithmsUtils.Intersect(doneRooms[i], doneRooms[j]).height < 1) continue;
+
+                    if (waitingType != WaitingType.Instant) yield return CustomWait(waitingType, splitDelay);
+                    GetOverlaps(i, j);
+                }
+            }
         }
         public void GetOverlaps(int i, int j)
         {

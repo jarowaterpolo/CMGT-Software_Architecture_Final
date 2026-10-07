@@ -114,6 +114,10 @@ using UnityEngine;
 
         public IEnumerator ReBuildGraph()
         {
+            doneRooms = dungeonGen.doneRooms;
+            Doors = dungeonGen.doors;
+            roomGraph.ClearGraph();
+            doorGraph.ClearGraph();
             yield return BuildGraph();
         }
 

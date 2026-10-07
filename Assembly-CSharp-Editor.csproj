@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>PlayerSystem</RootNamespace>
-    <ProjectGuid>{3C8DAAE5-60AA-14B6-6EE5-BC0F70F886F5}</ProjectGuid>
+    <ProjectGuid>{68846C17-7B58-53D0-1900-109AD65BB5D2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -663,10 +663,6 @@
     </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
@@ -1508,19 +1504,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{A4B2BE94-043F-A813-E770-863774EAD85A}</Project>
+      <Project>{774F76F3-BF8A-E36D-5C58-A7231C1208FB}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Test.csproj">
-      <Project>{60B41F78-7EF0-0D62-D934-321D80D7633B}</Project>
+      <Project>{99B5D50F-BD21-7691-18B6-A82C80DE9D72}</Project>
       <Name>NaughtyAttributes.Test</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Core.csproj">
-      <Project>{411C67BC-C6CE-0761-9010-F2D5AE55F5D8}</Project>
+      <Project>{B2CD7163-AA81-38BB-8C88-8E3334EB58C3}</Project>
       <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Editor.csproj">
-      <Project>{635C3799-BE2F-7536-ACE4-6872044C832B}</Project>
+      <Project>{5DE076E7-BEF2-C124-BB35-99D0C879A99E}</Project>
       <Name>NaughtyAttributes.Editor</Name>
     </ProjectReference>
   </ItemGroup>

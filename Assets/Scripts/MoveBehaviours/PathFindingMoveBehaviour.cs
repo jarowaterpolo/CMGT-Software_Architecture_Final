@@ -1,12 +1,11 @@
-namespace JJNDungeonGeneration
-{
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using UnityEditor;
-    using UnityEngine;
+using JJNDungeonGeneration;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
+namespace PlayerSystem.Movement
+{
     public enum Algorithms
     {
         BFS,
@@ -14,8 +13,7 @@ namespace JJNDungeonGeneration
         Dijkstra,
         AStar
     }
-
-    public class PathFinder : Generator
+    public class PathFindingMoveBehaviour : MoveBehaviour
     {
         private TileMapGraph tileMapGraph;
 
@@ -28,12 +26,55 @@ namespace JJNDungeonGeneration
         private Graph<Vector3> Graph;
 
         public Algorithms algorithm = Algorithms.BFS;
+        [SerializeField]
+        private float Speed = 5f;
 
+        private bool isMoving = false;
         void Start()
         {
-            tileMapGraph = GetComponent<TileMapGraph>();
+            tileMapGraph = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<TileMapGraph>();
             Graph = tileMapGraph.graphNodes;
         }
+
+        //Pathfollower
+        public void GoToDestination(Vector3 destination)
+        {
+            if (!isMoving)
+            {
+                StartCoroutine(FollowPathCoroutine(CalculatePath(transform.position, destination)));
+            }
+        }
+
+        IEnumerator FollowPathCoroutine(List<Vector3> path)
+        {
+            if (path == null || path.Count == 0)
+            {
+                Debug.Log("No Path found");
+                yield break;
+            }
+            isMoving = true;
+            for (int i = 0; i < path.Count; i++)
+            {
+                Vector3 target = path[i];
+                // Move towards the target position
+                while (Vector3.Distance(transform.position, target) > 0.1f)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * Speed);
+                    yield return null;
+                }
+
+                //Debug.Log($"Reached target: {target}");
+            }
+            isMoving = false;
+        }
+
+        //Pathfinder
+
+        public override void SetTargetPosition(Vector3 targetPos)
+        {
+            CalculatePath(transform.position, targetPos);
+        }
+
 
         private Vector3 GetClosestNodeToPosition(Vector3 position)
         {
@@ -55,12 +96,9 @@ namespace JJNDungeonGeneration
 
             return closestNode;
         }
-
         public List<Vector3> CalculatePath(Vector3 from, Vector3 to)
         {
-            Vector3 playerPosition = from;
-
-            startNode = GetClosestNodeToPosition(playerPosition);
+            startNode = GetClosestNodeToPosition(from);
             endNode = GetClosestNodeToPosition(to);
 
             List<Vector3> shortestPath = new List<Vector3>();
@@ -85,7 +123,6 @@ namespace JJNDungeonGeneration
 
             return shortestPath;
         }
-
         List<Vector3> BFS(Vector3 start, Vector3 end)
         {
             //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
@@ -123,7 +160,6 @@ namespace JJNDungeonGeneration
 
             return new List<Vector3>(); // No Path found
         }
-
         List<Vector3> DFS(Vector3 start, Vector3 end)
         {
             //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
@@ -161,8 +197,6 @@ namespace JJNDungeonGeneration
 
             return new List<Vector3>(); // No Path found
         }
-
-
         public List<Vector3> Dijkstra(Vector3 start, Vector3 end)
         {
             //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
@@ -209,7 +243,6 @@ namespace JJNDungeonGeneration
             /* */
             return new List<Vector3>(); // No Path found
         }
-
         List<Vector3> AStar(Vector3 start, Vector3 end)
         {
             //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
@@ -256,17 +289,14 @@ namespace JJNDungeonGeneration
             /* */
             return new List<Vector3>(); // No Path found
         }
-
         public float Cost(Vector3 from, Vector3 to)
         {
             return Vector3.Distance(from, to);
         }
-
         public float Heuristic(Vector3 from, Vector3 to)
         {
             return Vector3.Distance(from, to);
         }
-
         List<Vector3> ReconstructPath(Dictionary<Vector3, Vector3> parentMap, Vector3 start, Vector3 end)
         {
             List<Vector3> path = new List<Vector3>();
@@ -281,35 +311,6 @@ namespace JJNDungeonGeneration
             path.Add(start);
             path.Reverse();
             return path;
-        }
-
-        void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(startNode, .3f);
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(endNode, .3f);
-
-            if (Discovered != null)
-            {
-                foreach (var node in Discovered)
-                {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawSphere(node, .3f);
-                }
-            }
-
-            if (Path != null)
-            {
-                foreach (var node in Path)
-                {
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawSphere(node, .3f);
-                }
-            }
-
-
         }
     }
 }

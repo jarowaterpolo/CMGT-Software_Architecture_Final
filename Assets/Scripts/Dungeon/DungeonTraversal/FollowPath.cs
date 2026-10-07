@@ -1,58 +1,57 @@
 namespace JJNDungeonGeneration
 {
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-public class FollowPathController : MonoBehaviour
-{
-    [SerializeField]
-    private PathFinder pathFinder;
-
-    [SerializeField]
-    private float Speed = 5f;
-
-    private bool isMoving = false;
-
-    private void Start()
+    public class FollowPathController : MonoBehaviour
     {
-        if (pathFinder == null)
-        {
-            pathFinder = FindAnyObjectByType<PathFinder>();
-        }
-    }
+        [SerializeField]
+        private PathFinder pathFinder;
 
-    public void GoToDestination(Vector3 destination)
-    {
-        if (!isMoving)
-        {
-            StartCoroutine(FollowPathCoroutine(pathFinder.CalculatePath(transform.position, destination)));
-        }
-    }
+        [SerializeField]
+        private float Speed = 5f;
 
-    IEnumerator FollowPathCoroutine(List<Vector3> path)
-    {
-        if (path == null || path.Count == 0)
+        private bool isMoving = false;
+
+        private void Start()
         {
-            Debug.Log("No Path found");
-            yield break;
-        }
-        isMoving = true;
-        for (int i = 0; i < path.Count; i++)
-        {
-            Vector3 target = path[i];
-            // Move towards the target position
-            while (Vector3.Distance(transform.position, target) > 0.1f)
+            if (pathFinder == null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * Speed);
-                yield return null;
+                pathFinder = FindAnyObjectByType<PathFinder>();
             }
-
-            //Debug.Log($"Reached target: {target}");
         }
-        isMoving = false;
+
+        public void GoToDestination(Vector3 destination)
+        {
+            if (!isMoving)
+            {
+                StartCoroutine(FollowPathCoroutine(pathFinder.CalculatePath(transform.position, destination)));
+            }
+        }
+
+        IEnumerator FollowPathCoroutine(List<Vector3> path)
+        {
+            if (path == null || path.Count == 0)
+            {
+                Debug.Log("No Path found");
+                yield break;
+            }
+            isMoving = true;
+            for (int i = 0; i < path.Count; i++)
+            {
+                Vector3 target = path[i];
+                // Move towards the target position
+                while (Vector3.Distance(transform.position, target) > 0.1f)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * Speed);
+                    yield return null;
+                }
+
+                //Debug.Log($"Reached target: {target}");
+            }
+            isMoving = false;
+        }
+
     }
-
-}
-
 }

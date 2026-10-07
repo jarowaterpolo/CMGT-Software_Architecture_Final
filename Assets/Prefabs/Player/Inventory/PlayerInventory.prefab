@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a0789ac74f6cc4d868fe33d83c695a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.AttackItemSortingStrategyHighToLow
-  strategyName: 
+  strategyName: Attack High to Low
 --- !u!1 &465084972881845451
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a7a58a99cb8fb4396a9b029bf41201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.NameItemSortingStrategyAToZ
-  strategyName: 
+  strategyName: Name A to Z
 --- !u!1 &2125628645563915733
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c3a5547113a9743971885ad314bb03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.NameItemSortingStrategyZToA
-  strategyName: 
+  strategyName: Name Z to A
 --- !u!1 &2529960478307502432
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89997a89ec96a949953a54e1ecfaa8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.ObtainedItemSortingStrategyNewToOld
-  strategyName: 
+  strategyName: New to Old
 --- !u!1 &4061864040614482534
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e50545e4b091243811ef3b3728b97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.Inventory
-  itemDatas: []
+  itemDatas:
+  - {fileID: 11400000, guid: 9f6c9f74887b5064d91898038041dda4, type: 2}
+  - {fileID: 11400000, guid: e08d44580bc1115468f02e61a291d309, type: 2}
+  - {fileID: 11400000, guid: 8d900babc4e9ba742a1fdb33124a3b56, type: 2}
   items: []
   itemSortingStrategies: []
   strategyIndex: 0
@@ -289,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb4386d8d13c6145b55cd90ff0ec667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.DefenseItemSortingStrategyHighToLow
-  strategyName: 
+  strategyName: Defense High to Low
 --- !u!1 &8469252175783197931
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426e67c360f82dd4ca18b6bc00998fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.DummyItemSortingStrategy
-  strategyName: 
+  strategyName: Old to New
 --- !u!1 &9091910333100902018
 GameObject:
   m_ObjectHideFlags: 0

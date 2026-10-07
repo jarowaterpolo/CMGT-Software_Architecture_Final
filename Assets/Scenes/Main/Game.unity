@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &49807561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49807563}
+  - component: {fileID: 49807562}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &49807562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49807561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cf8b4e34b2e814c9fe83b8962f7605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PathFinding.EnemySpawner
+  enemyPrefab: {fileID: 5467120107319134082, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
+  spawnDelay: 2
+  enemyParent: {fileID: 1654560257}
+--- !u!4 &49807563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49807561}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 72.57571, y: 0, z: 58.7983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &203031833 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7453299960906252905, guid: b6c69b4784325d44798daa282a522feb, type: 3}
@@ -742,6 +789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 465982432517273028, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4178829607780011803, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -894,6 +945,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4441060734942648649, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
   m_PrefabInstance: {fileID: 1654560254}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1654560257 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1955670716095285402, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
+  m_PrefabInstance: {fileID: 1654560254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1766990199 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4124967976661142939, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
@@ -965,6 +1021,10 @@ PrefabInstance:
       propertyPath: dungeonParent
       value: 
       objectReference: {fileID: 1654560255}
+    - target: {fileID: 6590108003068917127, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6979452253434566875, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: m_Name
       value: ---Dungeon_Generator---
@@ -974,13 +1034,45 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1654560256}
     - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 920897790}
     - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 49807562}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: TurnOff.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 920897790}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartSpawningEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: JJN.PathFinding.EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683774579756140670, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: TurnOn.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1059,3 +1151,4 @@ SceneRoots:
   - {fileID: 1523556063}
   - {fileID: 1957126986}
   - {fileID: 296734603}
+  - {fileID: 49807563}

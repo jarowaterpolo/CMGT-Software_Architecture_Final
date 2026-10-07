@@ -1,3 +1,4 @@
+using JJN.PathFinding;
 using JJNDungeonGeneration;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,34 +16,44 @@ namespace PlayerSystem.Movement
     }
     public class PathFindingMoveBehaviour : MoveBehaviour
     {
-        private TileMapGraph tileMapGraph;
-
         private Vector3 startNode;
         private Vector3 endNode;
 
         public List<Vector3> Path = new List<Vector3>();
-        HashSet<Vector3> Discovered = new HashSet<Vector3>();
 
-        private Graph<Vector3> Graph;
+        protected Graph<Vector3> Graph;
+        protected TileMapGraph tileMapGraph;
+
 
         public Algorithms algorithm = Algorithms.BFS;
+
+        [Header("Path Finding Algorithms")]
+        [SerializeField]
+        private PathFindingAlgorithm currentPathFindingAlgorithm;
+
         [SerializeField]
         private float Speed = 5f;
 
         private bool isMoving = false;
-        void Start()
-        {
-            tileMapGraph = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<TileMapGraph>();
-            Graph = tileMapGraph.graphNodes;
-        }
 
+        private void Start()
+        {
+            GetGraph();            
+        }
         //Pathfollower
+        public override void SetTargetPosition(Vector3 targetPos)
+        {
+            GoToDestination(targetPos);
+        }
         public void GoToDestination(Vector3 destination)
         {
-            if (!isMoving)
+            if (isMoving)
             {
-                StartCoroutine(FollowPathCoroutine(CalculatePath(transform.position, destination)));
+                StopAllCoroutines();
+                isMoving = false;
             }
+
+            StartCoroutine(FollowPathCoroutine(CalculatePath(transform.position, destination)));
         }
 
         IEnumerator FollowPathCoroutine(List<Vector3> path)
@@ -69,14 +80,38 @@ namespace PlayerSystem.Movement
         }
 
         //Pathfinder
-
-        public override void SetTargetPosition(Vector3 targetPos)
+        public List<Vector3> CalculatePath(Vector3 from, Vector3 to)
         {
-            CalculatePath(transform.position, targetPos);
+            Debug.Log($"go from {from} to {to}");
+
+            startNode = GetClosestNodeToPosition(from);
+            endNode = GetClosestNodeToPosition(to);
+
+            List<Vector3> shortestPath = new List<Vector3>();
+
+            currentPathFindingAlgorithm.SetGraph(Graph);
+
+            switch (algorithm)
+            {
+                case Algorithms.BFS:
+                    shortestPath = currentPathFindingAlgorithm.BFS(startNode, endNode);
+                    break;
+                case Algorithms.DFS:
+                    shortestPath = currentPathFindingAlgorithm.DFS(startNode, endNode);
+                    break;
+                case Algorithms.Dijkstra:
+                    shortestPath = currentPathFindingAlgorithm.Dijkstra(startNode, endNode);
+                    break;
+                case Algorithms.AStar:
+                    shortestPath = currentPathFindingAlgorithm.AStar(startNode, endNode);
+                    break;
+            }
+
+            Path = shortestPath; //Used for drawing the Path
+
+            return shortestPath;
         }
-
-
-        private Vector3 GetClosestNodeToPosition(Vector3 position)
+        protected Vector3 GetClosestNodeToPosition(Vector3 position)
         {
             Vector3 closestNode = Vector3.zero;
             float closestDistance = Mathf.Infinity;
@@ -96,221 +131,14 @@ namespace PlayerSystem.Movement
 
             return closestNode;
         }
-        public List<Vector3> CalculatePath(Vector3 from, Vector3 to)
+
+        public void GetGraph()
         {
-            startNode = GetClosestNodeToPosition(from);
-            endNode = GetClosestNodeToPosition(to);
-
-            List<Vector3> shortestPath = new List<Vector3>();
-
-            switch (algorithm)
+            if (Graph == null)
             {
-                case Algorithms.BFS:
-                    shortestPath = BFS(startNode, endNode);
-                    break;
-                case Algorithms.DFS:
-                    shortestPath = DFS(startNode, endNode);
-                    break;
-                case Algorithms.Dijkstra:
-                    shortestPath = Dijkstra(startNode, endNode);
-                    break;
-                case Algorithms.AStar:
-                    shortestPath = AStar(startNode, endNode);
-                    break;
+                tileMapGraph = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<TileMapGraph>();
+                Graph = tileMapGraph.graphNodes;
             }
-
-            Path = shortestPath; //Used for drawing the Path
-
-            return shortestPath;
-        }
-        List<Vector3> BFS(Vector3 start, Vector3 end)
-        {
-            //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
-            Discovered.Clear();
-
-            Queue<Vector3> ToDo = new();
-            Dictionary<Vector3, Vector3> parentMap = new();
-            Vector3 currentNode = start;
-
-            ToDo.Enqueue(currentNode);
-            Discovered.Add(currentNode);
-
-            while (ToDo.Count > 0)
-            {
-                currentNode = ToDo.Dequeue();
-
-                if (currentNode == end)
-                {
-                    return ReconstructPath(parentMap, start, end);
-                }
-
-                var neighbors = Graph.GetNeighbors(currentNode);
-
-                foreach (Vector3 neighbor in neighbors)
-                {
-                    if (!Discovered.Contains(neighbor))
-                    {
-                        Discovered.Add(neighbor);
-                        ToDo.Enqueue(neighbor);
-                        parentMap[neighbor] = currentNode;
-                    }
-                }
-
-            }
-
-            return new List<Vector3>(); // No Path found
-        }
-        List<Vector3> DFS(Vector3 start, Vector3 end)
-        {
-            //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
-            Discovered.Clear();
-
-            Stack<Vector3> ToDo = new();
-            Dictionary<Vector3, Vector3> parentMap = new();
-            Vector3 currentNode = start;
-
-            ToDo.Push(currentNode);
-            Discovered.Add(currentNode);
-
-            while (ToDo.Count > 0)
-            {
-                currentNode = ToDo.Pop();
-
-                if (currentNode == end)
-                {
-                    return ReconstructPath(parentMap, start, end);
-                }
-
-                var neighbors = Graph.GetNeighbors(currentNode);
-
-                foreach (Vector3 neighbor in neighbors)
-                {
-                    if (!Discovered.Contains(neighbor))
-                    {
-                        Discovered.Add(neighbor);
-                        ToDo.Push(neighbor);
-                        parentMap[neighbor] = currentNode;
-                    }
-                }
-
-            }
-
-            return new List<Vector3>(); // No Path found
-        }
-        public List<Vector3> Dijkstra(Vector3 start, Vector3 end)
-        {
-            //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
-            Discovered.Clear();
-
-            Dictionary<Vector3, float> costMap = new();
-            Dictionary<Vector3, Vector3> parentMap = new();
-            List<(Vector3 node, float cost)> ToDo = new();
-
-            costMap[start] = 0;
-            ToDo.Add((start, 0));
-            Discovered.Add(start);
-
-            while (ToDo.Count > 0)
-            {
-                ToDo = ToDo.OrderByDescending(node => node.cost).ToList();
-
-                var currentNode = ToDo[ToDo.Count - 1].node;
-                ToDo.RemoveAt(ToDo.Count - 1);
-
-                if (currentNode == end)
-                {
-                    return ReconstructPath(parentMap, start, end);
-                }
-
-                var neighbors = Graph.GetNeighbors(currentNode);
-
-                foreach (Vector3 neighbor in neighbors)
-                {
-                    var newCost = costMap[currentNode] + Cost(currentNode, neighbor);
-
-                    if (!costMap.ContainsKey(neighbor) || newCost < costMap[neighbor])
-                    {
-                        Discovered.Add(neighbor);
-
-                        costMap[neighbor] = newCost;
-                        parentMap[neighbor] = currentNode;
-                        ToDo.Add((neighbor, newCost));
-                    }
-                }
-
-            }
-
-            /* */
-            return new List<Vector3>(); // No Path found
-        }
-        List<Vector3> AStar(Vector3 start, Vector3 end)
-        {
-            //Use this "Discovered" list to see the nodes in the visual debugging used on OnDrawGizmos()
-            Discovered.Clear();
-
-            Dictionary<Vector3, float> costMap = new();
-            Dictionary<Vector3, Vector3> parentMap = new();
-            List<(Vector3 node, float cost)> ToDo = new();
-
-            costMap[start] = 0;
-            ToDo.Add((start, 0));
-            Discovered.Add(start);
-
-            while (ToDo.Count > 0)
-            {
-                ToDo = ToDo.OrderByDescending(node => node.cost).ToList();
-
-                var currentNode = ToDo[ToDo.Count - 1].node;
-                ToDo.RemoveAt(ToDo.Count - 1);
-
-                if (currentNode == end)
-                {
-                    return ReconstructPath(parentMap, start, end);
-                }
-
-                var neighbors = Graph.GetNeighbors(currentNode);
-
-                foreach (Vector3 neighbor in neighbors)
-                {
-                    var newCost = costMap[currentNode] + Cost(currentNode, neighbor);
-
-                    if (!costMap.ContainsKey(neighbor) || newCost < costMap[neighbor])
-                    {
-                        Discovered.Add(neighbor);
-
-                        costMap[neighbor] = newCost;
-                        parentMap[neighbor] = currentNode;
-                        ToDo.Add((neighbor, newCost + Heuristic(neighbor, end)));
-                    }
-                }
-
-            }
-
-            /* */
-            return new List<Vector3>(); // No Path found
-        }
-        public float Cost(Vector3 from, Vector3 to)
-        {
-            return Vector3.Distance(from, to);
-        }
-        public float Heuristic(Vector3 from, Vector3 to)
-        {
-            return Vector3.Distance(from, to);
-        }
-        List<Vector3> ReconstructPath(Dictionary<Vector3, Vector3> parentMap, Vector3 start, Vector3 end)
-        {
-            List<Vector3> path = new List<Vector3>();
-            Vector3 currentNode = end;
-
-            while (currentNode != start)
-            {
-                path.Add(currentNode);
-                currentNode = parentMap[currentNode];
-            }
-
-            path.Add(start);
-            path.Reverse();
-            return path;
         }
     }
 }

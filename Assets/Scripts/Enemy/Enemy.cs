@@ -1,13 +1,13 @@
 using PlayerSystem.Movement;
 using UnityEngine;
 
-namespace PlayerSystem
+namespace JJN.Enemy
 {
     public class Enemy : MonoBehaviour
     {
         [SerializeField]
         private MoveBehaviour moveBehaviour;
-
+        [SerializeField]
         private Transform playerTransform;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -15,11 +15,9 @@ namespace PlayerSystem
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             moveBehaviour.SetTargetPosition(playerTransform.position);
         }
-
-        // Update is called once per frame
         void Update()
         {
-        
+            moveBehaviour.SetTargetPosition(playerTransform.position);
         }
     }
 }

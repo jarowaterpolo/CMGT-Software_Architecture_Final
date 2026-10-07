@@ -106,13 +106,13 @@ namespace PlayerSystem.Inventory
             Vector2 moveVector = context.ReadValue<Vector2>();
 
             // Navigate to the previous sorting strategy if moving left.
-            if (moveVector.x == -1)
+            if (moveVector.x == -1 || Input.GetKeyDown(KeyCode.A))
             {
                 RefreshInventoryWithPrevSorting();
             }
 
             // Navigate to the next sorting strategy if moving right.
-            if (moveVector.x == 1)
+            if (moveVector.x == 1 || Input.GetKeyDown(KeyCode.D))
             {
                 RefreshInventoryWithNextSorting();
             }

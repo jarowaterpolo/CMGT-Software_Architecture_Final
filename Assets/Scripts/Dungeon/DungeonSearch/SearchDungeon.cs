@@ -14,7 +14,6 @@ public class SearchDungeon : Generator
     private SearchAlgorithms<Vector3> searchAlgorithm;
 
     private bool Complete;
-    private int j;
 
     [HideInInspector]
     public Graph<Vector3> roomGraph;
@@ -40,16 +39,11 @@ public class SearchDungeon : Generator
     private void GraphGen_OnEndGeneration()
     {
         if (Complete) return;
-        if (j < 1)
-        {
-            audioSource.Play();
-        }
         StartCoroutine(SearchDungeonGraph());
     }
     private void DungeonGen_OnStartGeneration()
     {
         Complete = false;
-        j = 0;
     }
 
     [Button(enabledMode: EButtonEnableMode.Playmode)]
@@ -58,7 +52,6 @@ public class SearchDungeon : Generator
         UnityEngine.Random.InitState(dungeonGen.Seed);
 
         DispatchOnStartGenerationEvent();
-        j++;
 
         yield return Search();
 

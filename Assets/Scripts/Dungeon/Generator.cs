@@ -22,11 +22,17 @@ namespace JJNDungeonGeneration
 
         public AudioSource audioSource;
 
+        public bool DoDebugDraw;
+
         //[Space(100)]
 
         protected void DispatchOnStartGenerationEvent()
         {
             OnStartGeneration?.Invoke();
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
         }
 
         protected void DispatchOnEndGenerationEvent()

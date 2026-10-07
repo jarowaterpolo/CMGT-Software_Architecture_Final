@@ -79,6 +79,7 @@ public class AddWalls : Generator
             }
         }
 
+        currentLocation = new();
         DispatchOnEndGenerationEvent();
     }
 

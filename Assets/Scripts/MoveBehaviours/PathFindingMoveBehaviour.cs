@@ -31,11 +31,6 @@ namespace PlayerSystem.Movement
         [SerializeField]
         private PathFindingAlgorithm currentPathFindingAlgorithm;
 
-        [SerializeField]
-        private float Speed = 5f;
-
-        private bool isMoving = false;
-
         private void Start()
         {
             GetGraph();            

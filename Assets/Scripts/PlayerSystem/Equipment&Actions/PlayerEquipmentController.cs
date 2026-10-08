@@ -9,6 +9,8 @@ namespace PlayerSystem.Inventory
     {
         [SerializeField]
         private Inventory playerInventory;
+        [SerializeField]
+        private EquipmentPresenter equipmentPresenter;
 
         private Item weaponData = null;
         private Item shieldData = null;
@@ -74,11 +76,13 @@ namespace PlayerSystem.Inventory
                 {
                     case ItemType.Weapon:
                         weaponData = item;
+                        equipmentPresenter.PresentItem(item, 1);
                         //Debug.Log($"{item.ItemName} copied to weaponData");
                         break;
 
                     case ItemType.Shield:
                         shieldData = item;
+                        equipmentPresenter.PresentItem(item, 1);
                         //Debug.Log($"{item.ItemName} copied to shieldData");
                         break;
 

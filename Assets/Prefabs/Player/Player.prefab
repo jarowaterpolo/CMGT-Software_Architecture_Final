@@ -16,9 +16,11 @@ GameObject:
   - component: {fileID: 1966862302005157275}
   - component: {fileID: 5172487278447316643}
   - component: {fileID: 4872141258332412035}
+  - component: {fileID: 6140917253219863673}
+  - component: {fileID: 5845418595081599531}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,6 +39,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6821483785736571948}
+  - {fileID: 7698029338095883052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8526824743504231286
@@ -250,33 +253,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Inventory.PlayerEquipmentController
   playerInventory: {fileID: 0}
-  weaponData:
-    id: 
-    itemName: 
-    itemType: 0
-    attack: 0
-    defense: 0
-    itemIcon: {fileID: 0}
-    itemModel: {fileID: 0}
-    isStackable: 0
-  shieldData:
-    id: 
-    itemName: 
-    itemType: 0
-    attack: 0
-    defense: 0
-    itemIcon: {fileID: 0}
-    itemModel: {fileID: 0}
-    isStackable: 0
-  itemData:
-    id: 
-    itemName: 
-    itemType: 0
-    attack: 0
-    defense: 0
-    itemIcon: {fileID: 0}
-    itemModel: {fileID: 0}
-    isStackable: 0
+  equipmentPresenter: {fileID: 5330762426131789736}
+--- !u!114 &6140917253219863673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465982432517273028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe25baf7ee762674895cfd67bbb8e209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PathFinding.PlayerHPController
+  hpObject: {fileID: 11400000, guid: 3299c9671b1205c4c9160b9b60078f06, type: 2}
+  hpText: {fileID: 0}
+--- !u!114 &5845418595081599531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465982432517273028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914fa7e81099dd74a90f4032b4b53cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Values.PlayerXPController
+  xpNeededForEachLevel: 0a0000001e0000003200000064000000c8000000
+  xpBar: {fileID: 0}
+  lvlText: {fileID: 0}
+  MaxHPGainBasedOnLevelUp: 5
+  hpObject: {fileID: 11400000, guid: 3299c9671b1205c4c9160b9b60078f06, type: 2}
 --- !u!1 &2353601573894389016
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +313,7 @@ Transform:
   m_GameObject: {fileID: 2353601573894389016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -414,3 +422,49 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &6554714744857434528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7698029338095883052}
+  - component: {fileID: 5330762426131789736}
+  m_Layer: 0
+  m_Name: Equipment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7698029338095883052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554714744857434528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4178829607780011803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5330762426131789736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554714744857434528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219f1dd38655350429229ca3d46b6180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Inventory.EquipmentPresenter
+  weaponOffset: {x: 0.5, y: 0, z: 0}
+  shieldOffset: {x: -0.5, y: 0, z: 0}

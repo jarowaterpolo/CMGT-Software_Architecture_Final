@@ -48,69 +48,72 @@ namespace PlayerSystem.Movement
 
         private void Update()
         {
-            if (!inventoryController.inInventory)
-            {
-                // Mouse Look
-                CameraFunctions();
-            }
-
             // Ground Check
             isGrounded = Physics.Raycast(transform.position, Vector3.down, groundDistance);
             Debug.DrawLine(transform.position, transform.position + Vector3.down * groundDistance, Color.darkRed);
 
-            // Jump Input
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-                jumpRequested = true;
-
-            // Footsteps
-            Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-            bool isMoving = horizontalVelocity.magnitude > 0.2f && isGrounded;
-
-            float currentStepInterval = Input.GetKey(KeyCode.LeftShift) ? stepInterval * 0.6f : stepInterval;
-
-            if (isMoving)
+            if (!inventoryController.inInventory)
             {
-                stepTimer += Time.deltaTime;
-                if (stepTimer >= currentStepInterval)
+                // Mouse Look
+                CameraFunctions();
+
+                // Jump Input
+                if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+                    jumpRequested = true;
+
+                // Footsteps
+                Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+                bool isMoving = horizontalVelocity.magnitude > 0.2f && isGrounded;
+
+                float currentStepInterval = Input.GetKey(KeyCode.LeftShift) ? stepInterval * 0.6f : stepInterval;
+
+                if (isMoving)
                 {
-                    PlayFootstep();
+                    stepTimer += Time.deltaTime;
+                    if (stepTimer >= currentStepInterval)
+                    {
+                        PlayFootstep();
+                        stepTimer = 0f;
+                    }
+                }
+                else
+                {
                     stepTimer = 0f;
                 }
-            }
-            else
-            {
-                stepTimer = 0f;
             }
         }
 
         private void FixedUpdate()
         {
-            // Input
-            float moveX = Input.GetAxisRaw("Horizontal");
-            float moveZ = Input.GetAxisRaw("Vertical");
-
-            Vector3 moveDir = (transform.right * moveX + transform.forward * moveZ).normalized;
-
-            bool isSprinting = Input.GetKey(KeyCode.LeftShift) && isGrounded;
-            float currentMaxSpeed = isSprinting ? maxSpeed * sprintMultiplier : maxSpeed;
-
-            // Calculate target velocity
-            Vector3 targetVelocity = moveDir * currentMaxSpeed;
-            Vector3 currentVelocity = rb.linearVelocity;
-
-            // Keep vertical velocity untouched
-            Vector3 velocityChange = (targetVelocity - new Vector3(currentVelocity.x, 0, currentVelocity.z));
-
-            // Apply snappy movement by directly setting velocity
-            rb.linearVelocity = new Vector3(targetVelocity.x, currentVelocity.y, targetVelocity.z);
-
-            rb.linearDamping = isGrounded ? drag : 0f;
-
-            // Jumping
-            if (jumpRequested)
+            if (!inventoryController.inInventory)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                jumpRequested = false;
+                // Input
+                float moveX = Input.GetAxisRaw("Horizontal");
+                float moveZ = Input.GetAxisRaw("Vertical");
+
+                Vector3 moveDir = (transform.right * moveX + transform.forward * moveZ).normalized;
+
+                bool isSprinting = Input.GetKey(KeyCode.LeftShift) && isGrounded;
+                float currentMaxSpeed = isSprinting ? maxSpeed * sprintMultiplier : maxSpeed;
+
+                // Calculate target velocity
+                Vector3 targetVelocity = moveDir * currentMaxSpeed;
+                Vector3 currentVelocity = rb.linearVelocity;
+
+                // Keep vertical velocity untouched
+                Vector3 velocityChange = (targetVelocity - new Vector3(currentVelocity.x, 0, currentVelocity.z));
+
+                // Apply snappy movement by directly setting velocity
+                rb.linearVelocity = new Vector3(targetVelocity.x, currentVelocity.y, targetVelocity.z);
+
+                rb.linearDamping = isGrounded ? drag : 0f;
+
+                // Jumping
+                if (jumpRequested)
+                {
+                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    jumpRequested = false;
+                }
             }
         }
 

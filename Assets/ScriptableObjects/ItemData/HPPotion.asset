@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dcb117cee14afe4ca52a685d85cef72, type: 3}
-  m_Name: GreatHPPotion
+  m_Name: HPPotion
   m_EditorClassIdentifier: Assembly-CSharp::Player.Inventory.ItemData
-  id: great_hp_potion
-  itemName: Great HP Potion
+  id: hp_potion
+  itemName: HP Potion
   type: 6
+  range: 0
   attack: 0
   defense: 0
-  itemIcon: {fileID: 1813999333, guid: ce0bb48b3835906499355a8731f9d7a1, type: 3}
+  specialItemValue: 5
+  itemIcon: {fileID: 21300000, guid: bfb1d07c46cbdf948b42be3c22197952, type: 3}
   itemModel: {fileID: 0}
   isStackable: 1

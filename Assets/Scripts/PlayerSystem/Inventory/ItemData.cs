@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace PlayerSystem.Inventory
 {
@@ -19,8 +20,10 @@ namespace PlayerSystem.Inventory
         [Header("Core properties")]
         public string itemName;
         public ItemType type;
+        public float range;
         public int attack;
         public int defense;
+        public int specialItemValue;
 
         [Header("Visuals")]
         public Sprite itemIcon;
@@ -50,11 +53,17 @@ namespace PlayerSystem.Inventory
         private ItemType itemType;
         public ItemType ItemType => itemType;
         [SerializeField]
+        private float range;
+        public float Range => range;
+        [SerializeField]
         private int attack;
         public int Attack => attack;
         [SerializeField]
         private int defense;
         public int Defense => defense;
+        [SerializeField]
+        private int specialItemValue;
+        public int SpecialItemValue => specialItemValue;
 
         [Header("Visuals")]
         public Sprite itemIcon;
@@ -68,8 +77,10 @@ namespace PlayerSystem.Inventory
 
             itemType = itemData.type;
 
+            range = itemData.range;
             attack = itemData.attack;
             defense = itemData.defense;
+            specialItemValue = itemData.specialItemValue;
 
             itemIcon = itemData.itemIcon;
             itemModel = itemData.itemModel;

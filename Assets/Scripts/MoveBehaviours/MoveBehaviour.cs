@@ -6,7 +6,9 @@ namespace PlayerSystem.Movement
     {
         [SerializeField]
         protected float targetRange = .2f;
-
+        [SerializeField]
+        protected float Speed = 10f;
+        protected bool isMoving = false;
         public abstract void SetTargetPosition(Vector3 targetPos);
     }
 }

@@ -56,7 +56,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedFloor
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2659863452883018940, guid: 430adba4dec36d04a9c10da1376574b5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -14,17 +14,19 @@ namespace PlayerSystem.Inventory
 
         public void PresentItem(Item item, int itemCount)
         {
-            GameObject itemModel = Instantiate(item.itemModel);
-            itemModel.transform.position = transform.position;
+            GameObject weapon;
+            GameObject shield;
+
             if (item.ItemType == ItemType.Weapon)
             {
-                itemModel.transform.position += weaponOffset;
+                weapon = Instantiate(item.itemModel, transform.position + weaponOffset, transform.rotation, transform);
+                weapon.transform.localRotation = Quaternion.identity;
             }
             else if (item.ItemType == ItemType.Shield)
             {
-                itemModel.transform.position += shieldOffset;
+                shield = Instantiate(item.itemModel, transform.position + shieldOffset, transform.rotation, transform);
+                shield.transform.localRotation = Quaternion.identity;
             }
-            itemModel.transform.SetParent(transform);
         }
     }
 }

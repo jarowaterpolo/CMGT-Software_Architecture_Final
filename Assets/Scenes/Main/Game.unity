@@ -809,15 +809,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443991034056136299, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.10619
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443991034056136299, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.22211
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443991034056136299, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.66144
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443991034056136299, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1009,6 +1009,18 @@ PrefabInstance:
       propertyPath: closeInventory.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1531475467}
+    - target: {fileID: 5330762426131789736, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: shieldOffset.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330762426131789736, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: shieldOffset.y
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330762426131789736, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: weaponOffset.x
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: xpBar
       value: 

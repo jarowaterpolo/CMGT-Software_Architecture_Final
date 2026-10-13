@@ -1,7 +1,5 @@
-using PlayerSystem.Inventory;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace PlayerSystem.Inventory
 {

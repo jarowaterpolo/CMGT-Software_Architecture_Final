@@ -1,8 +1,8 @@
-using PlayerSystem.Inventory;
+using JJN.PlayerSystem.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace PlayerSystem.Movement
+namespace JJN.PlayerSystem.Movement
 {
     public class PlayerController : MonoBehaviour
     {

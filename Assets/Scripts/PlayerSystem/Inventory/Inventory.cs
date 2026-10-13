@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PlayerSystem.Inventory
+namespace JJN.PlayerSystem.Inventory
 {
     /// <summary>
     /// A inventory class that uses Strategy pattern to quickly switch different sorting

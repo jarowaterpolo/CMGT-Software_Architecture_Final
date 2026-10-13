@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace PlayerSystem.Inventory
+namespace JJN.PlayerSystem.Inventory
 {
     public class PlayerEquipmentController : MonoBehaviour
     {

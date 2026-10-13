@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace PlayerSystem.Inventory
+namespace JJN.PlayerSystem.Inventory
 {
     public enum ItemType { Weapon, Shield, Helmet, Chestplate, Leggings, Boots, Potion}
     /// <summary>

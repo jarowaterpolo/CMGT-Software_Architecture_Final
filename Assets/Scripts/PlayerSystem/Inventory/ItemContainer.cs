@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace PlayerSystem.Inventory
+namespace JJN.PlayerSystem.Inventory
 {
     /// <summary>
     /// An item container that invoke the onGetItem action to

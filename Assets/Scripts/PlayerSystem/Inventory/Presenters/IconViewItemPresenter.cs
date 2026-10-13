@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace PlayerSystem.Inventory
+namespace JJN.PlayerSystem.Inventory
 {
     /// <summary>
     /// Todo: finish this class, then replace this header with your own class description.

@@ -1,7 +1,7 @@
-using PlayerSystem.Inventory;
+using JJN.PlayerSystem.Inventory;
 using UnityEngine;
 
-namespace PlayerSystem
+namespace JJN.PlayerSystem
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Scriptable Objects/Weapon")]
     public class Weapon : ScriptableObject

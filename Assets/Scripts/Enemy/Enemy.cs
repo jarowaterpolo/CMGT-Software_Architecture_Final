@@ -1,6 +1,6 @@
 using JJN.Calculation;
 using JJN.ScriptableObjects;
-using PlayerSystem.Inventory;
+using JJN.PlayerSystem.Inventory;
 using PlayerSystem.Movement;
 using System;
 using UnityEngine;

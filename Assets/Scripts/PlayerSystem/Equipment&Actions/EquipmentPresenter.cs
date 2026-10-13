@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlayerSystem.Inventory
+namespace JJN.PlayerSystem.Inventory
 {
     /// <summary>
     /// This presenter shows the item model at its world position.

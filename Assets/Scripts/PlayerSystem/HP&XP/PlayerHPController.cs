@@ -3,7 +3,7 @@ using JJN.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 
-namespace PlayerSystem.Values
+namespace JJN.PlayerSystem.Values
 {
     public class PlayerHPController : MonoBehaviour
     {

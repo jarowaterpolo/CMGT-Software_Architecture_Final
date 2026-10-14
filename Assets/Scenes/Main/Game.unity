@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cf8b4e34b2e814c9fe83b8962f7605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PathFinding.EnemySpawner
-  enemyPrefab: {fileID: 7226504394566553514, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
+  enemyPrefabs:
+  - {fileID: 7226504394566553514, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
   spawnDelay: 2
   enemyParent: {fileID: 1654560257}
 --- !u!4 &49807563
@@ -665,6 +666,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1531475468}
+    - target: {fileID: 5767017015537417319, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6263191874597880226, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -795,6 +800,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &1451489739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5767017015537417319, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+  m_PrefabInstance: {fileID: 1451489735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1523556063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1009,18 +1019,6 @@ PrefabInstance:
       propertyPath: closeInventory.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1531475467}
-    - target: {fileID: 5330762426131789736, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
-      propertyPath: shieldOffset.x
-      value: -0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5330762426131789736, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
-      propertyPath: shieldOffset.y
-      value: -0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5330762426131789736, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
-      propertyPath: weaponOffset.x
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: xpBar
       value: 
@@ -1033,6 +1031,10 @@ PrefabInstance:
       propertyPath: hpText
       value: 
       objectReference: {fileID: 367704086}
+    - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: hurtEffect
+      value: 
+      objectReference: {fileID: 1451489739}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

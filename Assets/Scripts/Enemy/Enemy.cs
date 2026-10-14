@@ -4,6 +4,7 @@ using JJN.PlayerSystem.Inventory;
 using PlayerSystem.Movement;
 using System;
 using UnityEngine;
+using System.Collections;
 
 namespace JJN.Enemy
 {
@@ -16,6 +17,7 @@ namespace JJN.Enemy
         [SerializeField]
         private IntValue enemyMaxHP;
         private int currentEnemyHP;
+
 
         public event Action<int> OnHPChanged;
         public int CurrentHP
@@ -40,6 +42,12 @@ namespace JJN.Enemy
         public int Money;
         public int XP;
 
+        //enemy hurt effects
+        [SerializeField]
+        private Renderer _renderer;
+        private MaterialPropertyBlock _materialPropertyBlock;
+
+
         private SphereCollider attackCollider;
         private float nextAttackTime = 0f;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +59,10 @@ namespace JJN.Enemy
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             moveBehaviour.SetTargetPosition(playerTransform.position);
             CurrentHP = enemyMaxHP.InitialValue;
+
+            _materialPropertyBlock = new MaterialPropertyBlock();
+            _renderer = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
+            _renderer.GetPropertyBlock(_materialPropertyBlock);
         }
         void Update()
         {
@@ -83,8 +95,18 @@ namespace JJN.Enemy
                 if (Vector3.Distance(transform.position, attackEventData.weaponUser.transform.position) < attackEventData.weaponData.Range)
                 {
                     CurrentHP -= attackEventData.weaponData.Attack;
+                    _materialPropertyBlock.SetColor("_BaseColor", new Color(.5f, 0f, 0f, 1f));
+                    _renderer.SetPropertyBlock(_materialPropertyBlock);
+                    StartCoroutine(ResetColor());
                 }
             }
+        }
+
+        IEnumerator ResetColor()
+        {
+            yield return new WaitForSeconds(.2f);
+            _materialPropertyBlock.SetColor("_BaseColor", new Color(.5f, .5f, .5f, 1f));
+            _renderer.SetPropertyBlock(_materialPropertyBlock);
         }
 
         private void OnEnable()

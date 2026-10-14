@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 3042657700811426479}
   - {fileID: 6851186355388617382}
+  - {fileID: 4428255739369621158}
   m_Father: {fileID: 3178168080913799631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1981157778296395280
@@ -281,7 +282,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 61e7f1ba069d76e4d8dfafed2d5213b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -654,7 +655,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6440190861395670585}
-  - {fileID: 4428255739369621158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6399625335020064474
@@ -676,6 +676,8 @@ MonoBehaviour:
   attackDelay: 1
   Money: 5
   XP: 5
+  hurtParticles: {fileID: 0}
+  _renderer: {fileID: 0}
 --- !u!54 &6130107710180501916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -781,7 +783,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5841574196806474261}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -789,7 +791,7 @@ Transform:
   - {fileID: 8916237763331956683}
   - {fileID: 6269404641953907146}
   - {fileID: 2117178337317603208}
-  m_Father: {fileID: 3178168080913799631}
+  m_Father: {fileID: 6440190861395670585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8683377770878047227
 GameObject:

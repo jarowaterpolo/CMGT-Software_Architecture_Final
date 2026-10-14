@@ -8,9 +8,9 @@ namespace JJN.PlayerSystem.Inventory
     public class EquipmentPresenter : MonoBehaviour
     {
         [SerializeField]
-        private Vector3 weaponOffset;
+        private Transform weaponTransform;
         [SerializeField]
-        private Vector3 shieldOffset;
+        private Transform shieldTransform;
 
         public void PresentItem(Item item, int itemCount)
         {
@@ -19,12 +19,12 @@ namespace JJN.PlayerSystem.Inventory
 
             if (item.ItemType == ItemType.Weapon)
             {
-                weapon = Instantiate(item.itemModel, transform.position + weaponOffset, transform.rotation, transform);
+                weapon = Instantiate(item.itemModel, weaponTransform.position, weaponTransform.rotation, weaponTransform);
                 weapon.transform.localRotation = Quaternion.identity;
             }
             else if (item.ItemType == ItemType.Shield)
             {
-                shield = Instantiate(item.itemModel, transform.position + shieldOffset, transform.rotation, transform);
+                shield = Instantiate(item.itemModel, shieldTransform.position, shieldTransform.rotation, shieldTransform);
                 shield.transform.localRotation = Quaternion.identity;
             }
         }

@@ -37,6 +37,9 @@ namespace JJN.PlayerSystem.Movement
         [SerializeField]
         private PlayerInventoryController inventoryController;
 
+        private bool _isDefending;
+        private float _defendingSlowdown;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -93,8 +96,8 @@ namespace JJN.PlayerSystem.Movement
 
                 Vector3 moveDir = (transform.right * moveX + transform.forward * moveZ).normalized;
 
-                bool isSprinting = Input.GetKey(KeyCode.LeftShift) && isGrounded;
-                float currentMaxSpeed = isSprinting ? maxSpeed * sprintMultiplier : maxSpeed;
+                bool isSprinting = Input.GetKey(KeyCode.LeftShift) && isGrounded && !_isDefending;
+                float currentMaxSpeed = isSprinting ? maxSpeed * sprintMultiplier : maxSpeed * _defendingSlowdown;
 
                 // Calculate target velocity
                 Vector3 targetVelocity = moveDir * currentMaxSpeed;
@@ -137,6 +140,34 @@ namespace JJN.PlayerSystem.Movement
 
             playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             transform.Rotate(Vector3.up * mouseX);
+        }
+
+        public void SlowDown(EventData eventData)
+        {
+            DefendEventData defendEventData = (DefendEventData)eventData;
+            if (defendEventData.shieldUser.CompareTag("Player"))
+            {
+                if (defendEventData.isBlocking)
+                {
+                    _defendingSlowdown = .5f;
+                    _isDefending = true;
+                }
+                else
+                {
+                    _defendingSlowdown = 1;
+                    _isDefending = false;
+                }
+            }
+        }
+
+        private void OnEnable()
+        {
+            EventBus<DefendEventData>.OnEventPublished += SlowDown;
+        }
+
+        private void OnDisable()
+        {
+            EventBus<DefendEventData>.OnEventPublished += SlowDown;
         }
     }
 }

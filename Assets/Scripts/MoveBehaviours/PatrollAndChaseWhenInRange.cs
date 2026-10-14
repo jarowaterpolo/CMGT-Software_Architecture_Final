@@ -39,6 +39,7 @@ namespace PlayerSystem.Movement
             }
             else
             {
+                transform.LookAt(patrolTagetPos);
                 transform.position = Vector3.MoveTowards(transform.position, patrolTagetPos, Time.deltaTime);
             }
         }

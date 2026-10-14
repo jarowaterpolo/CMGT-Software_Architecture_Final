@@ -9,7 +9,7 @@ namespace JJN.PathFinding
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField]
-        private GameObject enemyPrefab;
+        private GameObject[] enemyPrefabs;
         [SerializeField]
         private float spawnDelay;
         [SerializeField]
@@ -41,7 +41,7 @@ namespace JJN.PathFinding
                 yield return new WaitForSeconds(spawnDelay);
                 var randomRoom = doneRooms[Random.Range(1, doneRooms.Count)];
                 Vector3 spawnPos = new(randomRoom.x + randomRoom.width / 2, 1, randomRoom.y + randomRoom.height / 2);
-                Instantiate(enemyPrefab, spawnPos, Quaternion.identity, enemyParent);
+                Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity, enemyParent);
             }
         }
     }

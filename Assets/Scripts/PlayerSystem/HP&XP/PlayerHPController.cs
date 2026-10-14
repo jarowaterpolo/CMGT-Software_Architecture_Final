@@ -1,5 +1,6 @@
 using JJN.Calculation;
 using JJN.ScriptableObjects;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -11,10 +12,16 @@ namespace JJN.PlayerSystem.Values
         private HP_ScriptableObject hpObject;
         [SerializeField]
         private TMP_Text hpText;
+        [SerializeField]
+        private GameObject hurtEffect;
 
         private bool _isDefending;
         private int _defendValue;
 
+        private void Start()
+        {
+            hurtEffect.SetActive(false);
+        }
         void GetHit(EventData eventData)
         {
             AttackEventData attackEventData = (AttackEventData)eventData;
@@ -25,9 +32,21 @@ namespace JJN.PlayerSystem.Values
                 {
                     //Debug.Log($"player got hit by {attackEventData.weaponUser.name} with an {attackEventData.weaponData.ItemName}");
                     //hpObject.HP_value -= attackEventData.weaponData.Attack;
-                    hpObject.HP_value -= DamageCalculator.CalculateDamage(attackEventData.weaponData.Attack, _defendValue, _isDefending);
+                    var totalDamage = DamageCalculator.CalculateDamage(attackEventData.weaponData.Attack, _defendValue, _isDefending);
+                    if (totalDamage > 0)
+                    {
+                        hpObject.HP_value -= totalDamage;
+                        hurtEffect.SetActive(true);
+                        StartCoroutine(DisableHurtEffect());
+                    }
                 }
             }
+        }
+
+        IEnumerator DisableHurtEffect()
+        {
+            yield return new WaitForSeconds(.2f);
+            hurtEffect.SetActive(false);
         }
 
         void HPPotionUsed(EventData eventData)

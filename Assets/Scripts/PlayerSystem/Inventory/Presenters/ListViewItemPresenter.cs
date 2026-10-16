@@ -19,15 +19,15 @@ namespace JJN.PlayerSystem.Inventory
         {
             icon.sprite = item.itemIcon;
             nameText.text = item.ItemName;
-            if (item.Attack != 0)
-                attackText.text = item.Attack.ToString();
+            if (item is Weapon weapon && weapon.Attack != 0)
+                attackText.text = weapon.Attack.ToString();
             else
                 attackText.text = "";
-            if (item.Defense != 0)
-                defenseText.text = item.Defense.ToString();
+            if (item is Shield shield && shield.Defense != 0)
+                defenseText.text = shield.Defense.ToString();
             else
                 defenseText.text = "";
-            if (itemCounter != null && item.isStackable)
+            if (itemCounter != null && item is SpecialItem specialItem && specialItem.isStackable)
             {
                 itemCounter.text = "x" + itemCount.ToString();
             }

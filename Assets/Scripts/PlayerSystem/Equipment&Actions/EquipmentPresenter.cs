@@ -14,18 +14,18 @@ namespace JJN.PlayerSystem.Inventory
 
         public void PresentItem(Item item, int itemCount)
         {
-            GameObject weapon;
-            GameObject shield;
+            GameObject weaponObject;
+            GameObject shieldObject;
 
-            if (item.ItemType == ItemType.Weapon)
+            if (item is Weapon weapon)
             {
-                weapon = Instantiate(item.itemModel, weaponTransform.position, weaponTransform.rotation, weaponTransform);
-                weapon.transform.localRotation = Quaternion.identity;
+                weaponObject = Instantiate(item.itemModel, weaponTransform.position, weaponTransform.rotation, weaponTransform);
+                weaponObject.transform.localRotation = Quaternion.identity;
             }
-            else if (item.ItemType == ItemType.Shield)
+            else if (item is Shield shield)
             {
-                shield = Instantiate(item.itemModel, shieldTransform.position, shieldTransform.rotation, shieldTransform);
-                shield.transform.localRotation = Quaternion.identity;
+                shieldObject = Instantiate(item.itemModel, shieldTransform.position, shieldTransform.rotation, shieldTransform);
+                shieldObject.transform.localRotation = Quaternion.identity;
             }
         }
     }

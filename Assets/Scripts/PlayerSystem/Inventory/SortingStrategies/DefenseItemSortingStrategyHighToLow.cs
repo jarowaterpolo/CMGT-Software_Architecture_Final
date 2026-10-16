@@ -12,9 +12,7 @@ namespace JJN.PlayerSystem.Inventory
     {
         public override Item[] GetSortedItems(List<Item> items)
         {
-            //items = items.OrderBy(x => x.Defense).ToList();
-            //items.Reverse();
-            items = items.OrderByDescending(x => x.Defense).ToList();
+            var sorted = items.OrderByDescending(x => (x as Shield)?.Defense ?? 0).ToList();
             return items.ToArray();
         }
     }

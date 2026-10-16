@@ -4,14 +4,20 @@ namespace JJN.Calculation
 {
     public static class DamageCalculator
     {
-        public static int CalculateDamage(int attack, int defender, bool defendState)
+        public static int CalculateDamage(int attack, float critChance, float critMult, int defender, bool defendState)
         {
-            if (defendState)
+            Random random = new Random();
+            if (!(random.Next(0, 100) < critChance))
             {
-                return Math.Max(0, attack - defender);
+                critMult = 1;
             }
 
-            return attack;
+            if (defendState)
+            {
+                return Math.Max(0, (int)(attack * critMult - defender));
+            }
+
+            return (int)(attack * critMult);
         }
     }
 }

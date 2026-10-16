@@ -41,9 +41,9 @@ public class EnemyDieEventData : EventData
 
 public class AttackEventData : EventData
 {
-    public Item weaponData;
+    public Weapon weaponData;
     public GameObject weaponUser;
-    public AttackEventData(Item pWeaponData,GameObject pWeaponUser)
+    public AttackEventData(Weapon pWeaponData,GameObject pWeaponUser)
     {
         name = "AttackEvent";
         weaponData = pWeaponData;
@@ -61,10 +61,10 @@ public class AttackEventData : EventData
 
 public class DefendEventData : EventData
 {
-    public Item shieldData;
+    public Shield shieldData;
     public GameObject shieldUser;
     public bool isBlocking;
-    public DefendEventData(Item pShieldData, GameObject pShieldUser, bool pIsBlocking)
+    public DefendEventData(Shield pShieldData, GameObject pShieldUser, bool pIsBlocking)
     {
         name = "DefendEvent";
         shieldData = pShieldData;
@@ -83,9 +83,9 @@ public class DefendEventData : EventData
 
 public class ItemUseEventData : EventData
 {
-    public Item itemData;
+    public SpecialItem itemData;
     public GameObject itemUser;
-    public ItemUseEventData(Item pItemData, GameObject pItemUser)
+    public ItemUseEventData(SpecialItem pItemData, GameObject pItemUser)
     {
         name = "UseItemEvent";
         itemData = pItemData;

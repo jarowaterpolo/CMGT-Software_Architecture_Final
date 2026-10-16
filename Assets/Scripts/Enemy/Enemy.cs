@@ -34,10 +34,10 @@ namespace JJN.Enemy
         }
 
         [SerializeField]
-        private ItemData weaponData;
+        private WeaponData weaponData;
         [SerializeField]
         private float attackDelay = 1f;
-        private Item weapon;
+        private Weapon weapon;
 
         public int Money;
         public int XP;
@@ -54,7 +54,7 @@ namespace JJN.Enemy
         void Start()
         {
             attackCollider = GetComponent<SphereCollider>();
-            weapon = weaponData.CreateItem();
+            weapon = (Weapon)weaponData.CreateItem();
             attackCollider.radius = weapon.Range;
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             moveBehaviour.SetTargetPosition(playerTransform.position);

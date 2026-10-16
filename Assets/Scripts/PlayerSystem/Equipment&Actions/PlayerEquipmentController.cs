@@ -10,9 +10,9 @@ namespace JJN.PlayerSystem.Inventory
         [SerializeField]
         private EquipmentPresenter equipmentPresenter;
 
-        private Item weaponData = null;
-        private Item shieldData = null;
-        private Item itemData = null;
+        private Weapon weaponData = null;
+        private Shield shieldData = null;
+        private SpecialItem itemData = null;
 
         private bool isCurrentlyBlocking = false;
 
@@ -70,31 +70,31 @@ namespace JJN.PlayerSystem.Inventory
 
                 //Debug.Log($"{item.ItemName} is a {item.ItemType}");
 
-                switch (item.ItemType)
+                switch (item)
                 {
-                    case ItemType.Weapon:
-                        weaponData = item;
+                    case Weapon weapon:
+                        weaponData = weapon;
                         equipmentPresenter.PresentItem(item, 1);
                         //Debug.Log($"{item.ItemName} copied to weaponData");
                         break;
 
-                    case ItemType.Shield:
-                        shieldData = item;
+                    case Shield shield:
+                        shieldData = shield;
                         equipmentPresenter.PresentItem(item, 1);
                         //Debug.Log($"{item.ItemName} copied to shieldData");
                         break;
 
-                    case ItemType.Potion:
-                        itemData = item;
+                    case SpecialItem specialItem:
+                        itemData = specialItem;
                         //Debug.Log($"{item.ItemName} copied to itemData");
                         break;
                 }
             }
         }
 
-        public Item SearchForSameItem(Item itemToSearchFor)
+        public SpecialItem SearchForSameItem(SpecialItem itemToSearchFor)
         {
-            foreach (Item item in playerInventory.Items)
+            foreach (SpecialItem item in playerInventory.Items)
             {
                 if (item == null) continue;
 

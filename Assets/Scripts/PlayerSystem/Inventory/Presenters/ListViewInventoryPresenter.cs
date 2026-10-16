@@ -45,7 +45,7 @@ namespace JJN.PlayerSystem.Inventory
             // Instantiate and present each item in the UI.
             for (int i = 0; i < items.Length; i++)
             {
-                if (!items[i].isStackable)
+                if (!(items[i] is SpecialItem specialItem && specialItem.isStackable))
                 {
                     ItemPresenter itemPresenter = Instantiate<ItemPresenter>(itemPresenterPrefab);
                     itemPresenter.PresentItem(items[i], 1);

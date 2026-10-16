@@ -20,7 +20,7 @@ namespace JJN.PlayerSystem.Inventory
             //in the grid
             var gridImage = icon.GetComponent<Image>();
             gridImage.sprite = item.itemIcon;
-            if (itemCounter != null && item.isStackable)
+            if (itemCounter != null && item is SpecialItem specialItem && specialItem.isStackable)
             {
                 currentItemCount = itemCount;
                 itemCounter.text = "x" + itemCount.ToString();
@@ -35,15 +35,15 @@ namespace JJN.PlayerSystem.Inventory
             //itemInfoDisplayer;
             ItemInfoDisplayer.itemInfo = $"{currentItem.ItemName} \n";
 
-            if (currentItem.Attack > 0)
+            if (currentItem is Weapon weapon && weapon.Attack > 0)
             {
-                ItemInfoDisplayer.itemInfo += $"{currentItem.Attack} Attack \n";
+                ItemInfoDisplayer.itemInfo += $"{weapon.Attack} Attack \n";
             }
-            if (currentItem.Defense > 0)
+            if (currentItem is Shield shield && shield.Defense > 0)
             {
-                ItemInfoDisplayer.itemInfo += $"{currentItem.Defense} Defense \n";
+                ItemInfoDisplayer.itemInfo += $"{shield.Defense} Defense \n";
             }
-            if (currentItem.isStackable && currentItemCount > 1)
+            if (currentItem is SpecialItem specialItem && specialItem.isStackable && currentItemCount > 1)
             {
                 ItemInfoDisplayer.itemInfo += $"you have {currentItemCount} of them";
             }

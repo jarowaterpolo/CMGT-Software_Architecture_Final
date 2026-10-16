@@ -10,42 +10,23 @@ namespace JJN.PlayerSystem.Inventory
     /// it is an implementation of factory pattern.defenseite
     /// </summary>
     [CreateAssetMenu(fileName = "Weapon", menuName = "Scriptable Objects/Weapon")]
-    public class WeaponData : ScriptableObject
+    public class WeaponData : ItemData
     {
-        [Header("Unique id for each item")]
-        public string id;
-
-        [Header("Core properties")]
-        public string itemName;
         public WeaponType type;
         public float range;
         public int attack;
         public float critChance;
         public float critDamageMult;
 
-        [Header("Visuals")]
-        public Sprite itemIcon;
-        public GameObject itemModel;
-
-        public Weapon CreateItem()
+        public override Item CreateItem()
         {
             return new Weapon(this);
         }
     }
 
     [Serializable]
-    public class Weapon
+    public class Weapon : Item
     {
-        [Header("Unique id for each item")]
-        [SerializeField]
-        private string id;
-        public string Id => id;//This setup allows access to the private field 'id'
-                               //while also allows it to be shown in the inspector
-
-        [Header("Core properties")]
-        [SerializeField]
-        private string itemName;
-        public string ItemName => itemName;
         [SerializeField]
         private WeaponType weaponType;
         public WeaponType WeaponType => weaponType;
@@ -62,11 +43,7 @@ namespace JJN.PlayerSystem.Inventory
         private float critDamageMult;
         public float CritDamageMult => critDamageMult;
 
-        [Header("Visuals")]
-        public Sprite itemIcon;
-        public GameObject itemModel;
-
-        public Weapon(WeaponData weaponData)
+        public Weapon(WeaponData weaponData) : base(weaponData)
         {
             id = weaponData.id;
             itemName = weaponData.itemName;

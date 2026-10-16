@@ -46,6 +46,8 @@ namespace JJN.Enemy
         [SerializeField]
         private Renderer _renderer;
         private MaterialPropertyBlock _materialPropertyBlock;
+        [SerializeField]
+        private ParticleSystem _critParticles;
 
 
         private SphereCollider attackCollider;
@@ -63,6 +65,8 @@ namespace JJN.Enemy
             _materialPropertyBlock = new MaterialPropertyBlock();
             _renderer = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
             _renderer.GetPropertyBlock(_materialPropertyBlock);
+
+            _critParticles = transform.GetChild(1).GetComponent<ParticleSystem>();
         }
         void Update()
         {
@@ -94,9 +98,16 @@ namespace JJN.Enemy
             {
                 if (Vector3.Distance(transform.position, attackEventData.weaponUser.transform.position) < attackEventData.weaponData.Range)
                 {
-                    CurrentHP -= attackEventData.weaponData.Attack;
+                    int damageDealt;
+                    bool didCrit;
+                    (damageDealt, didCrit) = DamageCalculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, 0, false);
+                    CurrentHP -= damageDealt;
                     _materialPropertyBlock.SetColor("_BaseColor", new Color(.5f, 0f, 0f, 1f));
                     _renderer.SetPropertyBlock(_materialPropertyBlock);
+                    if (didCrit) 
+                    {
+                        _critParticles.Play();
+                    }
                     StartCoroutine(ResetColor());
                 }
             }

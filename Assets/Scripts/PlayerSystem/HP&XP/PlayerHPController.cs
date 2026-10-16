@@ -32,7 +32,9 @@ namespace JJN.PlayerSystem.Values
                 {
                     //Debug.Log($"player got hit by {attackEventData.weaponUser.name} with an {attackEventData.weaponData.ItemName}");
                     //hpObject.HP_value -= attackEventData.weaponData.Attack;
-                    var totalDamage = DamageCalculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, _defendValue, _isDefending);
+                    bool didCrit;
+                    int totalDamage;
+                    (totalDamage, didCrit) = DamageCalculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, _defendValue, _isDefending);
                     if (totalDamage > 0)
                     {
                         hpObject.HP_value -= totalDamage;

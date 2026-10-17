@@ -50,7 +50,7 @@ namespace JJN.PlayerSystem.Inventory
                 }
             }
             
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (itemData != null)
                 {
@@ -58,6 +58,12 @@ namespace JJN.PlayerSystem.Inventory
                     Debug.Log($"{itemData.ItemName} used");
                     itemData = SearchForSameItem(itemData);
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                EventBus<OpenItemContainerEventData>.Publish(new OpenItemContainerEventData(transform));
+                Debug.Log("open item container event published");
             }
         }
 

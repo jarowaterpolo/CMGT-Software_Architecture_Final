@@ -35,6 +35,31 @@ public class EnemyDieEventData : EventData
 }
 
 /// <summary>
+/// Published by the player when trying to open a item container, it contains the player object
+/// </summary>
+public class OpenItemContainerEventData : EventData
+{
+    public Transform playerTransform;
+    public OpenItemContainerEventData(Transform pPlayerTransform)
+    {
+        name = "OpenItemContainerEvent";
+        playerTransform = pPlayerTransform;
+    }
+
+    //Overriding ToString method to display event information for debugging
+    public override string ToString()
+    {
+        if (playerTransform == null)
+            return "player not found";
+        else
+        {
+            return "Event name: " + name + "\n" +
+                   "Cast at player position: " + playerTransform.position + "\n";
+        }
+    }
+}
+
+/// <summary>
 /// Published by the weapon controller, it contains the position of the user
 /// and the weapon data
 /// </summary>

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb169dc71908e6489a0cb1553ab7499, type: 3}
+  m_Name: LegendaryJJNSword
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.WeaponData
+  id: legendary_jjn_sword
+  itemName: Legendary JJN Sword
+  itemIcon: {fileID: 21300000, guid: 9c2b347a772c82c4591a01312076916e, type: 3}
+  itemModel: {fileID: 1962186323540005490, guid: b97f362cf8b335a44bb410fc110008b2, type: 3}
+  type: 0
+  range: 20
+  attack: 10
+  critChance: 85
+  critDamageMult: 5

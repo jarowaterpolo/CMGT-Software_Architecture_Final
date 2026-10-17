@@ -34,7 +34,7 @@ namespace JJN.PlayerSystem.Values
                     //hpObject.HP_value -= attackEventData.weaponData.Attack;
                     bool didCrit;
                     int totalDamage;
-                    (totalDamage, didCrit) = DamageCalculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, _defendValue, _isDefending);
+                    (totalDamage, didCrit) = Calculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, _defendValue, _isDefending);
                     if (totalDamage > 0)
                     {
                         hpObject.HP_value -= totalDamage;

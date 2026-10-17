@@ -100,7 +100,7 @@ namespace JJN.Enemy
                 {
                     int damageDealt;
                     bool didCrit;
-                    (damageDealt, didCrit) = DamageCalculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, 0, false);
+                    (damageDealt, didCrit) = Calculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, 0, false);
                     CurrentHP -= damageDealt;
                     _materialPropertyBlock.SetColor("_BaseColor", new Color(.5f, 0f, 0f, 1f));
                     _renderer.SetPropertyBlock(_materialPropertyBlock);

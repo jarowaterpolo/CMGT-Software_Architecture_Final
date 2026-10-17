@@ -35,7 +35,7 @@ public class EnemyDieEventData : EventData
 }
 
 /// <summary>
-/// Published by the player when trying to open a item container, it contains the player object
+/// Published by the player when trying to open a item container, it contains the player transform
 /// </summary>
 public class OpenItemContainerEventData : EventData
 {
@@ -55,6 +55,31 @@ public class OpenItemContainerEventData : EventData
         {
             return "Event name: " + name + "\n" +
                    "Cast at player position: " + playerTransform.position + "\n";
+        }
+    }
+}
+
+/// <summary>
+/// Published by the player when trying to equip a new item
+/// </summary>
+public class EquipItemEventData : EventData
+{
+    public Item itemToEquip;
+    public EquipItemEventData(Item pItem)
+    {
+        name = "OpenItemContainerEvent";
+        itemToEquip = pItem;
+    }
+
+    //Overriding ToString method to display event information for debugging
+    public override string ToString()
+    {
+        if (itemToEquip == null)
+            return "no item or null";
+        else
+        {
+            return "Event name: " + name + "\n" +
+                   "equip event run with: " + itemToEquip.ItemName + "\n";
         }
     }
 }

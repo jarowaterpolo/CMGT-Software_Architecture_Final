@@ -38,7 +38,7 @@ namespace JJN.PlayerSystem.Movement
         private PlayerInventoryController inventoryController;
 
         private bool _isDefending;
-        private float _defendingSlowdown;
+        private float _defendingSlowdown = 1;
 
         private void Start()
         {

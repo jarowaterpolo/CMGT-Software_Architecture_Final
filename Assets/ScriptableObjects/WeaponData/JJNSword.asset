@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.WeaponData
   id: jjn_sword
   itemName: JJN Sword
+  itemIcon: {fileID: 21300000, guid: c8ba545373397ca4eae4a425a56dbd40, type: 3}
+  itemModel: {fileID: 2414239029462320182, guid: 97acd026654f4d847be11bd3b7904da4, type: 3}
   type: 0
-  range: 3
+  range: 2
   attack: 1
   critChance: 10
   critDamageMult: 2
-  itemIcon: {fileID: 21300000, guid: c8ba545373397ca4eae4a425a56dbd40, type: 3}
-  itemModel: {fileID: 5324918524383963146, guid: 94200bf2d8170294181eca99ac148ec5, type: 3}

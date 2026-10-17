@@ -112,5 +112,37 @@ namespace JJN.PlayerSystem.Inventory
             }
             return null;
         }
+
+        void EquipItem(EventData eventData)
+        {
+            EquipItemEventData equipItemEventData = (EquipItemEventData)eventData;
+
+            switch (equipItemEventData.itemToEquip)
+            {
+                case Weapon weapon:
+                    weaponData = weapon;
+                    equipmentPresenter.PresentItem(weapon, 1);
+                    break;
+                case Shield shield:
+                    equipmentPresenter.PresentItem(shield, 1);
+                    shieldData = shield;
+                    break;
+                case SpecialItem specialItem:
+                    itemData = specialItem;
+                    break;
+            }
+
+            Debug.Log($"{equipItemEventData.itemToEquip} was just equiped");
+        }
+
+        private void OnEnable()
+        {
+            EventBus<EquipItemEventData>.OnEventPublished += EquipItem;
+        }
+
+        private void OnDisable()
+        {
+            EventBus<EquipItemEventData>.OnEventPublished -= EquipItem;
+        }
     }
 }

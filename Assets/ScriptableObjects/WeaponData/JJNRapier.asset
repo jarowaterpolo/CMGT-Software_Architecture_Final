@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb169dc71908e6489a0cb1553ab7499, type: 3}
+  m_Name: JJNRapier
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.WeaponData
+  id: jjn_rapier
+  itemName: JJN Rapier
+  itemIcon: {fileID: 21300000, guid: e40792e240e1dcb4c8f3fc5fdbe71b16, type: 3}
+  itemModel: {fileID: 398758599246387100, guid: 69a9b52749728fa4580d9f40ee2366a9, type: 3}
+  type: 0
+  range: 4
+  attack: 3
+  critChance: 33
+  critDamageMult: 3

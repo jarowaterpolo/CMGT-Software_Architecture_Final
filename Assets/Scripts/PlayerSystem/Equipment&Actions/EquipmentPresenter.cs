@@ -12,8 +12,23 @@ namespace JJN.PlayerSystem.Inventory
         [SerializeField]
         private Transform shieldTransform;
 
+        void DeleteOldEquipment(Item item)
+        {
+            if (item is Weapon weapon)
+            {
+                if (weaponTransform.childCount == 0) return;
+                Destroy(weaponTransform.GetChild(0).gameObject);
+            }
+            else if (item is Shield shield)
+            {
+                if (shieldTransform.childCount == 0) return;
+                Destroy(shieldTransform.GetChild(0).gameObject);
+            }
+        }
         public void PresentItem(Item item, int itemCount)
         {
+            DeleteOldEquipment(item);
+
             GameObject weaponObject;
             GameObject shieldObject;
 

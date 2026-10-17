@@ -49,6 +49,8 @@ namespace JJN.PlayerSystem.Inventory
                 {
                     ItemPresenter itemPresenter = Instantiate<ItemPresenter>(itemPresenterPrefab);
                     itemPresenter.PresentItem(items[i], 1);
+                    EquipItem equipItem = itemPresenter.GetComponent<EquipItem>();
+                    equipItem.currentItem = items[i];
 
                     // Set the parent and scale for proper UI layout.
                     itemPresenter.transform.SetParent(listParent);

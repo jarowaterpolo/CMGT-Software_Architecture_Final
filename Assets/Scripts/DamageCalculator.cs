@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JJN.Calculation
 {
-    public static class DamageCalculator
+    public static class Calculator
     {
         public static (int, bool) CalculateDamage(int attack, float critChance, float critMult, int defense, bool defendState)
         {
@@ -26,6 +26,46 @@ namespace JJN.Calculation
             }
 
             return ((int)(attack * critMult), doCrit);
+        }
+
+        public static string RollRarity()
+        {
+            int legendaryChance = 2; int epicChance = 5; int rareChance = 10; int uncommonChance = 25; 
+
+            var randomNum = UnityEngine.Random.Range(0, 100);
+
+            if (randomNum < legendaryChance)
+            {
+                return "Legendary";
+            }
+            else
+            {
+                randomNum = UnityEngine.Random.Range(0, 100);
+                if (randomNum < epicChance) 
+                {
+                    return "Epic";
+                }
+                else
+                {
+                    randomNum = UnityEngine.Random.Range(0, 100);
+                    if (randomNum < rareChance)
+                    {
+                        return "Rare";
+                    }
+                    else
+                    {
+                        randomNum = UnityEngine.Random.Range(0, 100);
+                        if (randomNum < uncommonChance)
+                        {
+                            return "Uncommon";
+                        }
+                        else
+                        {
+                            return "Common";
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace JJNDungeonGeneration
     public class EventAfterDungeonGeneration : Generator
     {
         private NewDungeonGenerator dungeonGen;
-        private AddFloors addFloors;
+        private ItemContainerGeneration itemContainerGeneration;
 
         public UnityEvent TurnOn;
         public UnityEvent TurnOff;
@@ -17,10 +17,10 @@ namespace JJNDungeonGeneration
         private void Start()
         {
             dungeonGen = GetComponent<NewDungeonGenerator>();
-            addFloors = GetComponent<AddFloors>();
+            itemContainerGeneration = GetComponent<ItemContainerGeneration>();
 
             dungeonGen.OnStartGeneration += dungeonGen_OnStartGeneration;
-            addFloors.OnEndGeneration += addFloors_OnEndGeneration;
+            itemContainerGeneration.OnEndGeneration += itemContainerGeneration_OnEndGeneration;
         }
 
         private void dungeonGen_OnStartGeneration()
@@ -28,7 +28,7 @@ namespace JJNDungeonGeneration
             TurnOff?.Invoke();
         }
 
-        private void addFloors_OnEndGeneration()
+        private void itemContainerGeneration_OnEndGeneration()
         {
             TurnOn?.Invoke();  
         }

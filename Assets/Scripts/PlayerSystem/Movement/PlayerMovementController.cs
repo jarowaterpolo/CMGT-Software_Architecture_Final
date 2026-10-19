@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace JJN.PlayerSystem.Movement
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerMovementController : MonoBehaviour
     {
         [Header("Ground Check")]
         public float groundDistance = 0.4f;

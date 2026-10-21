@@ -1,3 +1,4 @@
+using JJN.PlayerSystem.Movement;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace JJN.PlayerSystem.Inventory
 {
     public class PlayerEquipmentController : MonoBehaviour
     {
+        [SerializeField]
+        private PlayerInventoryController inventoryController;
         [SerializeField]
         private Inventory playerInventory;
         [SerializeField]
@@ -23,47 +26,50 @@ namespace JJN.PlayerSystem.Inventory
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!inventoryController.inInventory)
             {
-                if (weaponData != null)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    EventBus<AttackEventData>.Publish(new AttackEventData(weaponData, gameObject));
-                    Debug.Log($"{weaponData.ItemName} used to attack");
-                }
-            }
-
-
-            if (shieldData != null)
-            {
-                if (Input.GetMouseButtonDown(1) && !isCurrentlyBlocking)
-                {
-                    EventBus<DefendEventData>.Publish(new DefendEventData(shieldData, gameObject, true));
-                    Debug.Log($"using {shieldData.ItemName} to defend");
-                    isCurrentlyBlocking = true;
+                    if (weaponData != null)
+                    {
+                        EventBus<AttackEventData>.Publish(new AttackEventData(weaponData, gameObject));
+                        Debug.Log($"{weaponData.ItemName} used to attack");
+                    }
                 }
 
-                if (Input.GetMouseButtonUp(1) && isCurrentlyBlocking)
-                {
-                    EventBus<DefendEventData>.Publish(new DefendEventData(shieldData, gameObject, false));
-                    Debug.Log($"stopped defending");
-                    isCurrentlyBlocking = false;
-                }
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                if (itemData != null)
-                {
-                    EventBus<ItemUseEventData>.Publish(new ItemUseEventData(itemData, gameObject));
-                    Debug.Log($"{itemData.ItemName} used");
-                    itemData = SearchForSameItem(itemData);
-                }
-            }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                EventBus<OpenItemContainerEventData>.Publish(new OpenItemContainerEventData(transform));
-                Debug.Log("open item container event published");
+                if (shieldData != null)
+                {
+                    if (Input.GetMouseButtonDown(1) && !isCurrentlyBlocking)
+                    {
+                        EventBus<DefendEventData>.Publish(new DefendEventData(shieldData, gameObject, true));
+                        Debug.Log($"using {shieldData.ItemName} to defend");
+                        isCurrentlyBlocking = true;
+                    }
+
+                    if (Input.GetMouseButtonUp(1) && isCurrentlyBlocking)
+                    {
+                        EventBus<DefendEventData>.Publish(new DefendEventData(shieldData, gameObject, false));
+                        Debug.Log($"stopped defending");
+                        isCurrentlyBlocking = false;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    if (itemData != null)
+                    {
+                        EventBus<ItemUseEventData>.Publish(new ItemUseEventData(itemData, gameObject));
+                        Debug.Log($"{itemData.ItemName} used");
+                        itemData = SearchForSameItem(itemData);
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    EventBus<OpenItemContainerEventData>.Publish(new OpenItemContainerEventData(transform));
+                    Debug.Log("open item container event published");
+                }
             }
         }
 

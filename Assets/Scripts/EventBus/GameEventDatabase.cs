@@ -150,3 +150,23 @@ public class ItemUseEventData : EventData
     }
 
 }
+
+public class QuestEventData : EventData
+{
+    public string currentQuestText;
+    public bool questIsComplete;
+    public QuestEventData(string pCurrentQuestText, bool pQuestIsComplete)
+    {
+        name = "QuestEvent";
+        currentQuestText = pCurrentQuestText;
+        questIsComplete = pQuestIsComplete;
+    }
+
+    //Overriding ToString method to display event information for debugging
+    public override string ToString()
+    {
+        return "Event name: " + name + "\n" +
+            $"current quest text = {currentQuestText} and completed = " + questIsComplete;
+    }
+
+}

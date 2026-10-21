@@ -46,6 +46,7 @@ namespace JJN.QuestSystem
             else
             {
                 currentQuest = null;
+                EventBus<QuestEventData>.Publish(new("All quests completed", false));
                 Debug.Log("All quests Completed!");
             }
         }

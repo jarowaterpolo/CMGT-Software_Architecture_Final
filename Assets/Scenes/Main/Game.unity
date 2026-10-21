@@ -364,12 +364,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8743876092664995015, guid: b6c69b4784325d44798daa282a522feb, type: 3}
   m_PrefabInstance: {fileID: 1451489735}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1451489740}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &592900099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6870247042969380746, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+  m_PrefabInstance: {fileID: 1451489735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &677161621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
@@ -508,6 +513,19 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &805049180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443092101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df9a88b317acf343a68bc69eb3521da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Presenters.XPPresenter
+  playerXPController: {fileID: 1590851108}
 --- !u!1 &920897790 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 465982432517273028, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
@@ -677,6 +695,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2172563533479954503, guid: b6c69b4784325d44798daa282a522feb, type: 3}
   m_PrefabInstance: {fileID: 1451489735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1443092101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2709585488747612195, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+  m_PrefabInstance: {fileID: 1451489735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1451489735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -802,14 +825,23 @@ PrefabInstance:
     - {fileID: 2084775357705905864, guid: b6c69b4784325d44798daa282a522feb, type: 3}
     - {fileID: 8467910834280751418, guid: b6c69b4784325d44798daa282a522feb, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1100065639925508331, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1451489741}
+    - targetCorrespondingSourceObject: {fileID: 2709585488747612195, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 805049180}
+    - targetCorrespondingSourceObject: {fileID: 6870247042969380746, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1451489742}
   m_SourcePrefab: {fileID: 100100000, guid: b6c69b4784325d44798daa282a522feb, type: 3}
 --- !u!114 &1451489736 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2548055826649490468, guid: b6c69b4784325d44798daa282a522feb, type: 3}
   m_PrefabInstance: {fileID: 1451489735}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1443092101}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -825,7 +857,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3882037987931505076, guid: b6c69b4784325d44798daa282a522feb, type: 3}
   m_PrefabInstance: {fileID: 1451489735}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 592900099}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -836,6 +868,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5767017015537417319, guid: b6c69b4784325d44798daa282a522feb, type: 3}
   m_PrefabInstance: {fileID: 1451489735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1451489740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1100065639925508331, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+  m_PrefabInstance: {fileID: 1451489735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1451489741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451489740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2325e4cc3df03b40a9f9a743bd6c648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.HPPresenter
+  hpObject: {fileID: 11400000, guid: 3299c9671b1205c4c9160b9b60078f06, type: 2}
+--- !u!114 &1451489742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592900099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cffff11c3cdbe74b8425acfd984453a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Presenters.XPBarPresenter
+  playerXPController: {fileID: 1590851108}
 --- !u!1001 &1523556063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1086,6 +1149,14 @@ PrefabInstance:
       propertyPath: lvlText
       value: 
       objectReference: {fileID: 1451489736}
+    - target: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: currentXP
+      value: 
+      objectReference: {fileID: 11400000, guid: 03b4479badc814e4eb66e620bc88f5f7, type: 2}
+    - target: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: currentLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: 135171b039027e844bca0e9bd89e302f, type: 2}
     - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: hpText
       value: 
@@ -1115,6 +1186,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2073beba277f944eb2fb54b069a3689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Movement.PlayerInventoryController
+--- !u!114 &1590851108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+  m_PrefabInstance: {fileID: 1590851100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920897790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914fa7e81099dd74a90f4032b4b53cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Values.PlayerXPController
 --- !u!1001 &1654560254
 PrefabInstance:
   m_ObjectHideFlags: 0

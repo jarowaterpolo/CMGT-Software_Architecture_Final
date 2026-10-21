@@ -10,8 +10,7 @@ namespace JJN.PlayerSystem.Values
     {
         [SerializeField]
         private HP_ScriptableObject hpObject;
-        [SerializeField]
-        private TMP_Text hpText;
+
         [SerializeField]
         private GameObject hurtEffect;
 
@@ -65,10 +64,7 @@ namespace JJN.PlayerSystem.Values
             }
         }
 
-        void UpdateHPText(int hp)
-        {
-            hpText.text = $"{hp}/{hpObject.Max_HP_value}HP";
-        }
+
 
         void SetDefendingVars(EventData eventData)
         {
@@ -83,7 +79,6 @@ namespace JJN.PlayerSystem.Values
 
         private void OnEnable()
         {
-            hpObject.onHPValueChanged += UpdateHPText;
             EventBus<AttackEventData>.OnEventPublished += GetHit;
             EventBus<ItemUseEventData>.OnEventPublished += HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished += SetDefendingVars;
@@ -91,7 +86,6 @@ namespace JJN.PlayerSystem.Values
 
         private void OnDisable()
         {
-            hpObject.onHPValueChanged -= UpdateHPText;
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
             EventBus<ItemUseEventData>.OnEventPublished -= HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished -= SetDefendingVars;

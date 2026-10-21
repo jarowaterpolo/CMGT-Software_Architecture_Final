@@ -8,90 +8,36 @@ namespace PlayerSystem.Values
 {
     public class PlayerXPController : MonoBehaviour
     {
-        public event Action<int> onLevelUp;
+        public int[] xpNeededForEachLevel; 
+        public IntValueWithAction currentXP; 
+        public IntValueWithAction currentLevel; 
 
-        public int[] xpNeededForEachLevel; // An array to set needed XP to level up for each level
-
-        private int currentXP = 0; // Current accumulated experience points
-
-        private int currentLevel = 1; // Current hero level, starts at level 1
-
-        [Header("XP Bar display")]
-        [SerializeField]
-        private Image xpBar; // UI progress bar showing current XP progress
-        [SerializeField]
-        private TMP_Text lvlText;
         [SerializeField]
         private int MaxHPGainBasedOnLevelUp;
         [SerializeField]
         private HP_ScriptableObject hpObject;
 
-        private void Start()
-        {
-            // Initialize XP bar to empty
-            xpBar.fillAmount = 0f;
-        }
-
         public void OnEnemyKilled(EventData eventData)
         {
-            // Only process XP if the hero hasn't reached the final level
-            if (currentLevel <= xpNeededForEachLevel.Length)
+            if (currentLevel.value <= xpNeededForEachLevel.Length)
             {
-                // Cast event data to EnemyDieEventData to access XP reward
                 EnemyDieEventData enemyDieEventData = (EnemyDieEventData)eventData;
 
-                // Add enemy's XP value to hero's current XP
-                currentXP += enemyDieEventData.enemy.XP;
+                currentXP.value += enemyDieEventData.enemy.XP;
 
-                int previousLevel = currentLevel;
+                int previousLevel = currentLevel.value;
 
-                // Check for multiple level-ups if XP is enough
-                while (currentXP >= xpNeededForEachLevel[currentLevel - 1])
+                while (currentXP.value >= xpNeededForEachLevel[currentLevel.value - 1])
                 {
-                    // Increase player's values according to level-up bonuses
+                    currentXP.value -= xpNeededForEachLevel[currentLevel.value - 1];
 
+                    currentLevel.value++;
 
-                    // Subtract XP needed for this level
-                    currentXP -= xpNeededForEachLevel[currentLevel - 1];
-
-                    // Increase hero's level
-                    currentLevel++;
-
-                    // Break if max level is reached
-                    if (currentLevel > xpNeededForEachLevel.Length)
+                    if (currentLevel.value > xpNeededForEachLevel.Length)
                     {
                         break;
                     }
                 }
-
-                // If hero reached max level, fill XP bar completely
-                if (currentLevel == xpNeededForEachLevel.Length + 1)
-                {
-                    xpBar.fillAmount = 1f;
-                }
-                else
-                {
-                    // Otherwise, update XP bar based on progress toward next level
-                    xpBar.fillAmount = (float)currentXP / (float)xpNeededForEachLevel[currentLevel - 1];
-                }
-
-                // Trigger level-up event if level increased
-                if (currentLevel > previousLevel)
-                {
-                    onLevelUp?.Invoke(currentLevel);
-                }
-            }
-        }
-
-        public void SetLvlText(int lvl)
-        {
-            if (lvl > xpNeededForEachLevel.Length)
-            {
-                lvlText.text = $"MaxLvl";
-            }
-            else
-            {
-                lvlText.text = $"Lvl:{lvl}";
             }
         }
 
@@ -110,16 +56,14 @@ namespace PlayerSystem.Values
 
         private void OnEnable()
         {
-            onLevelUp += SetLvlText;
-            onLevelUp += GainMaxHPOnLevelUp;
+            currentLevel.onValueChanged += GainMaxHPOnLevelUp;
             hpObject.onMaxHPValueChanged += GainHPOnLevelUP;
             EventBus<EnemyDieEventData>.OnEventPublished += OnEnemyKilled;
         }
 
         private void OnDisable()
         {
-            onLevelUp -= SetLvlText;
-            onLevelUp -= GainMaxHPOnLevelUp;
+            currentLevel.onValueChanged -= GainMaxHPOnLevelUp;
             hpObject.onMaxHPValueChanged -= GainHPOnLevelUP;
             EventBus<EnemyDieEventData>.OnEventPublished -= OnEnemyKilled;
         }

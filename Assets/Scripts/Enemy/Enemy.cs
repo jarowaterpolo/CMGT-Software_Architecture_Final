@@ -58,8 +58,10 @@ namespace JJN.Enemy
             attackCollider = GetComponent<SphereCollider>();
             weapon = (Weapon)weaponData.CreateItem();
             attackCollider.radius = weapon.Range;
+
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             moveBehaviour.SetTargetPosition(playerTransform.position);
+
             CurrentHP = enemyMaxHP.InitialValue;
 
             _materialPropertyBlock = new MaterialPropertyBlock();

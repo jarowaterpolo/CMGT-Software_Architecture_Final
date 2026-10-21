@@ -19,12 +19,12 @@ namespace JJN.ScriptableObjects
                 if (_value != value)
                 {
                     _value = value;
-                    onValueChanged?.Invoke();
+                    onValueChanged?.Invoke(value);
                 }
             }
             get => _value;
         }
-        public event Action onValueChanged;
+        public event Action<int> onValueChanged;
 
         private void OnEnable()
         {

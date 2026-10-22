@@ -1,5 +1,6 @@
 using JJN.Enemy;
 using JJN.PlayerSystem.Inventory;
+using JJN.QuestSystem.Quests;
 using UnityEngine;
 // All game events are listed here
 
@@ -11,11 +12,13 @@ using UnityEngine;
 public class EnemyDieEventData : EventData
 {
     public Enemy enemy;
+    public string enemyName;
     public GameObject enemyObject;
     public EnemyDieEventData(Enemy pEnemy, GameObject pEnemyObject)
     {
         name = "EnemyDieEvent";
         enemy = pEnemy;
+        enemyName = pEnemy.enemyData.enemyName;
         enemyObject = pEnemyObject;
     }
 
@@ -26,10 +29,10 @@ public class EnemyDieEventData : EventData
             return "Enemy object already destroyed";
         else
         {
-            return "Event name: " + name + "\n" +
-                   "Enemy died at position: " + enemyObject.transform.position + "\n"
-                    + "Enemy Droped Money: " + enemy.Money
-                    + "\n" + "Enemy gave XP: " + enemy.XP;
+            return $"Event name: {name} \n" +
+                $"An {enemyName} died at position: {enemyObject.transform.position} \n" +
+                $"Enemy dropped money: {enemy.enemyData.Money} \n" +
+                $"Enemy gave xp: {enemy.enemyData.XP}";
         }
     }
 }
@@ -153,12 +156,12 @@ public class ItemUseEventData : EventData
 
 public class QuestEventData : EventData
 {
-    public string currentQuestText;
+    public Quest currentQuest;
     public bool questIsComplete;
-    public QuestEventData(string pCurrentQuestText, bool pQuestIsComplete)
+    public QuestEventData(Quest pCurrentQuest, bool pQuestIsComplete)
     {
         name = "QuestEvent";
-        currentQuestText = pCurrentQuestText;
+        currentQuest = pCurrentQuest;
         questIsComplete = pQuestIsComplete;
     }
 
@@ -166,7 +169,7 @@ public class QuestEventData : EventData
     public override string ToString()
     {
         return "Event name: " + name + "\n" +
-            $"current quest text = {currentQuestText} and completed = " + questIsComplete;
+            $"current quest is = {currentQuest} and completed = " + questIsComplete;
     }
 
 }

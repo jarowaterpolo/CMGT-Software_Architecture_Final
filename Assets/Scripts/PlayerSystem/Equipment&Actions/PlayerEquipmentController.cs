@@ -1,6 +1,7 @@
 using JJN.PlayerSystem.Movement;
 using JJN.ScriptableObjects;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace JJN.PlayerSystem.Inventory
@@ -108,7 +109,7 @@ namespace JJN.PlayerSystem.Inventory
 
         public SpecialItem SearchForSameItem(SpecialItem itemToSearchFor)
         {
-            foreach (SpecialItem item in playerInventory.Items)
+            foreach (SpecialItem item in playerInventory.Items.OfType<SpecialItem>())
             {
                 if (item == null) continue;
 

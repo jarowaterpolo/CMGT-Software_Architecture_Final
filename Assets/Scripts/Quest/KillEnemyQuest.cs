@@ -2,48 +2,47 @@ using UnityEngine;
 
 namespace JJN.QuestSystem.Quests
 {
-    [CreateAssetMenu(fileName = "KeyPressQuest", menuName = "Quests/KeyPressQuest")]
+    [CreateAssetMenu(fileName = "KillEnemyQuest", menuName = "Quests/KillEnemyQuest")]
     public class KillEnemyQuest : Quest
     {
         [SerializeField]
-        private KeyCode[] keysToPress;
-        private bool[] keysPressedState;
+        private string enemyToKill;
+        [SerializeField]
+        private int enemyCountToKill;
+        private int _enemiesKilled;
+
+        void IncreaseEnemiesKilled(EventData eventData)
+        {
+            EnemyDieEventData enemyDieEventData = (EnemyDieEventData)eventData;
+            if (enemyDieEventData.enemyName == enemyToKill)
+            {
+                _enemiesKilled++;
+                UpdateCurrentQuestText();
+            }
+        }
+
+        public override void UpdateCurrentQuestText()
+        {
+            questText = $"{_enemiesKilled}/{enemyCountToKill} {enemyToKill}s killed";
+        }
 
         public override void Initialize()
         {
+            _enemiesKilled = 0;
             IsComplete = false;
-
-            if (keysToPress != null)
-            {
-                keysPressedState = new bool[keysToPress.Length];
-            }
+            questText = $"you need to kill {enemyCountToKill} {enemyToKill}s";
+            EventBus<EnemyDieEventData>.OnEventPublished += IncreaseEnemiesKilled;
+            
         }
 
         public override void Evaluate()
         {
-            if (IsComplete || keysToPress == null || keysToPress.Length == 0) return;
+            if (IsComplete) return;
 
-            for (int i = 0; i < keysToPress.Length; i++)
-            {
-                if (Input.GetKeyDown(keysToPress[i]))
-                {
-                    keysPressedState[i] = true;
-                }
-            }
-
-            bool allKeysPressed = true;
-            for (int i = 0; i < keysPressedState.Length; i++) 
-            { 
-                if (!keysPressedState[i])
-                {
-                    allKeysPressed = false;
-                    break;
-                }
-            }
-
-            if (allKeysPressed)
+            if (_enemiesKilled >= enemyCountToKill)
             {
                 CompleteQuest();
+                EventBus<EnemyDieEventData>.OnEventPublished -= IncreaseEnemiesKilled;
             }
         }
     }

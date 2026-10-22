@@ -30,8 +30,13 @@ namespace JJN.QuestSystem
             if (_currentQuest.IsComplete)
             {
                 //Debug.Log($"Quest '{_currentQuest.QuestName}' completed!");
-                EventBus<QuestEventData>.Publish(new(_currentQuest.QuestName, true));
+                EventBus<QuestEventData>.Publish(new(_currentQuest, true));
+                Debug.Log($"you get {_currentQuest.Reward.GetRewardValue()} for completing the {_currentQuest.name}");
                 AdvanceToNextQuest();
+            }
+            else
+            {
+                EventBus<QuestEventData>.Publish(new(_currentQuest, false));
             }
         }
 
@@ -41,13 +46,14 @@ namespace JJN.QuestSystem
             {
                 _currentQuest = quests[_questIndex];
                 _currentQuest.Initialize();
-                EventBus<QuestEventData>.Publish(new(_currentQuest.QuestName, false));
+                EventBus<QuestEventData>.Publish(new(_currentQuest, false));
                 //Debug.Log($"started quest: {_currentQuest.QuestName}");
             }
             else
             {
                 _currentQuest = null;
-                EventBus<QuestEventData>.Publish(new("All quests completed", false));
+                DummyQuest allQuestDone = new("All quests completed");
+                EventBus<QuestEventData>.Publish(new(allQuestDone, false));
                 //Debug.Log("All quests Completed!");
             }
         }
@@ -63,7 +69,8 @@ namespace JJN.QuestSystem
             _isDead = isDead;
             if (isDead)
             {
-                EventBus<QuestEventData>.Publish(new("DIED", false));
+                DummyQuest playerDead = new("DIED");
+                EventBus<QuestEventData>.Publish(new(playerDead, false));
                 //Debug.Log("DIED!");
             }
         }

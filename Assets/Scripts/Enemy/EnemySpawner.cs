@@ -1,3 +1,5 @@
+using JJN.QuestSystem.Quests;
+using JJN.ScriptableObjects;
 using JJNDungeonGeneration;
 using NUnit.Framework;
 using System.Collections;
@@ -15,13 +17,14 @@ namespace JJN.PathFinding
         [SerializeField]
         private Transform enemyParent;
 
-        private NewDungeonGenerator dungeonGen;
-        private List<RectInt> doneRooms = new();
+        private NewDungeonGenerator _dungeonGen;
+        private List<RectInt> _doneRooms = new();
+        private bool _isDead;
 
 
         void Start()
         {
-            dungeonGen = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<NewDungeonGenerator>();
+            _dungeonGen = GameObject.FindGameObjectWithTag("DungeonGenerator").GetComponent<NewDungeonGenerator>();
         }
 
         public void StartSpawningEnemies()
@@ -31,18 +34,35 @@ namespace JJN.PathFinding
         }
         private void GetDoneRooms()
         {
-            doneRooms = dungeonGen.doneRooms;
+            _doneRooms = _dungeonGen.doneRooms;
         }
 
         private IEnumerator SpawnEnemies()
         {
-            while (true)
+            while (!_isDead)
             {
                 yield return new WaitForSeconds(spawnDelay);
-                var randomRoom = doneRooms[Random.Range(1, doneRooms.Count)];
+                var randomRoom = _doneRooms[Random.Range(1, _doneRooms.Count)];
                 Vector3 spawnPos = new(randomRoom.x + randomRoom.width / 2, 1, randomRoom.y + randomRoom.height / 2);
                 Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity, enemyParent);
             }
+            yield return null;
+            StartCoroutine(SpawnEnemies());
+        }
+
+        void SetIsDead(bool isDead)
+        {
+            _isDead = isDead;
+        }
+
+        private void OnEnable()
+        {
+            PlayerHP.onDeath += SetIsDead;
+        }
+
+        private void OnDisable()
+        {
+            PlayerHP.onDeath -= SetIsDead;
         }
     }
 }

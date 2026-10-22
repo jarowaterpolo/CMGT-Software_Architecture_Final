@@ -20,7 +20,7 @@ namespace PlayerSystem.Values
             {
                 EnemyDieEventData enemyDieEventData = (EnemyDieEventData)eventData;
 
-                currentXP.value += enemyDieEventData.enemy.XP;
+                currentXP.value += enemyDieEventData.enemy.enemyData.XP;
 
                 int previousLevel = currentLevel.value;
 

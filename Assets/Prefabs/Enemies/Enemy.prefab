@@ -5725,7 +5725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.Enemy.Enemy
   moveBehaviour: {fileID: 0}
   playerTransform: {fileID: 0}
-  enemyMaxHP: {fileID: 11400000, guid: 4cfae3f38dbdadd469c5fde84b91a760, type: 2}
+  enemyData: {fileID: 11400000, guid: d94858a7519229c4081854657222388b, type: 2}
   weaponData: {fileID: 11400000, guid: 6c76cff7d286abc4597a0b0a826b6b99, type: 2}
   attackDelay: 1
   Money: 5

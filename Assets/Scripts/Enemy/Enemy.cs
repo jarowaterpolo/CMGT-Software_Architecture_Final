@@ -15,9 +15,9 @@ namespace JJN.Enemy
         [SerializeField]
         private Transform playerTransform;
         [SerializeField]
-        private IntValue enemyMaxHP;
-        private int currentEnemyHP;
+        public EnemyData enemyData;
 
+        private int currentEnemyHP;
 
         public event Action<int> OnHPChanged;
         public int CurrentHP
@@ -33,14 +33,12 @@ namespace JJN.Enemy
             }
         }
 
-        [SerializeField]
-        private WeaponData weaponData;
-        [SerializeField]
-        private float attackDelay = 1f;
-        private Weapon weapon;
+        public void SetStartingHP()
+        {
+            CurrentHP = enemyData.enemyMaxHP.InitialValue;
+        }
 
-        public int Money;
-        public int XP;
+        private Weapon weapon;
 
         //enemy hurt effects
         [SerializeField]
@@ -56,13 +54,13 @@ namespace JJN.Enemy
         void Start()
         {
             attackCollider = GetComponent<SphereCollider>();
-            weapon = (Weapon)weaponData.CreateItem();
+            weapon = (Weapon)enemyData.weaponData.CreateItem();
             attackCollider.radius = weapon.Range;
 
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             moveBehaviour.SetTargetPosition(playerTransform.position);
 
-            CurrentHP = enemyMaxHP.InitialValue;
+            SetStartingHP();
 
             _materialPropertyBlock = new MaterialPropertyBlock();
             _renderer = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
@@ -88,7 +86,7 @@ namespace JJN.Enemy
                 if (Time.time >= nextAttackTime)
                 {
                     EventBus<AttackEventData>.Publish(new AttackEventData(weapon, gameObject));
-                    nextAttackTime = Time.time + attackDelay;
+                    nextAttackTime = Time.time + enemyData.attackDelay;
                 }
             }
         }

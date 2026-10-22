@@ -9,9 +9,16 @@ namespace JJN.QuestSystem.Quests
         private KeyCode[] keysToPress;
         private bool[] keysPressedState;
 
+        public override void UpdateCurrentQuestText()
+        {
+            if (questText == QuestName) return;
+            questText = QuestName;
+        }
         public override void Initialize()
         {
             IsComplete = false;
+
+            UpdateCurrentQuestText();
 
             if (keysToPress != null)
             {

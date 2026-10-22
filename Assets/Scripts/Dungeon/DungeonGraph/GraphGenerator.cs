@@ -74,7 +74,7 @@ using UnityEngine;
         public IEnumerator GenerateGraph()
         {
             Random.InitState(dungeonGen.Seed);
-            //Debug.Log("Current Seed in use = " + dungeonGen.Seed);
+            //Debug.Log("Current Seed in use = " + _dungeonGen.Seed);
 
             //Main --- Generator script testing
             DispatchOnStartGenerationEvent();

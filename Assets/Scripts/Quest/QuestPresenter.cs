@@ -20,10 +20,10 @@ namespace JJN.QuestSystem
         {
             QuestEventData questEventData = (QuestEventData)eventData;
 
-            if (questEventData.currentQuestText != currentQuestText)
+            if (questEventData.currentQuest.questText != currentQuestText)
             {
-                Debug.Log($"event quest text = {questEventData.currentQuestText}");
-                currentQuestText = questEventData.currentQuestText;
+                Debug.Log($"event quest text = {questEventData.currentQuest.questText}");
+                currentQuestText = questEventData.currentQuest.questText;
                 Debug.Log($"current quest is: {currentQuestText}");
                 questText.text = currentQuestText;
             }

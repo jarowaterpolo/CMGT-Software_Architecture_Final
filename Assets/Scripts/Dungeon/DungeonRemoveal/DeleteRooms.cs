@@ -83,10 +83,10 @@ using UnityEngine;
             yield return StartCoroutine(graphGen.ReBuildGraph());
             yield return StartCoroutine(searchDungeon.Search());
             //Debug.Log("room added");
-            //Debug.Log($"there are {dungeonGen.Overlaps.Count} overlaps");
+            //Debug.Log($"there are {_dungeonGen.Overlaps.Count} overlaps");
             dungeonGen.Overlaps.Clear();
             yield return StartCoroutine(dungeonGen.MakeOverlaps());
-            //Debug.Log($"there are {dungeonGen.Overlaps.Count} overlaps");
+            //Debug.Log($"there are {_dungeonGen.Overlaps.Count} overlaps");
 
             DispatchOnEndGenerationEvent();
         }
@@ -121,7 +121,7 @@ using UnityEngine;
             {
                 if (savedRoom.Overlaps(dungeonGen.doors[i]))
                 {
-                    //Debug.Log("door " + i + " was added " + dungeonGen.doors[i].ToString());
+                    //Debug.Log("door " + i + " was added " + _dungeonGen.doors[i].ToString());
                     savedDoors.Add(dungeonGen.doors[i]);
                 }
             }

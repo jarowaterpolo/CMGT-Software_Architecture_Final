@@ -16,10 +16,12 @@ namespace JJN.PlayerSystem.Values
 
         private bool _isDefending;
         private int _defendValue;
+        private bool isDead;
 
         private void Start()
         {
             hurtEffect.SetActive(false);
+            SetIsDead(false);
         }
         void GetHit(EventData eventData)
         {
@@ -34,7 +36,7 @@ namespace JJN.PlayerSystem.Values
                     bool didCrit;
                     int totalDamage;
                     (totalDamage, didCrit) = Calculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, _defendValue, _isDefending);
-                    if (totalDamage > 0)
+                    if (totalDamage > 0 && !isDead)
                     {
                         hpObject.HP_value -= totalDamage;
                         hurtEffect.SetActive(true);
@@ -76,9 +78,22 @@ namespace JJN.PlayerSystem.Values
             }
         }
 
+        void SetIsDead(bool eIsDead)
+        {
+            isDead = eIsDead;
+            if (isDead)
+            {
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+            }
+        }
 
         private void OnEnable()
         {
+            HP_ScriptableObject.onDeath += SetIsDead;
             EventBus<AttackEventData>.OnEventPublished += GetHit;
             EventBus<ItemUseEventData>.OnEventPublished += HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished += SetDefendingVars;
@@ -86,6 +101,7 @@ namespace JJN.PlayerSystem.Values
 
         private void OnDisable()
         {
+            HP_ScriptableObject.onDeath -= SetIsDead;
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
             EventBus<ItemUseEventData>.OnEventPublished -= HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished -= SetDefendingVars;

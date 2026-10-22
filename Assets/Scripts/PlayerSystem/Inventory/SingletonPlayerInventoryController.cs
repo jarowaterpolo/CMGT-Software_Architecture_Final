@@ -1,46 +1,48 @@
 using UnityEngine;
-using JJN.PlayerSystem.Inventory;
 
-/// <summary>
-/// A singleton player inventory controller, it ensures that player's inventory
-/// is shared in different scenes.
-/// </summary>
-[RequireComponent(typeof(Inventory))]
-public class SingletonPlayerInventoryController : MonoBehaviour
+namespace JJN.PlayerSystem.Inventory
 {
-    public Inventory inventory { get; private set; }
-    public static SingletonPlayerInventoryController Instance { get; private set; }
-
-    private void Awake()
+    /// <summary>
+    /// A singleton player inventory controller, it ensures that player's inventory
+    /// is shared in different scenes.
+    /// </summary>
+    [RequireComponent(typeof(Inventory))]
+    public class SingletonPlayerInventoryController : MonoBehaviour
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+        public Inventory inventory { get; private set; }
+        public static SingletonPlayerInventoryController Instance { get; private set; }
 
-    private void OnEnable()
-    {
-        if(inventory == null)
+        private void Awake()
         {
-            inventory = GetComponent<Inventory>();
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        if(inventory != null)
-        {
-            ItemContainer.onGetItem += inventory.AddItem;
-        }
-    }
 
-    private void OnDisable()
-    {
-        if (inventory != null)
+        private void OnEnable()
         {
-            ItemContainer.onGetItem -= inventory.AddItem;
+            if (inventory == null)
+            {
+                inventory = GetComponent<Inventory>();
+            }
+            if (inventory != null)
+            {
+                ItemContainer.onGetItem += inventory.AddItem;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (inventory != null)
+            {
+                ItemContainer.onGetItem -= inventory.AddItem;
+            }
         }
     }
 }

@@ -402,6 +402,7 @@ MonoBehaviour:
   quests:
   - {fileID: 11400000, guid: 62b45ee21f295a3449d8f8efa0bf11cc, type: 2}
   - {fileID: 11400000, guid: ebde6079235e92c4f967896a00077fe1, type: 2}
+  - {fileID: 11400000, guid: 07c1b8817f9968640bbbbd1f680c9e2b, type: 2}
 --- !u!4 &640670878
 Transform:
   m_ObjectHideFlags: 0

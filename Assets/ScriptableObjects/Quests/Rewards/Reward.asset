@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f06a9f466384c41a538a5f26668664, type: 3}
   m_Name: Reward
   m_EditorClassIdentifier: Assembly-CSharp::JJN.QuestSystem.Rewards.Reward
+  rewardType: XP
   rewardValue: 2

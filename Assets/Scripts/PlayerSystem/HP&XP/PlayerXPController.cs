@@ -20,18 +20,16 @@ namespace PlayerSystem.Values
             {
                 EnemyDieEventData enemyDieEventData = (EnemyDieEventData)eventData;
                 currentXP.value += enemyDieEventData.enemy.enemyData.XP;
-
                 CheckForLevelUP();
             }
         }
-
         public void OnQuestComplete(EventData eventData)
         {
             if (currentLevel.value <= xpNeededForEachLevel.Length)
             {
                 QuestEventData questEventData = (QuestEventData)eventData;
 
-                if (questEventData.currentQuest.IsComplete)
+                if (questEventData.currentQuest.IsComplete && questEventData.currentQuest.Reward.RewardType == "XP")
                 {
                     currentXP.value += questEventData.currentQuest.Reward.GetRewardValue();
                     Debug.Log($"you got {questEventData.currentQuest.Reward.GetRewardValue()} XP for completing {questEventData.currentQuest.name}");

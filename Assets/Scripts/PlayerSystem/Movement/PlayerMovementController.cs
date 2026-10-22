@@ -1,4 +1,5 @@
 using JJN.PlayerSystem.Inventory;
+using JJN.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,7 @@ namespace JJN.PlayerSystem.Movement
     {
         [Header("Ground Check")]
         public float groundDistance = 0.4f;
-        private bool isGrounded;
+        private bool _isGrounded;
 
         [Header("Movement Settings")]
         public float maxSpeed = 5f;
@@ -21,16 +22,16 @@ namespace JJN.PlayerSystem.Movement
 
         [Header("Jump Settings")]
         public float jumpForce = 7f;
-        private bool jumpRequested = false;
+        private bool _jumpRequested = false;
 
         [Header("Footstep Audio")]
         public AudioSource footstepSource;
         public AudioClip[] footstepClips;
         public float stepInterval = 0.5f;
-        private float stepTimer = 0f;
+        private float _stepTimer = 0f;
 
-        private Rigidbody rb;
-        private float xRotation;
+        private Rigidbody _rb;
+        private float _xRotation;
 
         [Space(10)]
 
@@ -40,19 +41,22 @@ namespace JJN.PlayerSystem.Movement
         private bool _isDefending;
         private float _defendingSlowdown = 1;
 
+        private bool _isDead;
+
         private void Start()
         {
-            rb = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
             // Prevent player from tipping over
-            rb.freezeRotation = true;
+            _rb.freezeRotation = true;
             // Locks mouse
-            isGrounded = true;
+            _isGrounded = true;
         }
 
         private void Update()
         {
+            if (_isDead) return;
             // Ground Check
-            isGrounded = Physics.Raycast(transform.position, Vector3.down, groundDistance);
+            _isGrounded = Physics.Raycast(transform.position, Vector3.down, groundDistance);
             Debug.DrawLine(transform.position, transform.position + Vector3.down * groundDistance, Color.darkRed);
 
             if (!inventoryController.inInventory)
@@ -61,34 +65,34 @@ namespace JJN.PlayerSystem.Movement
                 CameraFunctions();
 
                 // Jump Input
-                if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-                    jumpRequested = true;
+                if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+                    _jumpRequested = true;
 
                 // Footsteps
-                Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-                bool isMoving = horizontalVelocity.magnitude > 0.2f && isGrounded;
+                Vector3 horizontalVelocity = new Vector3(_rb.linearVelocity.x, 0, _rb.linearVelocity.z);
+                bool isMoving = horizontalVelocity.magnitude > 0.2f && _isGrounded;
 
                 float currentStepInterval = Input.GetKey(KeyCode.LeftShift) ? stepInterval * 0.6f : stepInterval;
 
                 if (isMoving)
                 {
-                    stepTimer += Time.deltaTime;
-                    if (stepTimer >= currentStepInterval)
+                    _stepTimer += Time.deltaTime;
+                    if (_stepTimer >= currentStepInterval)
                     {
                         PlayFootstep();
-                        stepTimer = 0f;
+                        _stepTimer = 0f;
                     }
                 }
                 else
                 {
-                    stepTimer = 0f;
+                    _stepTimer = 0f;
                 }
             }
         }
 
         private void FixedUpdate()
         {
-            if (!inventoryController.inInventory)
+            if (!inventoryController.inInventory && !_isDead)
             {
                 // Input
                 float moveX = Input.GetAxisRaw("Horizontal");
@@ -96,26 +100,26 @@ namespace JJN.PlayerSystem.Movement
 
                 Vector3 moveDir = (transform.right * moveX + transform.forward * moveZ).normalized;
 
-                bool isSprinting = Input.GetKey(KeyCode.LeftShift) && isGrounded && !_isDefending;
+                bool isSprinting = Input.GetKey(KeyCode.LeftShift) && _isGrounded && !_isDefending;
                 float currentMaxSpeed = isSprinting ? maxSpeed * sprintMultiplier : maxSpeed * _defendingSlowdown;
 
                 // Calculate target velocity
                 Vector3 targetVelocity = moveDir * currentMaxSpeed;
-                Vector3 currentVelocity = rb.linearVelocity;
+                Vector3 currentVelocity = _rb.linearVelocity;
 
                 // Keep vertical velocity untouched
                 Vector3 velocityChange = (targetVelocity - new Vector3(currentVelocity.x, 0, currentVelocity.z));
 
                 // Apply snappy movement by directly setting velocity
-                rb.linearVelocity = new Vector3(targetVelocity.x, currentVelocity.y, targetVelocity.z);
+                _rb.linearVelocity = new Vector3(targetVelocity.x, currentVelocity.y, targetVelocity.z);
 
-                rb.linearDamping = isGrounded ? drag : 0f;
+                _rb.linearDamping = _isGrounded ? drag : 0f;
 
                 // Jumping
-                if (jumpRequested)
+                if (_jumpRequested)
                 {
-                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                    jumpRequested = false;
+                    _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    _jumpRequested = false;
                 }
             }
         }
@@ -135,10 +139,10 @@ namespace JJN.PlayerSystem.Movement
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity /* * Time.deltaTime */;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity /* * Time.deltaTime */;
 
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            _xRotation -= mouseY;
+            _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
-            playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            playerCamera.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
             transform.Rotate(Vector3.up * mouseX);
         }
 
@@ -160,13 +164,20 @@ namespace JJN.PlayerSystem.Movement
             }
         }
 
+        void SetIsDead(bool isDead)
+        {
+            _isDead = isDead;
+        }
+
         private void OnEnable()
         {
+            PlayerHP.onDeath += SetIsDead;
             EventBus<DefendEventData>.OnEventPublished += SlowDown;
         }
 
         private void OnDisable()
         {
+            PlayerHP.onDeath -= SetIsDead;
             EventBus<DefendEventData>.OnEventPublished += SlowDown;
         }
     }

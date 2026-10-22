@@ -403,6 +403,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 62b45ee21f295a3449d8f8efa0bf11cc, type: 2}
   - {fileID: 11400000, guid: ebde6079235e92c4f967896a00077fe1, type: 2}
   - {fileID: 11400000, guid: 07c1b8817f9968640bbbbd1f680c9e2b, type: 2}
+  - {fileID: 11400000, guid: 11c410b87022fb64f8acaa9dbbba0d4a, type: 2}
 --- !u!4 &640670878
 Transform:
   m_ObjectHideFlags: 0
@@ -770,9 +771,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1531475468}
+    - target: {fileID: 3882037987931505076, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: m_Color.a
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4683491877394585239, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683491877394585239, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683491877394585239, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 2164260863
       objectReference: {fileID: 0}
     - target: {fileID: 5115767004296998836, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -861,6 +874,10 @@ PrefabInstance:
     - target: {fileID: 6449892018337589085, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: m_Name
       value: GUI_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835381648358791758, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: m_Color.a
+      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 7330700998303416419, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1177,6 +1194,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 135171b039027e844bca0e9bd89e302f, type: 2}
     - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: MaxHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: hpText
       value: 
       objectReference: {fileID: 367704086}
@@ -1184,6 +1205,10 @@ PrefabInstance:
       propertyPath: hurtEffect
       value: 
       objectReference: {fileID: 1451489739}
+    - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: MaxHPGainBasedOnLevelUp
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -6,8 +6,7 @@ namespace JJN.PlayerSystem.Presenters
 {
     public class HPPresenter : MonoBehaviour
     {
-        [SerializeField]
-        private HP_ScriptableObject hpObject;
+        private int currentMaxHP;
 
         private TMP_Text hpText;
 
@@ -18,16 +17,23 @@ namespace JJN.PlayerSystem.Presenters
 
         void UpdateHPText(int hp)
         {
-            hpText.text = $"{hp}/{hpObject.Max_HP_value}HP";
+            hpText.text = $"{hp}/{currentMaxHP}HP";
+        }
+
+        void SetCurrentMaxHP(int maxHPValue)
+        {
+            currentMaxHP = maxHPValue;
         }
         private void OnEnable()
         {
-            hpObject.onHPValueChanged += UpdateHPText;
+            PlayerHP.onHPValueChanged += UpdateHPText;
+            PlayerHP.onMaxHPValueChanged += SetCurrentMaxHP;
         }
 
         private void OnDisable()
         {
-            hpObject.onHPValueChanged -= UpdateHPText;
+            PlayerHP.onHPValueChanged -= UpdateHPText;
+            PlayerHP.onMaxHPValueChanged -= SetCurrentMaxHP;
         }
     }
 }

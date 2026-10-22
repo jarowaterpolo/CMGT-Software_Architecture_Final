@@ -122,13 +122,21 @@ namespace JJN.Enemy
             _renderer.SetPropertyBlock(_materialPropertyBlock);
         }
 
+        void DestorySelf(bool isDead)
+        {
+            if (!isDead) return;
+            Destroy(gameObject);
+        }
+
         private void OnEnable()
         {
+            PlayerHP.onDeath += DestorySelf;
             EventBus<AttackEventData>.OnEventPublished += GetHit; 
         }
 
         private void OnDisable()
         {
+            PlayerHP.onDeath -= DestorySelf;
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
         }
     }

@@ -36,7 +36,7 @@ namespace JJN.PlayerSystem.Inventory
                 ItemContainer.onGetItem += inventory.AddItem;
             }
         }
-
+       
         private void OnDisable()
         {
             if (inventory != null)

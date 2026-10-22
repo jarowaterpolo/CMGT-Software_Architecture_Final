@@ -3,14 +3,8 @@ using UnityEngine;
 
 namespace JJN.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "HP_ScriptableObject", menuName = "Scriptable Objects/HP_ScriptableObject")]
-    public class HP_ScriptableObject : ScriptableObject
+    public class PlayerHP
     {
-        [SerializeField]
-        private int initialMaxHPValue;
-
-        //Whenever value is changed, it invoke the onValueChanged event to notify
-        //all the subscribers, this is a very basic use of observer pattern
         private int _HP_value;
         private int _maxHP_value;
         public int HP_value
@@ -29,7 +23,7 @@ namespace JJN.ScriptableObjects
             }
             get => _HP_value;
         }
-        public event Action<int> onHPValueChanged;
+        public static event Action<int> onHPValueChanged;
         public static event Action<bool> onDeath;
         public int Max_HP_value
         {
@@ -38,17 +32,18 @@ namespace JJN.ScriptableObjects
                 if (_maxHP_value != value)
                 {
                     _maxHP_value = value;
-                    onMaxHPValueChanged?.Invoke();
+                    onMaxHPValueChanged?.Invoke(value);
                 }
             }
             get => _maxHP_value;
         }
-        public event Action onMaxHPValueChanged;
+        public static event Action<int> onMaxHPValueChanged;
 
-        private void OnEnable()
+        public PlayerHP(int initialMaxHP)
         {
-            Max_HP_value = initialMaxHPValue;
-            HP_value = initialMaxHPValue;
+            Max_HP_value = initialMaxHP;
+            HP_value = initialMaxHP;
+            onDeath?.Invoke(false);
         }
     }
 }

@@ -12,10 +12,7 @@ namespace PlayerSystem.Values
         public IntValueWithAction currentXP; 
         public IntValueWithAction currentLevel; 
 
-        [SerializeField]
-        private int MaxHPGainBasedOnLevelUp;
-        [SerializeField]
-        private HP_ScriptableObject hpObject;
+        public static event Action<int> levelUp;
 
         public void OnEnemyKilled(EventData eventData)
         {
@@ -32,6 +29,7 @@ namespace PlayerSystem.Values
                     currentXP.value -= xpNeededForEachLevel[currentLevel.value - 1];
 
                     currentLevel.value++;
+                    levelUp?.Invoke(currentLevel.value);
 
                     if (currentLevel.value > xpNeededForEachLevel.Length)
                     {
@@ -41,30 +39,15 @@ namespace PlayerSystem.Values
             }
         }
 
-        public void GainMaxHPOnLevelUp(int num)
-        {
-            hpObject.Max_HP_value += MaxHPGainBasedOnLevelUp;
-            Debug.Log($"tried to increase player max hp by {MaxHPGainBasedOnLevelUp}");
-        }
-
-        void GainHPOnLevelUP()
-        {
-            hpObject.HP_value += MaxHPGainBasedOnLevelUp;
-            Debug.Log($"tried to increase player hp by {MaxHPGainBasedOnLevelUp}");
-        }
 
 
         private void OnEnable()
         {
-            currentLevel.onValueChanged += GainMaxHPOnLevelUp;
-            hpObject.onMaxHPValueChanged += GainHPOnLevelUP;
             EventBus<EnemyDieEventData>.OnEventPublished += OnEnemyKilled;
         }
 
         private void OnDisable()
         {
-            currentLevel.onValueChanged -= GainMaxHPOnLevelUp;
-            hpObject.onMaxHPValueChanged -= GainHPOnLevelUP;
             EventBus<EnemyDieEventData>.OnEventPublished -= OnEnemyKilled;
         }
     }

@@ -1,4 +1,5 @@
 using JJN.PlayerSystem.Movement;
+using JJN.ScriptableObjects;
 using System.Collections;
 using UnityEngine;
 
@@ -13,11 +14,12 @@ namespace JJN.PlayerSystem.Inventory
         [SerializeField]
         private EquipmentPresenter equipmentPresenter;
 
-        private Weapon weaponData = null;
-        private Shield shieldData = null;
-        private SpecialItem itemData = null;
+        private Weapon _weaponData = null;
+        private Shield _shieldData = null;
+        private SpecialItem _itemData = null;
 
-        private bool isCurrentlyBlocking = false;
+        private bool _isCurrentlyBlocking = false;
+        private bool _isDead;
 
         private void Start()
         {
@@ -26,42 +28,42 @@ namespace JJN.PlayerSystem.Inventory
 
         private void Update()
         {
-            if (!inventoryController.inInventory)
+            if (!inventoryController.inInventory && !_isDead)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (weaponData != null)
+                    if (_weaponData != null)
                     {
-                        EventBus<AttackEventData>.Publish(new AttackEventData(weaponData, gameObject));
-                        Debug.Log($"{weaponData.ItemName} used to attack");
+                        EventBus<AttackEventData>.Publish(new AttackEventData(_weaponData, gameObject));
+                        Debug.Log($"{_weaponData.ItemName} used to attack");
                     }
                 }
 
 
-                if (shieldData != null)
+                if (_shieldData != null)
                 {
-                    if (Input.GetMouseButtonDown(1) && !isCurrentlyBlocking)
+                    if (Input.GetMouseButtonDown(1) && !_isCurrentlyBlocking)
                     {
-                        EventBus<DefendEventData>.Publish(new DefendEventData(shieldData, gameObject, true));
-                        Debug.Log($"using {shieldData.ItemName} to defend");
-                        isCurrentlyBlocking = true;
+                        EventBus<DefendEventData>.Publish(new DefendEventData(_shieldData, gameObject, true));
+                        Debug.Log($"using {_shieldData.ItemName} to defend");
+                        _isCurrentlyBlocking = true;
                     }
 
-                    if (Input.GetMouseButtonUp(1) && isCurrentlyBlocking)
+                    if (Input.GetMouseButtonUp(1) && _isCurrentlyBlocking)
                     {
-                        EventBus<DefendEventData>.Publish(new DefendEventData(shieldData, gameObject, false));
+                        EventBus<DefendEventData>.Publish(new DefendEventData(_shieldData, gameObject, false));
                         Debug.Log($"stopped defending");
-                        isCurrentlyBlocking = false;
+                        _isCurrentlyBlocking = false;
                     }
                 }
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    if (itemData != null)
+                    if (_itemData != null)
                     {
-                        EventBus<ItemUseEventData>.Publish(new ItemUseEventData(itemData, gameObject));
-                        Debug.Log($"{itemData.ItemName} used");
-                        itemData = SearchForSameItem(itemData);
+                        EventBus<ItemUseEventData>.Publish(new ItemUseEventData(_itemData, gameObject));
+                        Debug.Log($"{_itemData.ItemName} used");
+                        _itemData = SearchForSameItem(_itemData);
                     }
                 }
 
@@ -85,20 +87,20 @@ namespace JJN.PlayerSystem.Inventory
                 switch (item)
                 {
                     case Weapon weapon:
-                        weaponData = weapon;
+                        _weaponData = weapon;
                         equipmentPresenter.PresentItem(item, 1);
-                        //Debug.Log($"{item.ItemName} copied to weaponData");
+                        //Debug.Log($"{item.ItemName} copied to _weaponData");
                         break;
 
                     case Shield shield:
-                        shieldData = shield;
+                        _shieldData = shield;
                         equipmentPresenter.PresentItem(item, 1);
-                        //Debug.Log($"{item.ItemName} copied to shieldData");
+                        //Debug.Log($"{item.ItemName} copied to _shieldData");
                         break;
 
                     case SpecialItem specialItem:
-                        itemData = specialItem;
-                        //Debug.Log($"{item.ItemName} copied to itemData");
+                        _itemData = specialItem;
+                        //Debug.Log($"{item.ItemName} copied to _itemData");
                         break;
                 }
             }
@@ -126,23 +128,29 @@ namespace JJN.PlayerSystem.Inventory
             switch (equipItemEventData.itemToEquip)
             {
                 case Weapon weapon:
-                    weaponData = weapon;
+                    _weaponData = weapon;
                     equipmentPresenter.PresentItem(weapon, 1);
                     break;
                 case Shield shield:
                     equipmentPresenter.PresentItem(shield, 1);
-                    shieldData = shield;
+                    _shieldData = shield;
                     break;
                 case SpecialItem specialItem:
-                    itemData = specialItem;
+                    _itemData = specialItem;
                     break;
             }
 
             Debug.Log($"{equipItemEventData.itemToEquip} was just equiped");
         }
 
+        void SetIsDead(bool isDead)
+        {
+            this._isDead = isDead;
+        }
+
         private void OnEnable()
         {
+            PlayerHP.onDeath += SetIsDead;
             EventBus<EquipItemEventData>.OnEventPublished += EquipItem;
         }
 

@@ -1,4 +1,5 @@
 using JJN.QuestSystem.Quests;
+using JJN.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,9 @@ namespace JJN.QuestSystem
     {
         [SerializeField]
         private List<Quest> quests;
-        private int questIndex = 0;
-        private Quest currentQuest;
+        private int _questIndex = 0;
+        private Quest _currentQuest;
+        private bool _isDead;
 
         void Start()
         {
@@ -21,40 +23,59 @@ namespace JJN.QuestSystem
 
         void Update()
         {
-            if (currentQuest == null || currentQuest.IsComplete) return;
+            if (_currentQuest == null || _currentQuest.IsComplete || _isDead) return;
 
-            currentQuest.Evaluate();
+            _currentQuest.Evaluate();
 
-            if (currentQuest.IsComplete)
+            if (_currentQuest.IsComplete)
             {
-                Debug.Log($"Quest '{currentQuest.QuestName}' completed!");
-                EventBus<QuestEventData>.Publish(new(currentQuest.QuestName, true));
-
+                //Debug.Log($"Quest '{_currentQuest.QuestName}' completed!");
+                EventBus<QuestEventData>.Publish(new(_currentQuest.QuestName, true));
                 AdvanceToNextQuest();
             }
         }
 
         void InitializeCurrentQuest()
         {
-            if (questIndex < quests.Count)
+            if (_questIndex < quests.Count)
             {
-                currentQuest = quests[questIndex];
-                currentQuest.Initialize();
-                EventBus<QuestEventData>.Publish(new(currentQuest.QuestName, false));
-                Debug.Log($"started quest: {currentQuest.QuestName}");
+                _currentQuest = quests[_questIndex];
+                _currentQuest.Initialize();
+                EventBus<QuestEventData>.Publish(new(_currentQuest.QuestName, false));
+                //Debug.Log($"started quest: {_currentQuest.QuestName}");
             }
             else
             {
-                currentQuest = null;
+                _currentQuest = null;
                 EventBus<QuestEventData>.Publish(new("All quests completed", false));
-                Debug.Log("All quests Completed!");
+                //Debug.Log("All quests Completed!");
             }
         }
 
         void AdvanceToNextQuest()
         {
-            questIndex++;
+            _questIndex++;
             InitializeCurrentQuest();
+        }
+
+        void SetIsDead(bool isDead)
+        {
+            _isDead = isDead;
+            if (isDead)
+            {
+                EventBus<QuestEventData>.Publish(new("DIED", false));
+                //Debug.Log("DIED!");
+            }
+        }
+
+        private void OnEnable()
+        {
+            PlayerHP.onDeath += SetIsDead;
+        }
+
+        private void OnDisable()
+        {
+            PlayerHP.onDeath -= SetIsDead;
         }
     }
 }

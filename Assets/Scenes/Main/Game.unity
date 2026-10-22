@@ -560,6 +560,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6889121773144383297, guid: b6c69b4784325d44798daa282a522feb, type: 3}
   m_PrefabInstance: {fileID: 1451489735}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &805359893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4683491877394585239, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+  m_PrefabInstance: {fileID: 1451489735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805359891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &805359895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0036226da1654fc4b81529df4631ce4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JJN.QuestSystem.QuestPresenter
+  questText: {fileID: 805359893}
 --- !u!1 &920897790 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 465982432517273028, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}

@@ -1,16 +1,19 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace JJN.QuestSystem
 {
     public class QuestPresenter : MonoBehaviour
     {
+        [SerializeField]
         private TMP_Text questText;
         private string currentQuestText;
 
-        void Start()
+        private void Awake()
         {
-            questText = GetComponent<TMP_Text>();
+            if (questText != null) return;
+            questText = GetComponent<TMP_Text>();            
         }
 
         void SetQuestText(EventData eventData)
@@ -19,7 +22,9 @@ namespace JJN.QuestSystem
 
             if (questEventData.currentQuestText != currentQuestText)
             {
+                Debug.Log($"event quest text = {questEventData.currentQuestText}");
                 currentQuestText = questEventData.currentQuestText;
+                Debug.Log($"current quest is: {currentQuestText}");
                 questText.text = currentQuestText;
             }
         }

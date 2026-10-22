@@ -24,6 +24,7 @@ namespace JJN.QuestSystem.Quests
         public override void UpdateCurrentQuestText()
         {
             questText = $"{_enemiesKilled}/{enemyCountToKill} {enemyToKill}s killed";
+            EventBus<QuestEventData>.Publish(new(this, false));
         }
 
         public override void Initialize()

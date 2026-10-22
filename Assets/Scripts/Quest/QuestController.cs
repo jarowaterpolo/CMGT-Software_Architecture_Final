@@ -31,12 +31,11 @@ namespace JJN.QuestSystem
             {
                 //Debug.Log($"Quest '{_currentQuest.QuestName}' completed!");
                 EventBus<QuestEventData>.Publish(new(_currentQuest, true));
-                Debug.Log($"you get {_currentQuest.Reward.GetRewardValue()} for completing the {_currentQuest.name}");
                 AdvanceToNextQuest();
             }
             else
             {
-                EventBus<QuestEventData>.Publish(new(_currentQuest, false));
+                //EventBus<QuestEventData>.Publish(new(_currentQuest, false));
             }
         }
 

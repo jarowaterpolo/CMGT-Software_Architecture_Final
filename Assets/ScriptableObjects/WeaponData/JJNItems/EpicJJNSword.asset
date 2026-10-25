@@ -17,7 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 09d2ce3939efbf94fb91b616a546491f, type: 3}
   itemModel: {fileID: 3853002113534905012, guid: 035eea5a31c9489419d8892b60688719, type: 3}
   type: 0
-  range: 20
-  attack: 10
-  critChance: 85
-  critDamageMult: 5
+  range: 3
+  attack: 4
+  critChance: 65
+  critDamageMult: 3

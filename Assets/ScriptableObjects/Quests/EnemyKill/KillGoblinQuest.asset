@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb52f092ad698b043a12c36f45aebfd5, type: 3}
-  m_Name: BasicKillQuest
+  m_Name: KillGoblinQuest
   m_EditorClassIdentifier: Assembly-CSharp::JJN.QuestSystem.Quests.KillEnemyQuest
   questName: 
-  reward: {fileID: 11400000, guid: ed9d58163ffbc1d4fb9a52bb84146ae3, type: 2}
-  questText: 
-  enemyToKill: Basic
+  reward: {fileID: 11400000, guid: 5c9bc0a2558ddc2459003ea542882809, type: 2}
+  questText: 6/5 Goblins killed
+  enemyToKill: Goblin
   enemyCountToKill: 5

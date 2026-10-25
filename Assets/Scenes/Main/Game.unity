@@ -1386,12 +1386,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: Seed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1590851101}
     - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: doorSize
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: useRandomSeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: startRoom.width

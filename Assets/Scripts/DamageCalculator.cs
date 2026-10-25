@@ -36,32 +36,32 @@ namespace JJN.Calculation
 
             if (randomNum < legendaryChance)
             {
-                return "Legendary";
+                return "Legendary"; //2,0%
             }
             else
             {
                 randomNum = UnityEngine.Random.Range(0, 100);
                 if (randomNum < epicChance) 
                 {
-                    return "Epic";
+                    return "Epic"; //4,9%
                 }
                 else
                 {
                     randomNum = UnityEngine.Random.Range(0, 100);
                     if (randomNum < rareChance)
                     {
-                        return "Rare";
+                        return "Rare"; //9,31%
                     }
                     else
                     {
                         randomNum = UnityEngine.Random.Range(0, 100);
                         if (randomNum < uncommonChance)
                         {
-                            return "Uncommon";
+                            return "Uncommon"; //20,95% 
                         }
                         else
                         {
-                            return "Common";
+                            return "Common"; //62,84%
                         }
                     }
                 }

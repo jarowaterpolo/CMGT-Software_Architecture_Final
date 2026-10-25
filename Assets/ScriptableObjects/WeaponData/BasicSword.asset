@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb169dc71908e6489a0cb1553ab7499, type: 3}
+  m_Name: BasicSword
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.WeaponData
+  id: basic_sword
+  itemName: Basic Sword
+  itemIcon: {fileID: 21300000, guid: c8ba545373397ca4eae4a425a56dbd40, type: 3}
+  itemModel: {fileID: 2414239029462320182, guid: 97acd026654f4d847be11bd3b7904da4, type: 3}
+  type: 0
+  range: 2
+  attack: 1
+  critChance: 10
+  critDamageMult: 2

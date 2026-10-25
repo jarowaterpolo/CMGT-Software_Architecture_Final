@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PathFinding.EnemySpawner
   enemyPrefabs:
-  - {fileID: 7226504394566553514, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
+  - {fileID: 1564695508061785213, guid: 20bddf9538293e5429328e5ad3e55602, type: 3}
+  - {fileID: 1564695508061785213, guid: 70762d91d1868e3419dfebcfafa2136f, type: 3}
   spawnDelay: 2
   enemyParent: {fileID: 1654560257}
 --- !u!4 &49807563

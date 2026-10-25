@@ -44,7 +44,8 @@ namespace JJN.PathFinding
                 yield return new WaitForSeconds(spawnDelay);
                 var randomRoom = _doneRooms[Random.Range(1, _doneRooms.Count)];
                 Vector3 spawnPos = new(randomRoom.x + randomRoom.width / 2, 1, randomRoom.y + randomRoom.height / 2);
-                Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity, enemyParent);
+                var randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+                Instantiate(randomEnemyPrefab, spawnPos, Quaternion.identity, enemyParent);
             }
             yield return null;
             StartCoroutine(SpawnEnemies());

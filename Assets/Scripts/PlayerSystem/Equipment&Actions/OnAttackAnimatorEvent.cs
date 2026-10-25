@@ -6,16 +6,28 @@ namespace PlayerSystem.Animation
     {
         [SerializeField]
         private string stateName = "Attack";
+        private GameObject caster = null;
         private Animator _animator;
         private void Start()
         {
             _animator = GetComponent<Animator>();
+
+            Transform current = transform;
+            while (current != null)
+            {
+                if (current.CompareTag("Player") || current.CompareTag("Enemy"))
+                {
+                    caster = current.gameObject;
+                    break;
+                }
+                current = current.parent;
+            }
         }
 
         void PlayAttackAnimation(EventData eventData)
         {
             AttackEventData attackEventData = (AttackEventData)eventData;
-            if (attackEventData.weaponUser.CompareTag("Player"))
+            if (attackEventData.weaponUser == caster)
             {
                 _animator.Play(stateName);
             }

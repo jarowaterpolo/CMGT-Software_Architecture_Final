@@ -16,6 +16,8 @@ namespace JJN.Enemy
         private Transform playerTransform;
         [SerializeField]
         public EnemyData enemyData;
+        [SerializeField]
+        private EquipmentPresenter equipmentPresenter;
 
         private int currentEnemyHP;
 
@@ -44,6 +46,7 @@ namespace JJN.Enemy
         [SerializeField]
         private Renderer _renderer;
         private MaterialPropertyBlock _materialPropertyBlock;
+        private Color _originalColor;
         [SerializeField]
         private ParticleSystem _critParticles;
 
@@ -66,7 +69,16 @@ namespace JJN.Enemy
             _renderer = transform.GetChild(0).GetChild(0).GetComponent<Renderer>();
             _renderer.GetPropertyBlock(_materialPropertyBlock);
 
+            _originalColor = _renderer.material.color;
+
             _critParticles = transform.GetChild(1).GetComponent<ParticleSystem>();
+
+            if (equipmentPresenter == null)
+            {
+                equipmentPresenter = GetComponent<EquipmentPresenter>();
+            }
+
+            PresentWeapon();
         }
         void Update()
         {
@@ -116,7 +128,7 @@ namespace JJN.Enemy
         IEnumerator ResetColor()
         {
             yield return new WaitForSeconds(.2f);
-            _materialPropertyBlock.SetColor("_BaseColor", new Color(.5f, .5f, .5f, 1f));
+            _materialPropertyBlock.SetColor("_BaseColor", _originalColor);
             _renderer.SetPropertyBlock(_materialPropertyBlock);
         }
 
@@ -124,6 +136,11 @@ namespace JJN.Enemy
         {
             if (!isDead) return;
             Destroy(gameObject);
+        }
+
+        public void PresentWeapon()
+        {
+            equipmentPresenter.PresentItem(weapon, 1);
         }
 
         private void OnEnable()

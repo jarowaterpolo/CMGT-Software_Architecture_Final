@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98689e27700f6242ac1a18436c1d35a, type: 3}
+  m_Name: Imp
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.EnemyData
+  enemyName: Imp
+  enemyMaxHP: {fileID: 11400000, guid: c963e8c0c04826a4db519265cf665185, type: 2}
+  Money: 5
+  XP: 10
+  weaponData: {fileID: 11400000, guid: a40f0b10386fd364f89312f22b6cdbbe, type: 2}
+  attackDelay: 1

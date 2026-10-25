@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: uncommonLootPile.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: 'uncommonLootPile.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 434b50944ad7a0a4dbab2159b5a0f001, type: 2}
     - target: {fileID: 1742071929700469908, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.65

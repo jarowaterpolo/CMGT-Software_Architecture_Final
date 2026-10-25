@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76bcefc6ba9ca2949a2db51119ab36bd, type: 3}
+  m_Name: JJNGoldShield
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.ShieldData
+  id: jjn_gold_shield
+  itemName: JJN Gold Shield
+  itemIcon: {fileID: 21300000, guid: 02f724d8b6622194bb78e92b325dae6b, type: 3}
+  itemModel: {fileID: 8076663539020108662, guid: ff6b6d1333386d844af490db39c63080, type: 3}
+  defense: 2

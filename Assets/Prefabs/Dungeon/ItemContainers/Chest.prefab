@@ -9,11 +9,35 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: epic
+      value: 
+      objectReference: {fileID: 11400000, guid: 56b0c7620a81f14428e55a625423e473, type: 2}
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: rare
+      value: 
+      objectReference: {fileID: 11400000, guid: bfda90f1cbd01954ababaa8947ff081c, type: 2}
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: common
+      value: 
+      objectReference: {fileID: 11400000, guid: aaeacc3d1ba6c134fa3bdb7010c810ca, type: 2}
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: uncommon
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ea6582768d1e7f40b67476aebdcfbcc, type: 2}
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: legendary
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f05a543d0d5c1943a7d2ea0cbeef37d, type: 2}
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
       propertyPath: uncommonLootPile.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
       propertyPath: 'uncommonLootPile.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 434b50944ad7a0a4dbab2159b5a0f001, type: 2}
+    - target: {fileID: 1089046386488241699, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}
+      propertyPath: 'uncommonLootPile.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 434b50944ad7a0a4dbab2159b5a0f001, type: 2}
     - target: {fileID: 1742071929700469908, guid: 8acee3fa43cde784398aad9e95a69779, type: 3}

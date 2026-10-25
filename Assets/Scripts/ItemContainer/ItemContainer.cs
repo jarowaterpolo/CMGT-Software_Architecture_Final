@@ -13,44 +13,44 @@ namespace JJN.PlayerSystem.Inventory
     {
         public static Action<Item> onGetItem;
         [SerializeField]
-        private ItemData[] legendaryLootPile;
+        private LootPile legendary;
         [SerializeField]
-        private ItemData[] epicLootPile;
+        private LootPile epic;
         [SerializeField]
-        private ItemData[] rareLootPile;
+        private LootPile rare;
         [SerializeField]
-        private ItemData[] uncommonLootPile;
+        private LootPile uncommon;
         [SerializeField]
-        private ItemData[] commonLootPile;
+        private LootPile common;
 
         public Item GiveItem()
         {
             string rolledRarity = Calculator.RollRarity();
             Debug.Log($"your rolled rarity = {rolledRarity}");
             var randomNum = 0;
-            ItemData itemData = commonLootPile[0];
+            ItemData itemData = common.lootPile[0];
 
             switch (rolledRarity)
             {
                 case "Legendary":
-                    randomNum = UnityEngine.Random.Range(0, legendaryLootPile.Length);
-                    itemData = legendaryLootPile[randomNum];
+                    randomNum = UnityEngine.Random.Range(0, legendary.lootPile.Length);
+                    itemData = legendary.lootPile[randomNum];
                     break;
                 case "Epic":
-                    randomNum = UnityEngine.Random.Range(0, epicLootPile.Length);
-                    itemData = epicLootPile[randomNum];
+                    randomNum = UnityEngine.Random.Range(0, epic.lootPile.Length);
+                    itemData = epic.lootPile[randomNum];
                     break;
                 case "Rare":
-                    randomNum = UnityEngine.Random.Range(0, rareLootPile.Length);
-                    itemData = rareLootPile[randomNum];
+                    randomNum = UnityEngine.Random.Range(0, rare.lootPile.Length);
+                    itemData = rare.lootPile[randomNum];
                     break;
                 case "Uncommon":
-                    randomNum = UnityEngine.Random.Range(0, uncommonLootPile.Length);
-                    itemData = uncommonLootPile[randomNum];
+                    randomNum = UnityEngine.Random.Range(0, uncommon.lootPile.Length);
+                    itemData = uncommon.lootPile[randomNum];
                     break;
                 case "Common":
-                    randomNum = UnityEngine.Random.Range(0, commonLootPile.Length);
-                    itemData = commonLootPile[randomNum];
+                    randomNum = UnityEngine.Random.Range(0, common.lootPile.Length);
+                    itemData = common.lootPile[randomNum];
                     break;
             }
 

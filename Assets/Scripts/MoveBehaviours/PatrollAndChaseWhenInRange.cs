@@ -34,12 +34,20 @@ namespace PlayerSystem.Movement
         {
             if (targetInRange) 
             {
-                transform.LookAt(targetPosition);
+                if (targetPosition - transform.position == Vector3.zero) return;
+                var look = Quaternion.LookRotation(targetPosition - transform.position);
+                look.x = 0; look.z = 0;
+                //transform.LookAt(targetPosition);
+                transform.rotation = look;
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime);
             }
             else
             {
-                transform.LookAt(patrolTagetPos);
+                if (patrolTagetPos - transform.position == Vector3.zero) return;
+                var look = Quaternion.LookRotation(patrolTagetPos - transform.position);
+                look.x = 0; look.z = 0;
+                //transform.LookAt(patrolTagetPos);
+                transform.rotation = look;
                 transform.position = Vector3.MoveTowards(transform.position, patrolTagetPos, Time.deltaTime);
             }
         }

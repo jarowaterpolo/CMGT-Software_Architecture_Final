@@ -88,5 +88,5 @@ MonoBehaviour:
   targetRange: 10
   Speed: 10
   doDebugDraw: 0
-  patrollChangeTargetDelay: 2
-  patrollRange: {x: 5, y: 5}
+  patrollChangeTargetDelay: 4
+  patrollRange: {x: 10, y: 10}

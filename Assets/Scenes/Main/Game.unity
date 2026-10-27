@@ -1463,9 +1463,33 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: splitDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: waitingType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: dungeonParent
       value: 
       objectReference: {fileID: 1654560255}
+    - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: 'wallPrefabs.Array.data[11]'
+      value: 
+      objectReference: {fileID: 2782492685714389012, guid: b8f514f7a73d6c94c8b67ec0bad6ecea, type: 3}
+    - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: 'wallPrefabs.Array.data[12]'
+      value: 
+      objectReference: {fileID: 904172770564104489, guid: 9d9cac3c91424064ca1ae3ebdee916e8, type: 3}
+    - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: 'wallPrefabs.Array.data[13]'
+      value: 
+      objectReference: {fileID: 1333451163612768443, guid: 5a91cd42439c00647bc43f937a6cc9ef, type: 3}
+    - target: {fileID: 5767401613570639367, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: 'wallPrefabs.Array.data[14]'
+      value: 
+      objectReference: {fileID: 1896077830943904942, guid: 2cf8dbd6466b93e489201fbd092a6644, type: 3}
     - target: {fileID: 6590108003068917127, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: m_Enabled
       value: 1

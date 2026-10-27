@@ -1484,7 +1484,6 @@ GameObject:
   - component: {fileID: 3077691954216555236}
   - component: {fileID: 6036228469924422385}
   - component: {fileID: 9158092869359978756}
-  - component: {fileID: 2225881068856046670}
   m_Layer: 0
   m_Name: Horn
   m_TagString: Untagged
@@ -1564,27 +1563,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2225881068856046670
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6779274163383701313}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7298342985226059342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1613,6 @@ GameObject:
   - component: {fileID: 862919363610517482}
   - component: {fileID: 6316765365808287391}
   - component: {fileID: 2946773361896780027}
-  - component: {fileID: 1695232888381899661}
   m_Layer: 0
   m_Name: Horn (1)
   m_TagString: Untagged
@@ -1715,27 +1692,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1695232888381899661
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7299618897668131401}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7669879860103740689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,7 +2200,9 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: aa8ff070444217645916505fddbb713a, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5689880638059557186, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
+    - {fileID: 3554583029407071081, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
     m_RemovedGameObjects:
     - {fileID: 9117501678087279165, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
     m_AddedGameObjects:

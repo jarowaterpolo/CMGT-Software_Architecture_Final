@@ -168,6 +168,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &86586476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3347511045655823523, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
+  m_PrefabInstance: {fileID: 1654560254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &186125769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1305,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3347511045655823523, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1654560260}
+    - targetCorrespondingSourceObject: {fileID: 3347511045655823523, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1654560259}
   m_SourcePrefab: {fileID: 100100000, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
 --- !u!4 &1654560255 stripped
 Transform:
@@ -1322,6 +1333,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4348669491695394503, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
   m_PrefabInstance: {fileID: 1654560254}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &1654560259
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86586476}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!33 &1654560260
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86586476}
+  m_Mesh: {fileID: 0}
 --- !u!114 &1766990199 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4124967976661142939, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}

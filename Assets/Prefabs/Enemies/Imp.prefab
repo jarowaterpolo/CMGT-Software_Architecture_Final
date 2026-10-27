@@ -2224,6 +2224,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2364857064187297596, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
+      propertyPath: enemyMaxHP
+      value: 
+      objectReference: {fileID: 11400000, guid: c963e8c0c04826a4db519265cf665185, type: 2}
     - target: {fileID: 7226504394566553514, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
       propertyPath: m_Name
       value: Imp

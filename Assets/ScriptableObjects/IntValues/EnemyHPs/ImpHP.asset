@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317a176a06a38274a8ff233a80d6c6b3, type: 3}
   m_Name: ImpHP
   m_EditorClassIdentifier: Assembly-CSharp::JJN.ScriptableObjects.IntValue
-  initialValue: 5
+  initialValue: 10

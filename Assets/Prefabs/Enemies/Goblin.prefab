@@ -622,6 +622,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: aa8ff070444217645916505fddbb713a, type: 2}
+    - target: {fileID: 2364857064187297596, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
+      propertyPath: enemyMaxHP
+      value: 
+      objectReference: {fileID: 11400000, guid: 49c377f4c71282f4eadd6dd3daa9cec7, type: 2}
     - target: {fileID: 2594239538362043307, guid: 95ec0d0f28e4ec541832419accd8750a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

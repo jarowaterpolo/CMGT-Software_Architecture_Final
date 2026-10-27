@@ -16,10 +16,13 @@ namespace JJN.PathFinding
         private float spawnDelay;
         [SerializeField]
         private Transform enemyParent;
+        [SerializeField]
+        private int maxEnemyCount;
 
         private NewDungeonGenerator _dungeonGen;
         private List<RectInt> _doneRooms = new();
         private bool _isDead;
+        private int enemiesAlive;
 
 
         void Start()
@@ -39,13 +42,14 @@ namespace JJN.PathFinding
 
         private IEnumerator SpawnEnemies()
         {
-            while (!_isDead)
+            while (!_isDead && enemiesAlive < maxEnemyCount)
             {
                 yield return new WaitForSeconds(spawnDelay);
                 var randomRoom = _doneRooms[Random.Range(1, _doneRooms.Count)];
                 Vector3 spawnPos = new(randomRoom.x + randomRoom.width / 2, 1, randomRoom.y + randomRoom.height / 2);
                 var randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
                 Instantiate(randomEnemyPrefab, spawnPos, Quaternion.identity, enemyParent);
+                enemiesAlive++;
             }
             yield return null;
             StartCoroutine(SpawnEnemies());
@@ -56,14 +60,21 @@ namespace JJN.PathFinding
             _isDead = isDead;
         }
 
+        void changeEnemyAliveCount(EventData eventData)
+        {
+            enemiesAlive--;
+        }
+
         private void OnEnable()
         {
             PlayerHP.onDeath += SetIsDead;
+            EventBus<EnemyDieEventData>.OnEventPublished += changeEnemyAliveCount; 
         }
 
         private void OnDisable()
         {
             PlayerHP.onDeath -= SetIsDead;
+            EventBus<EnemyDieEventData>.OnEventPublished -= changeEnemyAliveCount;
         }
     }
 }

@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 94ebde9726ce1ad4fb5538493a736400
+  m_OcclusionCullingData: {fileID: 36300000, guid: d04a6c17b71ee2445becc6c9f888e6fb, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -149,10 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PathFinding.EnemySpawner
   enemyPrefabs:
-  - {fileID: 1564695508061785213, guid: 20bddf9538293e5429328e5ad3e55602, type: 3}
   - {fileID: 1564695508061785213, guid: 70762d91d1868e3419dfebcfafa2136f, type: 3}
+  - {fileID: 1564695508061785213, guid: 20bddf9538293e5429328e5ad3e55602, type: 3}
   spawnDelay: 2
   enemyParent: {fileID: 1654560257}
+  maxEnemyCount: 40
 --- !u!4 &49807563
 Transform:
   m_ObjectHideFlags: 0
@@ -190,7 +191,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!64 &186125770
 MeshCollider:
@@ -239,7 +240,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d66a84bebb363214787e748d59697a05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1497,6 +1498,10 @@ PrefabInstance:
     - target: {fileID: 6979452253434566875, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: m_Name
       value: ---Dungeon_Generator---
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473206168061209009, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7473206168061209009, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       propertyPath: dungeonParent

@@ -38,6 +38,11 @@ namespace JJN.PlayerSystem.Inventory
             if (currentItem is Weapon weapon && weapon.Attack > 0)
             {
                 ItemInfoDisplayer.itemInfo += $"{weapon.Attack} Attack \n";
+                if (weapon.CritChance > 0)
+                {
+                    ItemInfoDisplayer.itemInfo += $"{weapon.CritChance}% Crit\n";
+                    ItemInfoDisplayer.itemInfo += $"{weapon.CritDamageMult}x Crit damage \n";
+                }
             }
             if (currentItem is Shield shield && shield.Defense > 0)
             {
@@ -45,7 +50,15 @@ namespace JJN.PlayerSystem.Inventory
             }
             if (currentItem is SpecialItem specialItem && specialItem.isStackable && currentItemCount > 1)
             {
-                ItemInfoDisplayer.itemInfo += $"you have {currentItemCount} of them";
+                if (specialItem.ItemName.Contains("Potion"))
+                {
+                    ItemInfoDisplayer.itemInfo += $"{specialItem.SpecialItemValue} Heal amount\n";
+                }
+                else
+                {
+                    ItemInfoDisplayer.itemInfo += $"this will do something with a value of {specialItem.SpecialItemValue}\n";
+                }
+                ItemInfoDisplayer.itemInfo += $"you have {currentItemCount} of them\n";
             }
         }
 

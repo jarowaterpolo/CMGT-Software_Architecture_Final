@@ -9,15 +9,15 @@ namespace JJN.Calculation
         {
             var randomNum = UnityEngine.Random.Range(0, 100);
             bool doCrit = randomNum < critChance;
-            Debug.Log($"rolled random num = {randomNum} critchance is {critChance} this means you ");
+            //Debug.Log($"rolled random num = {randomNum} critchance is {critChance} this means you ");
             if (!doCrit)
             {
                 critMult = 1;
-                Debug.Log("Dont crit");
+                //Debug.Log("Dont crit");
             }
             else
             {
-                Debug.Log("Do crit");
+                //Debug.Log("Do crit");
             }
 
             if (defendState)

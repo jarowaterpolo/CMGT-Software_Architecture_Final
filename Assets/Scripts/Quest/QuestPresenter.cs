@@ -22,9 +22,9 @@ namespace JJN.QuestSystem
 
             if (questEventData.currentQuest.questText != currentQuestText)
             {
-                Debug.Log($"event quest text = {questEventData.currentQuest.questText}");
+                //Debug.Log($"event quest text = {questEventData.currentQuest.questText}");
                 currentQuestText = questEventData.currentQuest.questText;
-                Debug.Log($"current quest is: {currentQuestText}");
+                //Debug.Log($"current quest is: {currentQuestText}");
                 questText.text = currentQuestText;
             }
         }

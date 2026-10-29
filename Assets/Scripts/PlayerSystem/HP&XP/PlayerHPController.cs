@@ -102,8 +102,8 @@ namespace JJN.PlayerSystem.Values
         {
             hp.Max_HP_value += MaxHPGainBasedOnLevelUp;
             hp.HP_value += MaxHPGainBasedOnLevelUp;
-            Debug.Log($"tried to increase player max hp by {MaxHPGainBasedOnLevelUp}");
-            Debug.Log($"tried to increase player hp by {MaxHPGainBasedOnLevelUp}");
+            //Debug.Log($"tried to increase player max hp by {MaxHPGainBasedOnLevelUp}");
+            //Debug.Log($"tried to increase player hp by {MaxHPGainBasedOnLevelUp}");
         }
 
         private void OnEnable()

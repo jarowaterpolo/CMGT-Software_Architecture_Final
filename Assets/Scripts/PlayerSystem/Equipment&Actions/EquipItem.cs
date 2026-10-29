@@ -8,7 +8,7 @@ namespace JJN.PlayerSystem.Inventory
         
         public void EquipCurrentItem()
         {
-            Debug.Log($"try to equip {currentItem}");
+            //Debug.Log($"try to equip {currentItem}");
             EventBus<EquipItemEventData>.Publish(new EquipItemEventData(currentItem));
         }
     }

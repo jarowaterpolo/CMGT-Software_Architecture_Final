@@ -36,7 +36,7 @@ namespace JJN.PlayerSystem.Inventory
                     if (_weaponData != null)
                     {
                         EventBus<AttackEventData>.Publish(new AttackEventData(_weaponData, gameObject));
-                        Debug.Log($"{_weaponData.ItemName} used to attack");
+                        //Debug.Log($"{_weaponData.ItemName} used to attack");
                     }
                 }
 
@@ -46,14 +46,14 @@ namespace JJN.PlayerSystem.Inventory
                     if (Input.GetMouseButtonDown(1) && !_isCurrentlyBlocking)
                     {
                         EventBus<DefendEventData>.Publish(new DefendEventData(_shieldData, gameObject, true));
-                        Debug.Log($"using {_shieldData.ItemName} to defend");
+                        //Debug.Log($"using {_shieldData.ItemName} to defend");
                         _isCurrentlyBlocking = true;
                     }
 
                     if (Input.GetMouseButtonUp(1) && _isCurrentlyBlocking)
                     {
                         EventBus<DefendEventData>.Publish(new DefendEventData(_shieldData, gameObject, false));
-                        Debug.Log($"stopped defending");
+                        //Debug.Log($"stopped defending");
                         _isCurrentlyBlocking = false;
                     }
                 }
@@ -63,7 +63,7 @@ namespace JJN.PlayerSystem.Inventory
                     if (_itemData != null)
                     {
                         EventBus<ItemUseEventData>.Publish(new ItemUseEventData(_itemData, gameObject));
-                        Debug.Log($"{_itemData.ItemName} used");
+                        //Debug.Log($"{_itemData.ItemName} used");
                         _itemData = SearchForSameItem(_itemData);
                     }
                 }
@@ -71,7 +71,7 @@ namespace JJN.PlayerSystem.Inventory
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     EventBus<OpenItemContainerEventData>.Publish(new OpenItemContainerEventData(transform));
-                    Debug.Log("open item container event published");
+                    //Debug.Log("open item container event published");
                 }
             }
         }
@@ -115,7 +115,7 @@ namespace JJN.PlayerSystem.Inventory
 
                 if (item.Id == itemToSearchFor.Id)
                 {
-                    Debug.Log($"{item.ItemName} was found to replace{itemToSearchFor.ItemName}");
+                    //Debug.Log($"{item.ItemName} was found to replace{itemToSearchFor.ItemName}");
                     return item;
                 }
             }
@@ -141,7 +141,7 @@ namespace JJN.PlayerSystem.Inventory
                     break;
             }
 
-            Debug.Log($"{equipItemEventData.itemToEquip} was just equiped");
+            //Debug.Log($"{equipItemEventData.itemToEquip} was just equiped");
         }
 
         void SetIsDead(bool isDead)

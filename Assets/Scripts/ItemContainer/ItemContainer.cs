@@ -26,7 +26,7 @@ namespace JJN.PlayerSystem.Inventory
         public Item GiveItem()
         {
             string rolledRarity = Calculator.RollRarity();
-            Debug.Log($"your rolled rarity = {rolledRarity}");
+            //Debug.Log($"your rolled rarity = {rolledRarity}");
             var randomNum = 0;
             ItemData itemData = common.lootPile[0];
 

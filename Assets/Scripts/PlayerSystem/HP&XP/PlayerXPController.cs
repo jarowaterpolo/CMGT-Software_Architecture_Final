@@ -32,7 +32,7 @@ namespace PlayerSystem.Values
                 if (questEventData.currentQuest.IsComplete && questEventData.currentQuest.Reward.RewardType == "XP")
                 {
                     currentXP.value += questEventData.currentQuest.Reward.GetRewardValue();
-                    Debug.Log($"you got {questEventData.currentQuest.Reward.GetRewardValue()} XP for completing {questEventData.currentQuest.name}");
+                    //Debug.Log($"you got {questEventData.currentQuest.Reward.GetRewardValue()} XP for completing {questEventData.currentQuest.name}");
                     CheckForLevelUP();
                 }
             }

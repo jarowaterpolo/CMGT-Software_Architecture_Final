@@ -36,7 +36,7 @@ public class Chest : MonoBehaviour
             if(itemContainer != null)
             {
                 Item item = itemContainer.GiveItem();
-                Debug.Log($"you got an {item.ItemName}");
+                //Debug.Log($"you got an {item.ItemName}");
                 gameObject.SetActive(false);
             }
         }

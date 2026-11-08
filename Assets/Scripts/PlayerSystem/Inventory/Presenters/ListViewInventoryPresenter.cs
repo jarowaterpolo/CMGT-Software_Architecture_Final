@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using JJN.ItemSystem;
 
 namespace JJN.PlayerSystem.Inventory
 {

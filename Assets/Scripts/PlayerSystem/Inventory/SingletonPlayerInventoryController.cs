@@ -1,3 +1,4 @@
+using JJN.ItemSystem;
 using UnityEngine;
 
 namespace JJN.PlayerSystem.Inventory
@@ -34,6 +35,7 @@ namespace JJN.PlayerSystem.Inventory
             if (inventory != null)
             {
                 ItemContainer.onGetItem += inventory.AddItem;
+                DroppedItem.onPickupItem += inventory.AddItem;
             }
         }
        
@@ -42,6 +44,7 @@ namespace JJN.PlayerSystem.Inventory
             if (inventory != null)
             {
                 ItemContainer.onGetItem -= inventory.AddItem;
+                DroppedItem.onPickupItem -= inventory.AddItem;
             }
         }
     }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace JJN.PlayerSystem.Inventory
+namespace JJN.ItemSystem
 {
     public class ItemData : ScriptableObject
     {

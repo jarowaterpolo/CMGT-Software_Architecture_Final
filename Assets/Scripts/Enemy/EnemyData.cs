@@ -1,6 +1,7 @@
 using JJN.ScriptableObjects;
 using System;
 using UnityEngine;
+using JJN.ItemSystem;
 
 namespace JJN.PlayerSystem.Inventory
 {

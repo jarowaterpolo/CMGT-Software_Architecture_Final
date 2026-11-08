@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using JJN.ItemSystem;
 
 namespace JJN.PlayerSystem.Inventory
 {

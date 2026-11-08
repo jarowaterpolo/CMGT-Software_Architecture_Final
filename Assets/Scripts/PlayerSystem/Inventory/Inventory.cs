@@ -1,3 +1,4 @@
+using JJN.ItemSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

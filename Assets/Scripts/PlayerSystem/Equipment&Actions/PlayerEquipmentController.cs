@@ -1,3 +1,4 @@
+using JJN.ItemSystem;
 using JJN.PlayerSystem.Movement;
 using JJN.ScriptableObjects;
 using System.Collections;
@@ -71,6 +72,7 @@ namespace JJN.PlayerSystem.Inventory
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     EventBus<OpenItemContainerEventData>.Publish(new OpenItemContainerEventData(transform));
+                    EventBus<PickupItemEventData>.Publish(new PickupItemEventData(transform));
                     //Debug.Log("open item container event published");
                 }
             }

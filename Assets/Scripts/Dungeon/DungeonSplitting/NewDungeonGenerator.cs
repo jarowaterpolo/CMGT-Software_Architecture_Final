@@ -1,10 +1,11 @@
+    using NaughtyAttributes;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UIElements;
+
 namespace JJNDungeonGeneration
 {
-using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
 
     public class NewDungeonGenerator : Generator
     {

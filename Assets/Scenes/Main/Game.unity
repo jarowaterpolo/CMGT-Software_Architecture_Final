@@ -429,6 +429,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &652494990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652494992}
+  - component: {fileID: 652494991}
+  m_Layer: 0
+  m_Name: DroppedItemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &652494991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652494990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13caf027cb9659498dcc56a69ee85e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.DroppedItemSpawner
+  legendary: {fileID: 11400000, guid: c71ae03e171718d4eb3fb9dfe4c583bc, type: 2}
+  epic: {fileID: 11400000, guid: 8efaf82dd71e110489ec72725e97f0c8, type: 2}
+  rare: {fileID: 11400000, guid: a95dc34300275124fb282a95faa3abf1, type: 2}
+  uncommon: {fileID: 11400000, guid: 5cf621e8df1279d4b8cd266ff64993e6, type: 2}
+  common: {fileID: 11400000, guid: eaf1254b1099259479ceaacabd5552e1, type: 2}
+--- !u!4 &652494992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652494990}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &677161621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5452501255862593070, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
@@ -1659,3 +1708,4 @@ SceneRoots:
   - {fileID: 49807563}
   - {fileID: 186125773}
   - {fileID: 640670878}
+  - {fileID: 652494992}

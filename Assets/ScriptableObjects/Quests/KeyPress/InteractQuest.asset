@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191c2ae82c6601e4fb5612939e5290f2, type: 3}
   m_Name: InteractQuest
   m_EditorClassIdentifier: Assembly-CSharp::JJN.QuestSystem.Quests.KeyPressQuest
-  questName: press e "this is used for opening item containers"
+  questName: press e "this is used for opening item containers & pickin up items"
   reward: {fileID: 11400000, guid: ed9d58163ffbc1d4fb9a52bb84146ae3, type: 2}
-  questText: 
+  questText: press e "this is used for opening item containers"
   keysToPress: 65000000

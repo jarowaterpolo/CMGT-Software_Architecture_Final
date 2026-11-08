@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace JJN.PlayerSystem.Inventory
+namespace JJN.ItemSystem
 {
     /// <summary>
     /// This is the script for creating an WeaponData scriptable object, which is

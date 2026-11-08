@@ -5,6 +5,7 @@ using PlayerSystem.Movement;
 using System;
 using UnityEngine;
 using System.Collections;
+using JJN.ItemSystem;
 
 namespace JJN.Enemy
 {

@@ -2,59 +2,63 @@ using UnityEngine;
 using JJN.PlayerSystem.Inventory;
 using System;
 using UnityEngine.InputSystem;
+using JJN.ItemSystem;
 
-/// <summary>
-/// Controls the chests in 2D scene, give an item when opened if the chest has
-/// an ItemContainer component.
-/// </summary>
-public class Chest : MonoBehaviour
+namespace JJNDungeonGeneration
 {
-    [SerializeField]
-    private bool readyToOpen = false;
-    private bool opened = false;
-
-    private void OnEnable()
+    /// <summary>
+    /// Controls the chests in 2D scene, give an item when opened if the chest has
+    /// an ItemContainer component.
+    /// </summary>
+    public class Chest : MonoBehaviour
     {
-        EventBus<OpenItemContainerEventData>.OnEventPublished += Open;
-    }
+        [SerializeField]
+        private bool readyToOpen = false;
+        private bool opened = false;
 
-    private void OnDisable()
-    {
-        EventBus<OpenItemContainerEventData>.OnEventPublished -= Open;
-    }
-
-    public void Open(EventData eventData)
-    {
-        //OpenItemContainerEventData openItemContainerEventData = (OpenItemContainerEventData)eventData;
-
-        if (readyToOpen && !opened)
+        private void OnEnable()
         {
-            readyToOpen = false;
-            opened = true;
+            EventBus<OpenItemContainerEventData>.OnEventPublished += Open;
+        }
 
-            ItemContainer itemContainer = GetComponent<ItemContainer>();
-            if(itemContainer != null)
+        private void OnDisable()
+        {
+            EventBus<OpenItemContainerEventData>.OnEventPublished -= Open;
+        }
+
+        public void Open(EventData eventData)
+        {
+            //OpenItemContainerEventData openItemContainerEventData = (OpenItemContainerEventData)eventData;
+
+            if (readyToOpen && !opened)
             {
-                Item item = itemContainer.GiveItem();
-                //Debug.Log($"you got an {item.ItemName}");
-                gameObject.SetActive(false);
+                readyToOpen = false;
+                opened = true;
+
+                ItemContainer itemContainer = GetComponent<ItemContainer>();
+                if (itemContainer != null)
+                {
+                    Item item = itemContainer.GiveItem();
+                    //Debug.Log($"you got an {item.ItemName}");
+                    gameObject.SetActive(false);
+                }
             }
         }
-    }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        private void OnTriggerEnter(Collider collision)
         {
-            readyToOpen = true;
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                readyToOpen = true;
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        private void OnTriggerExit(Collider collision)
         {
-            readyToOpen = false;
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                readyToOpen = false;
+            }
         }
     }
 }

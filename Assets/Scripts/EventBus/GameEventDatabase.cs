@@ -1,4 +1,5 @@
 using JJN.Enemy;
+using JJN.ItemSystem;
 using JJN.PlayerSystem.Inventory;
 using JJN.QuestSystem.Quests;
 using UnityEngine;
@@ -172,4 +173,29 @@ public class QuestEventData : EventData
             $"current quest is = {currentQuest} and completed = " + questIsComplete;
     }
 
+}
+
+/// <summary>
+/// Published by the player when trying to open a item container, it contains the player transform
+/// </summary>
+public class PickupItemEventData : EventData
+{
+    public Transform playerTransform;
+    public PickupItemEventData(Transform pPlayerTransform)
+    {
+        name = "PickupItemEvent";
+        playerTransform = pPlayerTransform;
+    }
+
+    //Overriding ToString method to display event information for debugging
+    public override string ToString()
+    {
+        if (playerTransform == null)
+            return "player not found";
+        else
+        {
+            return "Event name: " + name + "\n" +
+                   "Cast at player position: " + playerTransform.position + "\n";
+        }
+    }
 }

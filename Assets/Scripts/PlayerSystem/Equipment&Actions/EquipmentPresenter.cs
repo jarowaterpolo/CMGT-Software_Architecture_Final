@@ -1,3 +1,4 @@
+using JJN.ItemSystem;
 using UnityEngine;
 
 namespace JJN.PlayerSystem.Inventory

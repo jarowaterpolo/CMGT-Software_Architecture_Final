@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.EnemyData
   enemyName: Imp
   enemyMaxHP: {fileID: 11400000, guid: c963e8c0c04826a4db519265cf665185, type: 2}
-  Money: 5
   XP: 10
   weaponData: {fileID: 11400000, guid: a40f0b10386fd364f89312f22b6cdbbe, type: 2}
   attackDelay: 1
+  itemDropChance: 20

@@ -16,9 +16,8 @@ namespace JJN.Enemy
         [SerializeField]
         private Transform playerTransform;
         [SerializeField]
-        public EnemyData enemyData;
-        [SerializeField]
         private EquipmentPresenter equipmentPresenter;
+        public EnemyData enemyData;
 
         private int currentEnemyHP;
 

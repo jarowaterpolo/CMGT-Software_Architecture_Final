@@ -23,7 +23,7 @@ namespace JJN.ItemSystem
 
             var randomNum = 0;
             randomNum = UnityEngine.Random.Range(0, 100);
-            if (randomNum < 33)
+            if (randomNum < enemyDieEventData.enemy.enemyData.itemDropChance)
             {
                 string rolledRarity = Calculator.RollRarity();
                 //Debug.Log($"your rolled rarity = {rolledRarity}");

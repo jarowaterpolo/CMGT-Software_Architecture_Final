@@ -10,9 +10,9 @@ namespace JJN.PlayerSystem.Inventory
     {
         public string enemyName;
         public IntValue enemyMaxHP;
-        public int Money;
         public int XP;
         public WeaponData weaponData;
         public float attackDelay = 1f;
+        public float itemDropChance = 0f;
     }
 }

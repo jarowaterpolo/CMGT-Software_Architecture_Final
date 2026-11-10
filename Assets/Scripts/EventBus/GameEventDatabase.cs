@@ -32,7 +32,6 @@ public class EnemyDieEventData : EventData
         {
             return $"Event name: {name} \n" +
                 $"An {enemyName} died at position: {enemyObject.transform.position} \n" +
-                $"Enemy dropped money: {enemy.enemyData.Money} \n" +
                 $"Enemy gave xp: {enemy.enemyData.XP}";
         }
     }

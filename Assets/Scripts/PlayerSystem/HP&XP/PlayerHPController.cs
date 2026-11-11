@@ -64,14 +64,18 @@ namespace JJN.PlayerSystem.Values
         void HPPotionUsed(EventData eventData)
         {
             ItemUseEventData itemUseEventData = (ItemUseEventData)eventData;
-            if (hp.HP_value + itemUseEventData.itemData.SpecialItemValue <= hp.Max_HP_value)
+
+            if (itemUseEventData.itemData.ItemName.Contains("potion"))
             {
-                hp.HP_value += itemUseEventData.itemData.SpecialItemValue;
-            }
-            else
-            {
-                var hpGain = hp.Max_HP_value - hp.HP_value;
-                hp.HP_value += hpGain;
+                if (hp.HP_value + itemUseEventData.itemData.SpecialItemValue <= hp.Max_HP_value)
+                {
+                    hp.HP_value += itemUseEventData.itemData.SpecialItemValue;
+                }
+                else
+                {
+                    var hpGain = hp.Max_HP_value - hp.HP_value;
+                    hp.HP_value += hpGain;
+                }
             }
         }
 

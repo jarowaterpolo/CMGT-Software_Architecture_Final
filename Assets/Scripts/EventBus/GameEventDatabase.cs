@@ -198,3 +198,28 @@ public class PickupItemEventData : EventData
         }
     }
 }
+
+/// <summary>
+/// Published by the player when entering a gate to go to the next stage
+/// </summary>
+public class AdvanceStageEventData : EventData
+{
+    public Transform playerTransform;
+    public AdvanceStageEventData(Transform pPlayerTransform)
+    {
+        name = "AdvanceStageEvent";
+        playerTransform = pPlayerTransform;
+    }
+
+    //Overriding ToString method to display event information for debugging
+    public override string ToString()
+    {
+        if (playerTransform == null)
+            return "player not found";
+        else
+        {
+            return "Event name: " + name + "\n" +
+                   "Cast at player position: " + playerTransform.position + "\n";
+        }
+    }
+}

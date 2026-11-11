@@ -17,9 +17,17 @@ namespace JJN.ItemSystem
         [SerializeField]
         private DropPile common;
 
+        [SerializeField]
+        private GameObject key;
+
         public void SpawnDroppedItem(EventData eventData)
         {
             EnemyDieEventData enemyDieEventData = (EnemyDieEventData)eventData;
+
+            if (enemyDieEventData.enemy.enemyData.isABoss)
+            {
+                Instantiate(key, enemyDieEventData.enemyObject.transform.position + Vector3.up * .5f, Quaternion.identity);
+            }
 
             var randomNum = 0;
             randomNum = UnityEngine.Random.Range(0, 100);

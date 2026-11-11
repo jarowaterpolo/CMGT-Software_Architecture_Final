@@ -148,12 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cf8b4e34b2e814c9fe83b8962f7605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PathFinding.EnemySpawner
-  enemyPrefabs:
-  - {fileID: 1564695508061785213, guid: 70762d91d1868e3419dfebcfafa2136f, type: 3}
-  - {fileID: 1564695508061785213, guid: 20bddf9538293e5429328e5ad3e55602, type: 3}
+  stages:
+  - {fileID: 11400000, guid: d6be707c294d0b041b27a140ac079e5f, type: 2}
+  - {fileID: 11400000, guid: d2bd4937ad364ab4baa91e8fa69dce2f, type: 2}
   spawnDelay: 2
   enemyParent: {fileID: 1654560257}
   maxEnemyCount: 40
+  stage: {fileID: 11400000, guid: 366e5fbae5f453f42b0f313abfb127b6, type: 2}
 --- !u!4 &49807563
 Transform:
   m_ObjectHideFlags: 0
@@ -366,6 +367,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!4 &464137329 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1220331304747029883, guid: 6ea8b0f29da4b944c99414654584c6c5, type: 3}
+  m_PrefabInstance: {fileID: 1654560254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &626957333 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7576141386142892366, guid: b6c69b4784325d44798daa282a522feb, type: 3}
@@ -463,6 +469,7 @@ MonoBehaviour:
   rare: {fileID: 11400000, guid: a95dc34300275124fb282a95faa3abf1, type: 2}
   uncommon: {fileID: 11400000, guid: 5cf621e8df1279d4b8cd266ff64993e6, type: 2}
   common: {fileID: 11400000, guid: eaf1254b1099259479ceaacabd5552e1, type: 2}
+  key: {fileID: 4775485145962659989, guid: 9c1c04b7ca4762946a479359cd4d8449, type: 3}
 --- !u!4 &652494992
 Transform:
   m_ObjectHideFlags: 0
@@ -681,6 +688,31 @@ MonoBehaviour:
   itemContainersParent: {fileID: 1654560258}
   itemContainers:
   - {fileID: 4166275685405292872, guid: e8a32d212b34add459e72eb111b54360, type: 3}
+--- !u!114 &997141515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997141487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29732603e6a328d49b16f0858b71a31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJNDungeonGeneration.GateGeneration
+  waitingType: 0
+  splitDelay: 0.05
+  colors:
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 255, g: 175, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  audioSource: {fileID: 0}
+  DoDebugDraw: 0
+  dungeonParent: {fileID: 464137329}
+  gate: {fileID: 3188233289931903360, guid: a3f76ee7c4c12de40a57963fcfe7f813, type: 3}
 --- !u!224 &1158853083 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 893354522028715646, guid: b6c69b4784325d44798daa282a522feb, type: 3}
@@ -1023,6 +1055,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4061864040614482534, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: m_Name
+      value: PlayerInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061864040614482534, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
+      propertyPath: m_TagString
       value: PlayerInventory
       objectReference: {fileID: 0}
     - target: {fileID: 4124967976661142939, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
@@ -1626,6 +1662,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6979452253434566875, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
       insertIndex: 12
       addedObject: {fileID: 997141501}
+    - targetCorrespondingSourceObject: {fileID: 6979452253434566875, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
+      insertIndex: 13
+      addedObject: {fileID: 997141515}
   m_SourcePrefab: {fileID: 100100000, guid: 3d1d815867ec26448970093afa9a239e, type: 3}
 --- !u!1 &1957126984
 GameObject:

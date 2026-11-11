@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DungeonGenerator
   - Enemy
+  - PlayerInventory
   layers:
   - Default
   - TransparentFX

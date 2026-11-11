@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: Assembly-CSharp::JJN.ItemSystem.SpecialItemData
   id: key
-  itemName: key
-  itemIcon: {fileID: 0}
+  itemName: Key
+  itemIcon: {fileID: 21300000, guid: 8bd6f5a69eefe0c439b67c5b68a205bb, type: 3}
   itemModel: {fileID: 2727584711031878416, guid: 9a1e85d1282bf514ab6c98aac4789979, type: 3}
   specialItemValue: 0
   isStackable: 0

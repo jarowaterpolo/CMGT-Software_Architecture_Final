@@ -9,7 +9,7 @@ namespace JJNDungeonGeneration
     public class EventAfterDungeonGeneration : Generator
     {
         private NewDungeonGenerator dungeonGen;
-        private ItemContainerGeneration itemContainerGeneration;
+        private GateGeneration gateGen;
 
         public UnityEvent TurnOn;
         public UnityEvent TurnOff;
@@ -17,10 +17,10 @@ namespace JJNDungeonGeneration
         private void Start()
         {
             dungeonGen = GetComponent<NewDungeonGenerator>();
-            itemContainerGeneration = GetComponent<ItemContainerGeneration>();
+            gateGen = GetComponent<GateGeneration>();
 
             dungeonGen.OnStartGeneration += dungeonGen_OnStartGeneration;
-            itemContainerGeneration.OnEndGeneration += itemContainerGeneration_OnEndGeneration;
+            gateGen.OnEndGeneration += GateGeneration_OnEndGeneration;
         }
 
         private void dungeonGen_OnStartGeneration()
@@ -28,7 +28,7 @@ namespace JJNDungeonGeneration
             TurnOff?.Invoke();
         }
 
-        private void itemContainerGeneration_OnEndGeneration()
+        private void GateGeneration_OnEndGeneration()
         {
             TurnOn?.Invoke();  
         }

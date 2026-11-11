@@ -14,5 +14,6 @@ namespace JJN.PlayerSystem.Inventory
         public WeaponData weaponData;
         public float attackDelay = 1f;
         public float itemDropChance = 0f;
+        public bool isABoss = false;
     }
 }

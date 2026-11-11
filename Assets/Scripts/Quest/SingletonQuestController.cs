@@ -1,17 +1,34 @@
+using JJN.PlayerSystem.Inventory;
 using JJN.QuestSystem.Quests;
 using JJN.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace JJN.QuestSystem
 {
-    public class QuestController : MonoBehaviour
+    public class SingletonQuestController : MonoBehaviour
     {
+        public static SingletonQuestController Instance { get; private set; }
+
         [SerializeField]
         private List<Quest> quests;
         private int _questIndex = 0;
         private Quest _currentQuest;
         private bool _isDead;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         void Start()
         {
@@ -74,14 +91,36 @@ namespace JJN.QuestSystem
             }
         }
 
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            _isDead = false;
+
+            if (_currentQuest != null)
+            {
+                EventBus<QuestEventData>.Publish(new(_currentQuest, false));
+            }
+            else
+            {
+                DummyQuest allQuestDone = new("All quests completed");
+                EventBus<QuestEventData>.Publish(new(allQuestDone, false));
+            }
+        }
+
         private void OnEnable()
         {
+            if (Instance != this) return;
+
             PlayerHP.onDeath += SetIsDead;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
         }
 
         private void OnDisable()
         {
+            if (Instance != this) return;
+
             PlayerHP.onDeath -= SetIsDead;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }

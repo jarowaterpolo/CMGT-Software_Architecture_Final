@@ -414,10 +414,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.QuestController
   quests:
   - {fileID: 11400000, guid: 62b45ee21f295a3449d8f8efa0bf11cc, type: 2}
-  - {fileID: 11400000, guid: ebde6079235e92c4f967896a00077fe1, type: 2}
   - {fileID: 11400000, guid: 07c1b8817f9968640bbbbd1f680c9e2b, type: 2}
+  - {fileID: 11400000, guid: ebde6079235e92c4f967896a00077fe1, type: 2}
   - {fileID: 11400000, guid: 9acd4d6e464ac5a46acd61b63610a894, type: 2}
   - {fileID: 11400000, guid: 11c410b87022fb64f8acaa9dbbba0d4a, type: 2}
+  - {fileID: 11400000, guid: 4c125d39e693ff74faa552db7fe3fa70, type: 2}
+  - {fileID: 11400000, guid: 4dcc64a29b1ffe34ca139983ce574d90, type: 2}
   - {fileID: 11400000, guid: 5f640d6770e74404cb49b038008a625b, type: 2}
   - {fileID: 11400000, guid: 2182c84daa9dd934e8c7e1ebb5c7f945, type: 2}
 --- !u!4 &640670878
@@ -1063,7 +1065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4124967976661142939, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: itemDatas.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4124967976661142939, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: 'itemDatas.Array.data[0]'
@@ -1084,7 +1086,7 @@ PrefabInstance:
     - target: {fileID: 4124967976661142939, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: 'itemDatas.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5540eef0ea292e441a0dbe605777300d, type: 2}
+      objectReference: {fileID: 11400000, guid: b296cd45549e4474091a3fa15152088b, type: 2}
     - target: {fileID: 4443991034056136299, guid: b9825c8b66c8fb04aa99e36b1a930e39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

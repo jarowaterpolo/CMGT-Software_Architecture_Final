@@ -27,7 +27,8 @@ namespace JJN.PlayerSystem.Inventory
         {
             ItemUseEventData itemUseEventData = (ItemUseEventData)eventData;
 
-            if (itemUseEventData.itemData.ItemName.Contains("key") && _inGateOpenRange)
+            Debug.Log($"tried to open gate with {itemUseEventData.itemData.Id}");
+            if (itemUseEventData.itemData.Id.Contains("key") && _inGateOpenRange)
             {
                 Destroy(gameObject);
             }

@@ -4,16 +4,13 @@ namespace JJN.FSM
 {
     public class Blackboard : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
+        public Transform targetTransform;
+        public Vector3 targetPosition;
+        public float chaseRange = 5.0f;
+        public float waitingTime = 2.0f;
+        public float moveSpeed = 10.0f;
+        public float distanceThreshold = .2f;
+        public float rotateSpeed = 90.0f;
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

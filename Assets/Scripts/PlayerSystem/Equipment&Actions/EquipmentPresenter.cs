@@ -1,5 +1,6 @@
 using JJN.ItemSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace JJN.PlayerSystem.Inventory
 {
@@ -8,6 +9,8 @@ namespace JJN.PlayerSystem.Inventory
     /// </summary>
     public class EquipmentPresenter : MonoBehaviour
     {
+        [SerializeField]
+        private InUseEquipment inUseEquipment;
         [SerializeField]
         private Transform weaponTransform;
         [SerializeField]
@@ -30,19 +33,31 @@ namespace JJN.PlayerSystem.Inventory
         {
             DeleteOldEquipment(item);
 
+            Debug.Log($"present item called with item {item.ItemName}");
+
             GameObject weaponObject;
             GameObject shieldObject;
 
             if (item is Weapon weapon)
             {
+                //Debug.Log($"Weapon Presented called {weapon.ItemName}");
                 weaponObject = Instantiate(item.itemModel, weaponTransform.position, weaponTransform.rotation, weaponTransform);
                 weaponObject.transform.localRotation = Quaternion.identity;
             }
             else if (item is Shield shield)
             {
+                Debug.Log($"Shield Presented called {shield.ItemName}");
                 shieldObject = Instantiate(item.itemModel, shieldTransform.position, shieldTransform.rotation, shieldTransform);
                 shieldObject.transform.localRotation = Quaternion.identity;
             }
+        }
+
+        private void OnEnable()
+        {
+            if (inUseEquipment == null) return;
+            PresentItem(inUseEquipment.weaponData, 1);
+            PresentItem(inUseEquipment.shieldData, 1);
+            Debug.Log($"in use equipment: Weapon = {inUseEquipment.weaponData.ItemName}, Shield = {inUseEquipment.shieldData.ItemName}");
         }
     }
 }

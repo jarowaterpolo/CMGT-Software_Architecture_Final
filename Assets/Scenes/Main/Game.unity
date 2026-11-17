@@ -1275,6 +1275,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4872141258332412035, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: inUseEquipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 187c98da995556349beb27f64161e12e, type: 2}
+    - target: {fileID: 4872141258332412035, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1766990199}
@@ -1302,6 +1306,10 @@ PrefabInstance:
       propertyPath: closeInventory.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1531475467}
+    - target: {fileID: 5330762426131789736, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: inUseEquipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 187c98da995556349beb27f64161e12e, type: 2}
     - target: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: xpBar
       value: 

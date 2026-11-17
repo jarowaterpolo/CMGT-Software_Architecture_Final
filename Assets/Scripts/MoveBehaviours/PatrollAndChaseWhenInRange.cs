@@ -54,7 +54,7 @@ namespace PlayerSystem.Movement
         private IEnumerator SetPartolTarget()
         {
             yield return new WaitForSeconds(patrollChangeTargetDelay);
-            patrolTagetPos = new(startPos.x + Random.Range(0, patrollRange.x), startPos.y, startPos.z + Random.Range(0, patrollRange.y));
+            patrolTagetPos = new(startPos.x + Random.Range(-patrollRange.x, patrollRange.x), startPos.y, startPos.z + Random.Range(-patrollRange.y, patrollRange.y));
             StartCoroutine(SetPartolTarget());
         }
         public override void SetTargetPosition(Vector3 targetPos)

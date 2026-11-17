@@ -5,15 +5,18 @@ namespace JJN.FSM
 {
     public class EnemyFSM : FSM
     {
-        public PatrolFSM patrolFSM;
+        public PatrollFSM patrolFSM;
         public SeekAndAttackFSM seekAndAttackFSM;
 
         private Transform _transform;
         
-        public EnemyFSM(Transform transform, Blackboard blackboard)
+        public EnemyFSM(Transform transform, Blackboard pBlackboard)
         {
-            patrolFSM = new PatrolFSM(transform, blackboard);
-            seekAndAttackFSM = new SeekAndAttackFSM(blackboard);
+            Debug.Log($"enemy FSM blackboard = {pBlackboard}");
+            blackboard = pBlackboard;
+
+            patrolFSM = new PatrollFSM(transform, blackboard);
+            seekAndAttackFSM = new SeekAndAttackFSM(transform, blackboard);
             _transform = transform;
 
             patrolFSM.transitions.Add(new(TargetInChaseRange, seekAndAttackFSM));

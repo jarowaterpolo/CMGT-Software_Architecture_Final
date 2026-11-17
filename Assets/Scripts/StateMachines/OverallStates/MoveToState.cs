@@ -20,24 +20,27 @@ namespace JJN.FSM
         {
             base.Enter();
             speed = blackboard.moveSpeed;
+
+            Debug.Log($"just started using move state moving to {blackboard.targetPosition}");
         }
 
         // Called every frame to update movement toward the target.
         // The destination is updated only if the target is moving.
         public override void Step()
         {
+            base.Step();
+
+            Vector3 targetPos;
             if (!followMovingTarget)
             {
-                // Set destination to a static position
-                //SetDestination(blackboard.targetPosition);
+                targetPos = blackboard.targetPosition;
             }
             else
             {
-                // Set destination to the current position of a moving target
-                //SetDestination(blackboard.targetTransform.position);
+                targetPos = blackboard.targetTransform.position;
             }
 
-            base.Step();
+            _transform.position = Vector3.MoveTowards(_transform.position, targetPos, blackboard.moveSpeed * Time.deltaTime);
         }
 
         // Checks whether the agent has reached the target (static or moving).

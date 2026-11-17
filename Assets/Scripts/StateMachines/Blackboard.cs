@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace JJN.FSM
@@ -12,5 +13,7 @@ namespace JJN.FSM
         public float distanceThreshold = .2f;
         public float rotateSpeed = 90.0f;
 
+        public List<Vector3> waypoints;
+        public int waypointIndex = 0;
     }
 }

@@ -57,23 +57,31 @@ PrefabInstance:
       value: PatrolAndChaseEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 6399625335020064474, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
-      propertyPath: moveBehaviour
-      value: 
-      objectReference: {fileID: 2713687034198845253}
+      propertyPath: patrollRange.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399625335020064474, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
+      propertyPath: patrollRange.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399625335020064474, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
+      propertyPath: patrolWaypointsAmount
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5467120107319134082, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 2713687034198845253}
+      insertIndex: -1
+      addedObject: {fileID: 3033715791439008133}
   m_SourcePrefab: {fileID: 100100000, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
 --- !u!1 &7226504394566553514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5467120107319134082, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
   m_PrefabInstance: {fileID: 3429121336886642728}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2713687034198845253
+--- !u!114 &3033715791439008133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,11 +90,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7226504394566553514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8b6d90070f06c743abd49d8d6be7c03, type: 3}
+  m_Script: {fileID: 11500000, guid: a04badc2356525d499820d17c15db5ad, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Movement.PatrollAndChaseWhenInRange
-  targetRange: 10
-  Speed: 10
-  doDebugDraw: 0
-  patrollChangeTargetDelay: 4
-  patrollRange: {x: 10, y: 10}
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.FSM.Blackboard
+  targetTransform: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  chaseRange: 5
+  waitingTime: 2
+  moveSpeed: 3
+  distanceThreshold: 0.2
+  rotateSpeed: 90
+  waypoints: []
+  waypointIndex: 0

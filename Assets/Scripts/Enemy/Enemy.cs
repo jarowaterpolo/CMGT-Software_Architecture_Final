@@ -6,13 +6,21 @@ using System;
 using UnityEngine;
 using System.Collections;
 using JJN.ItemSystem;
+using JJN.FSM;
 
 namespace JJN.Enemy
 {
     public class Enemy : MonoBehaviour
     {
+        //[SerializeField]
+        //private MoveBehaviour moveBehaviour;
         [SerializeField]
-        private MoveBehaviour moveBehaviour;
+        private Blackboard blackboard;
+        [SerializeField]
+        private int patrolWaypointsAmount = 3;
+        [SerializeField]
+        private Vector2 patrollRange = new(5f, 5f);
+        private EnemyFSM fsm;
         [SerializeField]
         private Transform playerTransform;
         [SerializeField]
@@ -61,7 +69,16 @@ namespace JJN.Enemy
             attackCollider.radius = weapon.Range;
 
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            moveBehaviour.SetTargetPosition(playerTransform.position);
+
+            if (blackboard == null)
+            {
+                blackboard = GetComponent<Blackboard>();
+            }
+            blackboard.targetTransform = playerTransform;
+            CreatePatrolWaypoints();
+            fsm = new(transform, blackboard);
+            fsm.Enter();
+            //moveBehaviour.SetTargetPosition(playerTransform.position);
 
             SetStartingHP();
 
@@ -82,7 +99,8 @@ namespace JJN.Enemy
         }
         void Update()
         {
-            moveBehaviour.SetTargetPosition(playerTransform.position);
+            //moveBehaviour.SetTargetPosition(playerTransform.position);
+            fsm.Step();
 
             if (currentEnemyHP <= 0)
             {
@@ -153,6 +171,41 @@ namespace JJN.Enemy
         {
             PlayerHP.onDeath -= DestorySelf;
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
+        }
+
+        private void CreatePatrolWaypoints()
+        {
+            Vector3 patrolPoint;
+            switch (patrolWaypointsAmount)
+            {
+                case 3:
+                    patrolPoint = new(transform.position.x + UnityEngine.Random.Range(-patrollRange.x, 0), transform.position.y, transform.position.z + UnityEngine.Random.Range(-patrollRange.y, 0));
+                    blackboard.waypoints.Add(patrolPoint);
+                    patrolPoint = new(transform.position.x + UnityEngine.Random.Range(0, patrollRange.x), transform.position.y, transform.position.z + UnityEngine.Random.Range(-patrollRange.y, 0));
+                    blackboard.waypoints.Add(patrolPoint);
+                    patrolPoint = new(transform.position.x + UnityEngine.Random.Range(-patrollRange.x, patrollRange.x), transform.position.y, transform.position.z + UnityEngine.Random.Range(0, patrollRange.y));
+                    blackboard.waypoints.Add(patrolPoint);
+                    break;
+
+                case 4:
+                    patrolPoint = new(transform.position.x + UnityEngine.Random.Range(-patrollRange.x, 0), transform.position.y, transform.position.z + UnityEngine.Random.Range(-patrollRange.y, 0));
+                    blackboard.waypoints.Add(patrolPoint);
+                    patrolPoint = new(transform.position.x + UnityEngine.Random.Range(0, patrollRange.x), transform.position.y, transform.position.z + UnityEngine.Random.Range(-patrollRange.y, 0));
+                    blackboard.waypoints.Add(patrolPoint);
+                    patrolPoint = new(transform.position.x + UnityEngine.Random.Range(-patrollRange.x, 0), transform.position.y, transform.position.z + UnityEngine.Random.Range(0, patrollRange.y));
+                    blackboard.waypoints.Add(patrolPoint);
+                    patrolPoint = new(transform.position.x + UnityEngine.Random.Range(0, patrollRange.x), transform.position.y, transform.position.z + UnityEngine.Random.Range(0, patrollRange.y));
+                    blackboard.waypoints.Add(patrolPoint);
+                    break;
+
+                default:
+                    for (int i = 0; i < patrolWaypointsAmount; i++)
+                    {
+                        patrolPoint = new(transform.position.x + UnityEngine.Random.Range(-patrollRange.x, patrollRange.x), transform.position.y, transform.position.z + UnityEngine.Random.Range(-patrollRange.y, patrollRange.y));
+                        blackboard.waypoints.Add(patrolPoint);
+                    }
+                    break;
+            }
         }
     }
 }

@@ -51,7 +51,11 @@ namespace JJN.Enemy
                 var randomRoom = _doneRooms[Random.Range(1, _doneRooms.Count)];
                 Vector3 spawnPos = new(randomRoom.x + randomRoom.width / 2, 1, randomRoom.y + randomRoom.height / 2);
 
-                var enemyPrefabLength = stages[stage.value].enemyPrefabs.Length;
+                if (stage.value >= stages.Length)
+                {
+                    stage.value = stages.Length - 1;
+                }
+                int enemyPrefabLength =  stages[stage.value].enemyPrefabs.Length;
 
                 int randomNumber;
                 GameObject enemyPrefab;

@@ -53,6 +53,11 @@ namespace JJN.QuestSystem
             else
             {
                 //EventBus<QuestEventData>.Publish(new(_currentQuest, false));
+#if UNITY_EDITOR
+                if(Input.GetKeyDown(KeyCode.F1)){
+                    AdvanceToNextQuest();
+                }
+#endif
             }
         }
 

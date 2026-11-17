@@ -1,39 +1,52 @@
+using JJN.QuestSystem.Quests;
 using JJN.ScriptableObjects;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace JJN.PlayerSystem.Presenters
 {
     public class HPPresenter : MonoBehaviour
     {
-        private int currentMaxHP;
+        [SerializeField]
+        private PlayerHP hp;
 
         private TMP_Text hpText;
 
         void Start()
         {
-            hpText = GetComponent<TMP_Text>();
+            if (hpText == null)
+            {
+                hpText = GetComponent<TMP_Text>();
+            }
         }
 
-        void UpdateHPText(int hp)
+        void UpdateHPText(int num)
         {
-            hpText.text = $"{hp}/{currentMaxHP}HP";
+            if (hpText == null)
+            {
+                hpText = GetComponent<TMP_Text>();
+            }
+            hpText.text = $"{hp.HP_value}/{hp.Max_HP_value}HP";
         }
 
-        void SetCurrentMaxHP(int maxHPValue)
-        {
-            currentMaxHP = maxHPValue;
-        }
         private void OnEnable()
         {
             PlayerHP.onHPValueChanged += UpdateHPText;
-            PlayerHP.onMaxHPValueChanged += SetCurrentMaxHP;
+            PlayerHP.onMaxHPValueChanged += UpdateHPText;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
             PlayerHP.onHPValueChanged -= UpdateHPText;
-            PlayerHP.onMaxHPValueChanged -= SetCurrentMaxHP;
+            PlayerHP.onMaxHPValueChanged -= UpdateHPText;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            UpdateHPText(0);
         }
     }
 }

@@ -22,5 +22,16 @@ namespace JJN.PlayerSystem.Inventory
             yield return new WaitForSeconds(timeToWait);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                EventBus<AdvanceStageEventData>.Publish(new AdvanceStageEventData(transform));
+                StartCoroutine(ReloadScene());
+            }
+        }
+#endif
     }
 }

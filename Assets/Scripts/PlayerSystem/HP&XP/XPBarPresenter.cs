@@ -3,6 +3,7 @@ using PlayerSystem.Values;
 using System.Xml;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace JJN.PlayerSystem.Presenters
@@ -13,15 +14,13 @@ namespace JJN.PlayerSystem.Presenters
         private PlayerXPController playerXPController;
 
         private Image xpBar;
-
-        private void Start()
-        {
-            xpBar = GetComponent<Image>();
-            xpBar.fillAmount = 0f;
-        }
-
         public void SetXPBarValue(int XP)
         {
+            if (xpBar == null)
+            {
+                xpBar = GetComponent<Image>();
+                xpBar.fillAmount = 0f;
+            }
             if (playerXPController.currentLevel.value == playerXPController.xpNeededForEachLevel.Length + 1)
             {
                 xpBar.fillAmount = 1f;
@@ -35,11 +34,18 @@ namespace JJN.PlayerSystem.Presenters
         private void OnEnable()
         {
             playerXPController.currentXP.onValueChanged += SetXPBarValue;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
             playerXPController.currentXP.onValueChanged -= SetXPBarValue;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            SetXPBarValue(playerXPController.currentXP.value);
         }
     }
 }

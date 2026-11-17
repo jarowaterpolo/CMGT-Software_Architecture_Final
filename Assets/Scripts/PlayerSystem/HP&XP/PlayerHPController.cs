@@ -10,7 +10,6 @@ namespace JJN.PlayerSystem.Values
     public class PlayerHPController : MonoBehaviour
     {
         [SerializeField]
-        private int MaxHp;
         private PlayerHP hp;
 
         [SerializeField]
@@ -25,10 +24,6 @@ namespace JJN.PlayerSystem.Values
 
         private void Start()
         {
-            if (hp == null)
-            {
-                hp = new PlayerHP(MaxHp);
-            }
             hurtEffect.SetActive(false);
             SetIsDead(false);
         }
@@ -126,6 +121,11 @@ namespace JJN.PlayerSystem.Values
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
             EventBus<ItemUseEventData>.OnEventPublished -= HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished -= SetDefendingVars;
+        }
+
+        private void OnApplicationQuit()
+        {
+            hp.SetStartingHP();
         }
     }
 }

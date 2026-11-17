@@ -1,10 +1,18 @@
 using System;
 using UnityEngine;
+using Unity.VisualScripting;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace JJN.ScriptableObjects
 {
-    public class PlayerHP
+    [CreateAssetMenu(fileName = "PlayerHP", menuName = "Scriptable Objects/PlayerHP")]
+    public class PlayerHP : ScriptableObject
     {
+        public int initialMaxHP;
+
         private int _HP_value;
         private int _maxHP_value;
         public int HP_value
@@ -39,7 +47,26 @@ namespace JJN.ScriptableObjects
         }
         public static event Action<int> onMaxHPValueChanged;
 
-        public PlayerHP(int initialMaxHP)
+        private void OnEnable()
+        {
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
+        }
+        private void OnDisable()
+        {
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+#endif
+        }
+
+#if UNITY_EDITOR
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            SetStartingHP();
+        }
+#endif
+        public void SetStartingHP()
         {
             Max_HP_value = initialMaxHP;
             HP_value = initialMaxHP;

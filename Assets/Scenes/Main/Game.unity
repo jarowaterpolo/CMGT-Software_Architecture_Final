@@ -420,6 +420,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 11c410b87022fb64f8acaa9dbbba0d4a, type: 2}
   - {fileID: 11400000, guid: 4c125d39e693ff74faa552db7fe3fa70, type: 2}
   - {fileID: 11400000, guid: 4dcc64a29b1ffe34ca139983ce574d90, type: 2}
+  - {fileID: 11400000, guid: ab5cb61706bf234429feff713c5a5d51, type: 2}
   - {fileID: 11400000, guid: 5f640d6770e74404cb49b038008a625b, type: 2}
   - {fileID: 11400000, guid: 2182c84daa9dd934e8c7e1ebb5c7f945, type: 2}
 --- !u!4 &640670878
@@ -884,6 +885,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3123658940065662079, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: hp
+      value: 
+      objectReference: {fileID: 11400000, guid: 79737e48ee11ac540bbcc1cc537e922f, type: 2}
     - target: {fileID: 3252029605336165702, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1314,8 +1319,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 135171b039027e844bca0e9bd89e302f, type: 2}
     - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: hp
+      value: 
+      objectReference: {fileID: 11400000, guid: 79737e48ee11ac540bbcc1cc537e922f, type: 2}
+    - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: MaxHp
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: hpText

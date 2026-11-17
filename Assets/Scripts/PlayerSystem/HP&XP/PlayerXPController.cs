@@ -67,5 +67,16 @@ namespace PlayerSystem.Values
             EventBus<EnemyDieEventData>.OnEventPublished -= OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished -= OnQuestComplete;
         }
+
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F3))
+            {
+                currentXP.value += 10;
+                CheckForLevelUP();
+            }
+        }
+#endif
     }
 }

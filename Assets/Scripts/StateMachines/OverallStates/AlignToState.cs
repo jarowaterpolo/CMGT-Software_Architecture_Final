@@ -23,7 +23,7 @@ namespace JJN.FSM
         {
             base.Enter();
 
-            Debug.Log($"just started using align state looking to {blackboard.targetPosition}");
+            //Debug.Log($"just started using align state looking to {blackboard.targetPosition}");
 
             // Determine the target position (static or moving) and set it
             if (aligningToMovingTarget)
@@ -68,7 +68,13 @@ namespace JJN.FSM
         public bool AlignedWithTarget()
         {
             // Dot product close to 1 means the object is almost facing the target direction
-            return Vector3.Dot(transform.forward, direction) >= 0.999f;
+            return Vector3.Dot(transform.forward, direction) >= 0.99f;
+        }
+
+        public bool NotAlignedWithTarget()
+        {
+            // Dot product close to 1 means the object is almost facing the target direction
+            return Vector3.Dot(transform.forward, direction) <= 0.99f;
         }
     }
 }

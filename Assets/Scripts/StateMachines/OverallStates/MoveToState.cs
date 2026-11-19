@@ -21,7 +21,7 @@ namespace JJN.FSM
             base.Enter();
             speed = blackboard.moveSpeed;
 
-            Debug.Log($"just started using move state moving to {blackboard.targetPosition}");
+            //Debug.Log($"just started using move state moving to {blackboard.targetPosition}");
         }
 
         // Called every frame to update movement toward the target.

@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.FSM.Blackboard
   targetTransform: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
-  chaseRange: 5
+  chaseRange: 10
   waitingTime: 2
   moveSpeed: 3
   distanceThreshold: 0.2

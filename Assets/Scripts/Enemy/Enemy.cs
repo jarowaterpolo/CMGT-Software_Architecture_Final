@@ -1,7 +1,6 @@
 using JJN.Calculation;
 using JJN.ScriptableObjects;
 using JJN.PlayerSystem.Inventory;
-using PlayerSystem.Movement;
 using System;
 using UnityEngine;
 using System.Collections;
@@ -12,8 +11,6 @@ namespace JJN.Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        //[SerializeField]
-        //private MoveBehaviour moveBehaviour;
         [SerializeField]
         private Blackboard blackboard;
         [SerializeField]
@@ -58,15 +55,11 @@ namespace JJN.Enemy
         [SerializeField]
         private ParticleSystem _critParticles;
 
-
-        private SphereCollider attackCollider;
-        private float nextAttackTime = 0f;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            attackCollider = GetComponent<SphereCollider>();
             weapon = (Weapon)enemyData.weaponData.CreateItem();
-            attackCollider.radius = weapon.Range;
+            //attackCollider.radius = weapon.Range;
 
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
@@ -75,6 +68,8 @@ namespace JJN.Enemy
                 blackboard = GetComponent<Blackboard>();
             }
             blackboard.targetTransform = playerTransform;
+            blackboard.weapon = weapon;
+            blackboard.attackDelay = enemyData.attackDelay;
             CreatePatrolWaypoints();
             fsm = new(transform, blackboard);
             fsm.Enter();
@@ -99,25 +94,12 @@ namespace JJN.Enemy
         }
         void Update()
         {
-            //moveBehaviour.SetTargetPosition(playerTransform.position);
             fsm.Step();
 
             if (currentEnemyHP <= 0)
             {
                 EventBus<EnemyDieEventData>.Publish(new EnemyDieEventData(this, gameObject));
                 Destroy(gameObject);
-            }
-        }
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                if (Time.time >= nextAttackTime)
-                {
-                    EventBus<AttackEventData>.Publish(new AttackEventData(weapon, gameObject));
-                    nextAttackTime = Time.time + enemyData.attackDelay;
-                }
             }
         }
 

@@ -23,7 +23,7 @@ namespace JJN.FSM
         {
             base.Enter();
 
-            //Debug.Log($"just started using align state looking to {blackboard.targetPosition}");
+            Debug.Log($"just started using align state looking to {blackboard.targetPosition}");
 
             // Determine the target position (static or moving) and set it
             if (aligningToMovingTarget)
@@ -63,18 +63,23 @@ namespace JJN.FSM
             transform.Rotate(transform.up, rotationSign * blackboard.rotateSpeed * Time.deltaTime);
         }
 
+        private Vector3 GetCurrentDirection()
+        {
+            Vector3 target = aligningToMovingTarget ? blackboard.targetTransform.position : blackboard.targetPosition;
+            Vector3 flatDir = target - transform.position;
+            flatDir.y = 0f; // Prevent vertical height differences from breaking alignment
+            return flatDir.normalized;
+        }
         // Checks if the object is aligned within a threshold (dot product) toward the target.
         // Returns true if aligned within acceptable margin, otherwise false.
         public bool AlignedWithTarget()
         {
             // Dot product close to 1 means the object is almost facing the target direction
-            return Vector3.Dot(transform.forward, direction) >= 0.99f;
+            return Vector3.Dot(transform.forward, GetCurrentDirection()) >= 0.999f;
         }
-
         public bool NotAlignedWithTarget()
         {
-            // Dot product close to 1 means the object is almost facing the target direction
-            return Vector3.Dot(transform.forward, direction) <= 0.99f;
+            return !AlignedWithTarget();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace JJN.FSM
 
         bool TargetInChaseRange()
         {
-            return Vector3.Distance(_transform.position, blackboard.targetTransform.position) < blackboard.chaseRange;
+            return Vector3.Distance(_transform.position, blackboard.targetTransform.position) <= blackboard.chaseRange;
         }
 
         bool TargetOutChaseRange()

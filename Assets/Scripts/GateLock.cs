@@ -9,11 +9,14 @@ namespace JJN.PlayerSystem.Inventory
     public class GateLock : MonoBehaviour
     {
         private bool _inGateOpenRange;
+        private bool _keyUsed;
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
                 _inGateOpenRange = true;
+
+                TryOpenGate();
             }
         }
         private void OnTriggerExit(Collider other) 
@@ -27,8 +30,17 @@ namespace JJN.PlayerSystem.Inventory
         {
             ItemUseEventData itemUseEventData = (ItemUseEventData)eventData;
 
-            Debug.Log($"tried to open gate with {itemUseEventData.itemData.Id}");
-            if (itemUseEventData.itemData.Id.Contains("key") && _inGateOpenRange)
+            //Debug.Log($"tried to open gate with {itemUseEventData.itemData.Id}");
+            if (itemUseEventData.itemData.Id.Contains("key"))
+            {
+                _keyUsed = true;
+                TryOpenGate();
+            }
+        }
+
+        void TryOpenGate()
+        {
+            if (_inGateOpenRange && _keyUsed)
             {
                 Destroy(gameObject);
             }

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.QuestSystem.Quests.FetchItemQuest
   questName: pickup the key with E
   reward: {fileID: 11400000, guid: ed9d58163ffbc1d4fb9a52bb84146ae3, type: 2}
+  registerEarly: 1
   questText: 
   itemToFetch: {fileID: 11400000, guid: b296cd45549e4474091a3fa15152088b, type: 2}

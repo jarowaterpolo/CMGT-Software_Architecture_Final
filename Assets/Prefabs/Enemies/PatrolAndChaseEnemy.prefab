@@ -57,6 +57,10 @@ PrefabInstance:
       value: PatrolAndChaseEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 6399625335020064474, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
+      propertyPath: doDebugDraw
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399625335020064474, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
       propertyPath: patrollRange.x
       value: 10
       objectReference: {fileID: 0}
@@ -96,9 +100,21 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   chaseRange: 10
+  weapon:
+    id: 
+    itemName: 
+    itemIcon: {fileID: 0}
+    itemModel: {fileID: 0}
+    weaponType: 0
+    range: 0
+    attack: 0
+    critChance: 0
+    critDamageMult: 0
+  attackDelay: 1
   waitingTime: 2
-  moveSpeed: 3
   distanceThreshold: 0.2
+  moveSpeed: 3
   rotateSpeed: 90
   waypoints: []
   waypointIndex: 0
+  doDebugDraw: 0

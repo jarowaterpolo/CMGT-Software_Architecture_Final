@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.QuestSystem.Quests.EnterGateQuest
   questName: find a gate in the dungeon open it with the key(q) and walk trough it
   reward: {fileID: 11400000, guid: ed9d58163ffbc1d4fb9a52bb84146ae3, type: 2}
+  registerEarly: 1
   questText: 

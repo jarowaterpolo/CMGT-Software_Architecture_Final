@@ -34,8 +34,15 @@ namespace JJN.QuestSystem
         {
             if (quests == null || quests.Count == 0) return;
 
-            InitializeCurrentQuest();
+            foreach (var quest in quests)
+            {
+                if (quest.RegisterEarly)
+                {
+                    quest.Register();
+                }
+            }
 
+            InitializeCurrentQuest();
         }
 
         void Update()
@@ -126,6 +133,13 @@ namespace JJN.QuestSystem
 
             PlayerHP.onDeath -= SetIsDead;
             SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
+
+            if (quests == null) return;
+
+            foreach (var quest in quests)
+            {
+                quest.Unregister();
+            }
+        } 
     }
 }

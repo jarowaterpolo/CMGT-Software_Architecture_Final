@@ -20,5 +20,7 @@ namespace JJN.FSM
 
         public List<Vector3> waypoints;
         public int waypointIndex = 0;
+
+        public bool doDebugDraw;
     }
 }

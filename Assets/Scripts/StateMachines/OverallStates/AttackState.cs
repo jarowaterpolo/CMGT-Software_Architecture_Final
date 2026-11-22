@@ -7,7 +7,6 @@ namespace JJN.FSM
     public class AttackState : State
     {
         private Transform _transform;
-        public static Action onAttack;
         private float attackStartTime;
         public AttackState(Transform transform, Blackboard pBlackboard)
         {
@@ -18,9 +17,8 @@ namespace JJN.FSM
         {
             base.Enter();
             attackStartTime = Time.time;
-            onAttack?.Invoke();
             EventBus<AttackEventData>.Publish(new AttackEventData(blackboard.weapon, _transform.gameObject));
-            Debug.Log($"{_transform.gameObject.name} is attacking {blackboard.targetTransform.gameObject.name}");
+            //Debug.Log($"{_transform.gameObject.name} is attacking {blackboard.targetTransform.gameObject.name}");
         }
         public bool FinishedAttacking()
         {

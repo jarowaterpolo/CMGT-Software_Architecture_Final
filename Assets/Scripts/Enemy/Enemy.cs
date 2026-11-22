@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Collections;
 using JJN.ItemSystem;
 using JJN.FSM;
+using UnityEngine.UIElements;
 
 namespace JJN.Enemy
 {
@@ -17,6 +18,8 @@ namespace JJN.Enemy
         private int patrolWaypointsAmount = 3;
         [SerializeField]
         private Vector2 patrollRange = new(5f, 5f);
+        [SerializeField]
+        private bool doDebugDraw;
         private EnemyFSM fsm;
         [SerializeField]
         private Transform playerTransform;
@@ -70,6 +73,7 @@ namespace JJN.Enemy
             blackboard.targetTransform = playerTransform;
             blackboard.weapon = weapon;
             blackboard.attackDelay = enemyData.attackDelay;
+            blackboard.doDebugDraw = doDebugDraw;
             CreatePatrolWaypoints();
             fsm = new(transform, blackboard);
             fsm.Enter();
@@ -153,6 +157,19 @@ namespace JJN.Enemy
         {
             PlayerHP.onDeath -= DestorySelf;
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!blackboard.doDebugDraw) return;
+            Gizmos.color = new Color(1f, 0f, 0f, .2f);
+
+            // Draw the sphere.
+            Gizmos.DrawSphere(transform.position, blackboard.weapon.Range);
+
+            // Draw wire sphere outline.
+            Gizmos.color = new Color(0f, 0f, 1f, .2f);
+            Gizmos.DrawSphere(transform.position, blackboard.chaseRange);
         }
 
         private void CreatePatrolWaypoints()

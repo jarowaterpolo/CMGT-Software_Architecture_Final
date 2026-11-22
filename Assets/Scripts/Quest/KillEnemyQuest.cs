@@ -17,7 +17,6 @@ namespace JJN.QuestSystem.Quests
             if (enemyDieEventData.enemyName == enemyToKill)
             {
                 _enemiesKilled++;
-                UpdateCurrentQuestText();
             }
         }
 
@@ -27,23 +26,37 @@ namespace JJN.QuestSystem.Quests
             EventBus<QuestEventData>.Publish(new(this, false));
         }
 
+        public override void Register()
+        {
+            base.Register();
+            questText = $"you need to kill {enemyCountToKill} {enemyToKill}s";
+            _enemiesKilled = 0;
+            EventBus<EnemyDieEventData>.OnEventPublished += IncreaseEnemiesKilled;   
+        }
+
+        public override void Unregister()
+        {
+            EventBus<EnemyDieEventData>.OnEventPublished -= IncreaseEnemiesKilled;
+        }
+
         public override void Initialize()
         {
-            _enemiesKilled = 0;
-            IsComplete = false;
-            questText = $"you need to kill {enemyCountToKill} {enemyToKill}s";
-            EventBus<EnemyDieEventData>.OnEventPublished += IncreaseEnemiesKilled;
-            
+            if (!RegisterEarly)
+            {
+                Register();
+            }
         }
 
         public override void Evaluate()
         {
             if (IsComplete) return;
 
+            UpdateCurrentQuestText();
+
             if (_enemiesKilled >= enemyCountToKill)
             {
                 CompleteQuest();
-                EventBus<EnemyDieEventData>.OnEventPublished -= IncreaseEnemiesKilled;
+                Unregister();
             }
         }
     }

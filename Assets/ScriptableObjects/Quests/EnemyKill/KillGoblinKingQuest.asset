@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JJN.QuestSystem.Quests.KillEnemyQuest
   questName: 
   reward: {fileID: 11400000, guid: d0940012bfb306b429ccafd87ecda81f, type: 2}
-  questText: 6/5 Goblins killed
+  registerEarly: 1
+  questText: you need to kill 1 Goblin Kings
   enemyToKill: Goblin King
   enemyCountToKill: 1

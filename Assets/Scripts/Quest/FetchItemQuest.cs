@@ -14,12 +14,22 @@ namespace JJN.QuestSystem.Quests
             if (questText == QuestName) return;
             questText = QuestName;
         }
+        public override void Register()
+        {
+            base.Register();
+            DroppedItem.onPickupItem += CheckItem;
+            UpdateCurrentQuestText();
+        }
+        public override void Unregister()
+        {
+            DroppedItem.onPickupItem -= CheckItem;
+        }
         public override void Initialize()
         {
-            IsComplete = false;
-            DroppedItem.onPickupItem += CheckItem;
-
-            UpdateCurrentQuestText();
+            if (!RegisterEarly)
+            {
+                Register();
+            }
         }
 
         public override void Evaluate()
@@ -29,7 +39,7 @@ namespace JJN.QuestSystem.Quests
             if (itemFetched)
             {
                 CompleteQuest();
-                DroppedItem.onPickupItem -= CheckItem;
+                Unregister();
             }
         }
 

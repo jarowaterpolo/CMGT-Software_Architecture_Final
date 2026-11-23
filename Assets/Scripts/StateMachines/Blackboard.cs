@@ -21,6 +21,9 @@ namespace JJN.FSM
         public List<Vector3> waypoints;
         public int waypointIndex = 0;
 
+        public int maxHP;
+        public int hp;
+
         public bool doDebugDraw;
     }
 }

@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: InUseEquipment
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Inventory.InUseEquipment
   weaponData:
-    id: 
-    itemName: 
-    itemIcon: {fileID: 0}
-    itemModel: {fileID: 0}
+    id: jjn_sword
+    itemName: JJN Sword
+    itemIcon: {fileID: 21300000, guid: c8ba545373397ca4eae4a425a56dbd40, type: 3}
+    itemModel: {fileID: 2414239029462320182, guid: 97acd026654f4d847be11bd3b7904da4, type: 3}
     weaponType: 0
-    range: 0
-    attack: 0
-    critChance: 0
-    critDamageMult: 0
+    range: 3
+    attack: 1
+    critChance: 10
+    critDamageMult: 2
   shieldData:
-    id: 
-    itemName: 
-    itemIcon: {fileID: 0}
-    itemModel: {fileID: 0}
-    defense: 0
+    id: jjn_shield
+    itemName: JJN Shield
+    itemIcon: {fileID: 21300000, guid: 1315666288219f748a2e8d49d12326db, type: 3}
+    itemModel: {fileID: 5247734729459818941, guid: 5715968d4f6433848af5c4ce7a4e3158, type: 3}
+    defense: 1
   itemData:
-    id: 
-    itemName: 
-    itemIcon: {fileID: 0}
+    id: hp_potion
+    itemName: HP Potion
+    itemIcon: {fileID: 21300000, guid: bfb1d07c46cbdf948b42be3c22197952, type: 3}
     itemModel: {fileID: 0}
-    specialItemValue: 0
-    isStackable: 0
+    specialItemValue: 5
+    isStackable: 1
   gotStartingEquipment: 0

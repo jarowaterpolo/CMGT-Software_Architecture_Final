@@ -15,6 +15,6 @@ MonoBehaviour:
   id: hp_potion
   itemName: HP Potion
   itemIcon: {fileID: 21300000, guid: bfb1d07c46cbdf948b42be3c22197952, type: 3}
-  itemModel: {fileID: 0}
+  itemModel: {fileID: 100000, guid: f00af8995ed9f3d43a83563b7a94fdaf, type: 3}
   specialItemValue: 5
   isStackable: 1

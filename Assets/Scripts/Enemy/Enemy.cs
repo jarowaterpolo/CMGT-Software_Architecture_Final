@@ -6,7 +6,6 @@ using UnityEngine;
 using System.Collections;
 using JJN.ItemSystem;
 using JJN.FSM;
-using UnityEngine.UIElements;
 
 namespace JJN.Enemy
 {
@@ -20,7 +19,6 @@ namespace JJN.Enemy
         private Vector2 patrollRange = new(5f, 5f);
         [SerializeField]
         private bool doDebugDraw;
-        private EnemyFSM fsm;
         [SerializeField]
         private Transform playerTransform;
         [SerializeField]
@@ -42,10 +40,13 @@ namespace JJN.Enemy
                 }
             }
         }
+        private EnemyFSM fsm;
+        private BossEnemyFSM bossEnemyFSM;
 
         public void SetStartingHP()
         {
             CurrentHP = enemyData.enemyMaxHP.InitialValue;
+            blackboard.maxHP = CurrentHP;
         }
 
         private Weapon weapon;
@@ -75,8 +76,17 @@ namespace JJN.Enemy
             blackboard.attackDelay = enemyData.attackDelay;
             blackboard.doDebugDraw = doDebugDraw;
             CreatePatrolWaypoints();
-            fsm = new(transform, blackboard);
-            fsm.Enter();
+
+            if (enemyData.isABoss)
+            {
+                bossEnemyFSM = new(transform, blackboard);
+                bossEnemyFSM.Enter();
+            }
+            else
+            {
+                fsm = new(transform, blackboard);
+                fsm.Enter();
+            }
             //moveBehaviour.SetTargetPosition(playerTransform.position);
 
             SetStartingHP();
@@ -98,7 +108,26 @@ namespace JJN.Enemy
         }
         void Update()
         {
-            fsm.Step();
+            if (enemyData.isABoss)
+            {
+                bossEnemyFSM.Step();
+                if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .1f)
+                {
+                    blackboard.attackDelay = enemyData.attackDelay * .1f;
+                }
+                else if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .25f)
+                {
+                    blackboard.attackDelay = enemyData.attackDelay * .25f;
+                }
+                else if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .5f)
+                {
+                    blackboard.attackDelay = enemyData.attackDelay * .5f;
+                }
+            }
+            else
+            {
+                fsm.Step();
+            }
 
             if (currentEnemyHP <= 0)
             {
@@ -118,6 +147,9 @@ namespace JJN.Enemy
                     bool didCrit;
                     (damageDealt, didCrit) = Calculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, 0, false);
                     CurrentHP -= damageDealt;
+
+                    blackboard.hp = currentEnemyHP;
+
                     _materialPropertyBlock.SetColor("_BaseColor", new Color(.5f, 0f, 0f, 1f));
                     _renderer.SetPropertyBlock(_materialPropertyBlock);
                     if (didCrit) 

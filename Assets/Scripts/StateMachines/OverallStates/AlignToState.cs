@@ -23,7 +23,7 @@ namespace JJN.FSM
         {
             base.Enter();
 
-            Debug.Log($"just started using align state looking to {blackboard.targetPosition}");
+            //Debug.Log($"just started using align state looking to {blackboard.targetPosition}");
 
             // Determine the target position (static or moving) and set it
             if (aligningToMovingTarget)

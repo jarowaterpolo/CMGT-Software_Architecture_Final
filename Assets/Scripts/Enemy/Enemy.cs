@@ -113,15 +113,15 @@ namespace JJN.Enemy
                 bossEnemyFSM.Step();
                 if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .1f)
                 {
-                    blackboard.attackDelay = enemyData.attackDelay * .1f;
+                    blackboard.attackDelay = enemyData.attackDelay * .6f;
                 }
                 else if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .25f)
                 {
-                    blackboard.attackDelay = enemyData.attackDelay * .25f;
+                    blackboard.attackDelay = enemyData.attackDelay * .75f;
                 }
                 else if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .5f)
                 {
-                    blackboard.attackDelay = enemyData.attackDelay * .5f;
+                    blackboard.attackDelay = enemyData.attackDelay * .9f;
                 }
             }
             else

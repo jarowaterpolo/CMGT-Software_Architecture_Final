@@ -12,7 +12,7 @@ namespace JJN.FSM
         
         public BossEnemyFSM(Transform transform, Blackboard pBlackboard)
         {
-            Debug.Log($"enemy FSM blackboard = {pBlackboard}");
+            //Debug.Log($"enemy FSM blackboard = {pBlackboard}");
             blackboard = pBlackboard;
 
             patrolFSM = new PatrollFSM(transform, blackboard);

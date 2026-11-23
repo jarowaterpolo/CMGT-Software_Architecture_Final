@@ -61,7 +61,7 @@ namespace JJN.PlayerSystem.Inventory
             {
                 yield return null;
                 //Debug.Log($"moving towards {startPos.y + targetDifferendeInY}");
-                Vector3 fallPosition = Vector3.MoveTowards(transform.position, transform.position - new Vector3(transform.position.x, startPos.y + targetDifferendeInY, transform.position.z), fallSpeed * Time.deltaTime);
+                Vector3 fallPosition = Vector3.MoveTowards(transform.position, transform.position - new Vector3(0, startPos.y + targetDifferendeInY, 0), fallSpeed * Time.deltaTime);
                 transform.position = fallPosition;
             }
             Destroy(gameObject);

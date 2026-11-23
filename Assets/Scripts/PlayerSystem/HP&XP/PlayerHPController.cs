@@ -60,7 +60,7 @@ namespace JJN.PlayerSystem.Values
         {
             ItemUseEventData itemUseEventData = (ItemUseEventData)eventData;
 
-            if (itemUseEventData.itemData.ItemName.Contains("potion"))
+            if (itemUseEventData.itemData.Id.Contains("potion"))
             {
                 if (hp.HP_value + itemUseEventData.itemData.SpecialItemValue <= hp.Max_HP_value)
                 {

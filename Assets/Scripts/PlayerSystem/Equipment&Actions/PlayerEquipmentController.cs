@@ -66,7 +66,7 @@ namespace JJN.PlayerSystem.Inventory
                     if (inUseEquipment.itemData != null)
                     {
                         EventBus<ItemUseEventData>.Publish(new ItemUseEventData(inUseEquipment.itemData, gameObject));
-                        //Debug.Log($"{_itemData.ItemName} used");
+                        //Debug.Log($"{inUseEquipment.itemData.ItemName} used");
                         inUseEquipment.itemData = SearchForSameItem(inUseEquipment.itemData);
                     }
                 }
@@ -146,7 +146,7 @@ namespace JJN.PlayerSystem.Inventory
                     break;
             }
 
-            //Debug.Log($"{equipItemEventData.itemToEquip} was just equiped");
+            //Debug.Log($"{equipItemEventData.itemToEquip.ItemName} was just equiped");
         }
 
         void SetIsDead(bool isDead)

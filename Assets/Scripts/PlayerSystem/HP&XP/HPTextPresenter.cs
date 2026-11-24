@@ -1,4 +1,3 @@
-using JJN.QuestSystem.Quests;
 using JJN.ScriptableObjects;
 using TMPro;
 using UnityEngine;
@@ -11,23 +10,23 @@ namespace JJN.PlayerSystem.Presenters
         [SerializeField]
         private PlayerHP hp;
 
-        private TMP_Text hpText;
+        private TMP_Text _hpText;
 
         void Start()
         {
-            if (hpText == null)
+            if (_hpText == null)
             {
-                hpText = GetComponent<TMP_Text>();
+                _hpText = GetComponent<TMP_Text>();
             }
         }
 
         void UpdateHPText(int num)
         {
-            if (hpText == null)
+            if (_hpText == null)
             {
-                hpText = GetComponent<TMP_Text>();
+                _hpText = GetComponent<TMP_Text>();
             }
-            hpText.text = $"{hp.HP_value}/{hp.Max_HP_value}HP";
+            _hpText.text = $"{hp.HP_value}/{hp.Max_HP_value}HP";
         }
 
         private void OnEnable()

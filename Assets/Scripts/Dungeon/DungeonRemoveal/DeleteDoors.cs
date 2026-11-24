@@ -1,7 +1,6 @@
 namespace JJNDungeonGeneration
 {
     using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
     using UnityEngine;
 
@@ -11,11 +10,6 @@ namespace JJNDungeonGeneration
         private GraphGenerator graphGen;
         private SearchDungeon searchDungeon;
         private DeleteRooms deleteRooms;
-
-        private RectInt savedDoor;
-
-        List<RectInt> randomDoors;
-        int currentDeleteIndex = 0;
 
         private void Start()
         {

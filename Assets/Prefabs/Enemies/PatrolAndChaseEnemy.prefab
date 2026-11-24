@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PatrolAndChaseEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6130107710180501916, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 6399625335020064474, guid: 2f7c7b8b61113984f921c8661c134221, type: 3}
       propertyPath: doDebugDraw
       value: 0
@@ -117,4 +121,6 @@ MonoBehaviour:
   rotateSpeed: 90
   waypoints: []
   waypointIndex: 0
+  maxHP: 0
+  hp: 0
   doDebugDraw: 0

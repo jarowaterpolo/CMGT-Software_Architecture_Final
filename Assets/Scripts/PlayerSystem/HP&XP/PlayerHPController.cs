@@ -13,9 +13,6 @@ namespace JJN.PlayerSystem.Values
         private PlayerHP hp;
 
         [SerializeField]
-        private GameObject hurtEffect;
-
-        [SerializeField]
         private int MaxHPGainBasedOnLevelUp;
 
         private bool _isDefending;
@@ -24,7 +21,6 @@ namespace JJN.PlayerSystem.Values
 
         private void Start()
         {
-            hurtEffect.SetActive(false);
             SetIsDead(false);
         }
         void GetHit(EventData eventData)
@@ -43,17 +39,9 @@ namespace JJN.PlayerSystem.Values
                     if (totalDamage > 0 && !isDead)
                     {
                         hp.HP_value -= totalDamage;
-                        hurtEffect.SetActive(true);
-                        StartCoroutine(DisableHurtEffect());
                     }
                 }
             }
-        }
-
-        IEnumerator DisableHurtEffect()
-        {
-            yield return new WaitForSeconds(.2f);
-            hurtEffect.SetActive(false);
         }
 
         void HPPotionUsed(EventData eventData)

@@ -1,3 +1,4 @@
+using JJN.PlayerSystem.Inventory;
 using UnityEngine;
 
 namespace JJN.FSM
@@ -9,7 +10,7 @@ namespace JJN.FSM
         private MoveToState moveToState;
         private AttackState attackState;
         //boss
-
+        private float originalAttackDelay;
 
         private Transform _transform;
 
@@ -30,6 +31,8 @@ namespace JJN.FSM
             moveToState.transitions.Add(new(alignToState.NotAlignedWithTarget, alignToState));
 
             attackState.transitions.Add(new(attackState.FinishedAttacking, alignToState));
+
+            originalAttackDelay = blackboard.attackDelay;
         }
 
         public override void Enter()
@@ -38,6 +41,24 @@ namespace JJN.FSM
             base.Enter();
             currentState = alignToState;
             currentState.Enter();
+        }
+
+        public override void Step()
+        {
+            base.Step();
+
+            if (blackboard.hp <= blackboard.maxHP * .15f)
+            {
+                blackboard.attackDelay = originalAttackDelay * .5f;
+            }
+            else if (blackboard.hp <= blackboard.maxHP * .25f)
+            {
+                blackboard.attackDelay = originalAttackDelay * .7f;
+            }
+            else if (blackboard.hp <= blackboard.maxHP * .5f)
+            {
+                blackboard.attackDelay = originalAttackDelay * .8f;
+            }
         }
 
         // Returns true if the player is close enough to attack and is visible.

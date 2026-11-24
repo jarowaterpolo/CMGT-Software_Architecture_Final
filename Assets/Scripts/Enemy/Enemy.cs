@@ -81,6 +81,7 @@ namespace JJN.Enemy
             {
                 bossEnemyFSM = new(transform, blackboard);
                 bossEnemyFSM.Enter();
+                blackboard.maxHP = enemyData.enemyMaxHP.InitialValue;
             }
             else
             {
@@ -111,18 +112,7 @@ namespace JJN.Enemy
             if (enemyData.isABoss)
             {
                 bossEnemyFSM.Step();
-                if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .1f)
-                {
-                    blackboard.attackDelay = enemyData.attackDelay * .6f;
-                }
-                else if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .25f)
-                {
-                    blackboard.attackDelay = enemyData.attackDelay * .75f;
-                }
-                else if (currentEnemyHP <= enemyData.enemyMaxHP.InitialValue * .5f)
-                {
-                    blackboard.attackDelay = enemyData.attackDelay * .9f;
-                }
+                blackboard.hp = currentEnemyHP;
             }
             else
             {
@@ -193,6 +183,7 @@ namespace JJN.Enemy
 
         private void OnDrawGizmos()
         {
+            if (blackboard == null) return;
             if (!blackboard.doDebugDraw) return;
             Gizmos.color = new Color(1f, 0f, 0f, .2f);
 

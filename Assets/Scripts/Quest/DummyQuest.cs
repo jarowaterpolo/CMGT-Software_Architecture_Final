@@ -18,9 +18,11 @@ namespace JJN.QuestSystem.Quests
 
         }
 
-        public DummyQuest(string questName) 
-        { 
-            questText = questName;
+        public static DummyQuest Create(string questName)
+        {
+            DummyQuest quest = CreateInstance<DummyQuest>();
+            quest.questText = questName;
+            return quest;
         }
     }
 }

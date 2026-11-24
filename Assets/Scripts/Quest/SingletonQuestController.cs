@@ -80,7 +80,7 @@ namespace JJN.QuestSystem
             else
             {
                 _currentQuest = null;
-                DummyQuest allQuestDone = new("All quests completed");
+                DummyQuest allQuestDone = DummyQuest.Create("All quests completed");
                 EventBus<QuestEventData>.Publish(new(allQuestDone, false));
                 //Debug.Log("All quests Completed!");
             }
@@ -97,7 +97,7 @@ namespace JJN.QuestSystem
             _isDead = isDead;
             if (isDead)
             {
-                DummyQuest playerDead = new("DIED");
+                DummyQuest playerDead = DummyQuest.Create("DIED");
                 EventBus<QuestEventData>.Publish(new(playerDead, false));
                 //Debug.Log("DIED!");
             }
@@ -113,7 +113,7 @@ namespace JJN.QuestSystem
             }
             else
             {
-                DummyQuest allQuestDone = new("All quests completed");
+                DummyQuest allQuestDone = DummyQuest.Create("All quests completed");
                 EventBus<QuestEventData>.Publish(new(allQuestDone, false));
             }
         }

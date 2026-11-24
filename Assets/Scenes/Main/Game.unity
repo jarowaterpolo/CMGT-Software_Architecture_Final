@@ -884,6 +884,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743239734799010936, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3123658940065662079, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: hp
       value: 
@@ -912,6 +916,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1531475468}
+    - target: {fileID: 5767017015537417319, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6109806357290056210, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
@@ -1020,6 +1028,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5767017015537417319, guid: b6c69b4784325d44798daa282a522feb, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1451489743}
     - targetCorrespondingSourceObject: {fileID: 6889121773144383297, guid: b6c69b4784325d44798daa282a522feb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 805359895}
@@ -1051,6 +1062,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5767017015537417319, guid: b6c69b4784325d44798daa282a522feb, type: 3}
   m_PrefabInstance: {fileID: 1451489735}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1451489743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451489739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5126e48216cfb40b32d64f122de883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JJN.PlayerSystem.Presenters.HPVFXPresenter
+  hp: {fileID: 11400000, guid: 79737e48ee11ac540bbcc1cc537e922f, type: 2}
 --- !u!1001 &1523556063
 PrefabInstance:
   m_ObjectHideFlags: 0

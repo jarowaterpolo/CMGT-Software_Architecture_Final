@@ -1,7 +1,9 @@
+using JJN.PlayerSystem.Values;
 using JJN.ScriptableObjects;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace PlayerSystem.Values
@@ -14,12 +16,15 @@ namespace PlayerSystem.Values
 
         public static event Action<int> levelUp;
 
+        public delegate void XPHandler(int currentXP, int MaxXP);
+        public static event XPHandler OnXPChange;
+
         public void OnEnemyKilled(EventData eventData)
         {
             if (currentLevel.value <= xpNeededForEachLevel.Length)
             {
                 EnemyDieEventData enemyDieEventData = (EnemyDieEventData)eventData;
-                currentXP.value += enemyDieEventData.enemy.enemyData.XP;
+                GetXP(enemyDieEventData.enemy.enemyData.XP);
                 CheckForLevelUP();
             }
         }
@@ -31,9 +36,7 @@ namespace PlayerSystem.Values
 
                 if (questEventData.currentQuest.IsComplete && questEventData.currentQuest.Reward.RewardType == "XP")
                 {
-                    currentXP.value += questEventData.currentQuest.Reward.GetRewardValue();
-                    //Debug.Log($"you got {questEventData.currentQuest.Reward.GetRewardValue()} XP for completing {questEventData.currentQuest.name}");
-                    CheckForLevelUP();
+                    GetXP(questEventData.currentQuest.Reward.GetRewardValue());
                 }
             }
         }
@@ -51,21 +54,35 @@ namespace PlayerSystem.Values
 
                 if (currentLevel.value > xpNeededForEachLevel.Length)
                 {
+                    OnXPChange?.Invoke(1, 1);
                     break;
                 }
             }
+        }
+
+        void GetXP(int value)
+        {
+            currentXP.value += value;
+            OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
+            CheckForLevelUP();
         }
 
         private void OnEnable()
         {
             EventBus<EnemyDieEventData>.OnEventPublished += OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished += OnQuestComplete;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
             EventBus<EnemyDieEventData>.OnEventPublished -= OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished -= OnQuestComplete;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
         }
 
 #if UNITY_EDITOR

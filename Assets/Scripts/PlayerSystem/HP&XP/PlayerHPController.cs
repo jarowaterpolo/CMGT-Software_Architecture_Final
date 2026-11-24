@@ -66,7 +66,7 @@ namespace JJN.PlayerSystem.Values
             }
         }
 
-        public void GainMaxHPOnLevelUp(int num)
+        public void GainMaxHPOnLevelUp(int num, int num2)
         {
             hp.Max_HP_value += MaxHPGainBasedOnLevelUp;
             hp.HP_value += MaxHPGainBasedOnLevelUp;
@@ -80,6 +80,7 @@ namespace JJN.PlayerSystem.Values
             EventBus<AttackEventData>.OnEventPublished += GetHit;
             EventBus<ItemUseEventData>.OnEventPublished += HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished += SetDefendingVars;
+            PlayerDeathController.OnPlayerReset += hp.SetStartingHP;
         }
 
         private void OnDisable()
@@ -88,11 +89,22 @@ namespace JJN.PlayerSystem.Values
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
             EventBus<ItemUseEventData>.OnEventPublished -= HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished -= SetDefendingVars;
+            PlayerDeathController.OnPlayerReset -= hp.SetStartingHP;
         }
 
         private void OnApplicationQuit()
         {
             hp.SetStartingHP();
         }
+
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F12))
+            {
+                hp.HP_value -= 2;
+            }
+        }
+#endif
     }
 }

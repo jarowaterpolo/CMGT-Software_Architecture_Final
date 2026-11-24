@@ -1,8 +1,6 @@
 using JJN.FSM;
-using JJN.QuestSystem.Quests;
 using JJN.ScriptableObjects;
 using JJNDungeonGeneration;
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -96,16 +94,23 @@ namespace JJN.Enemy
             stage.value++;
         }
 
+        void ResetStage()
+        {
+            stage.ResetValue();
+        }
+
         private void OnEnable()
         {
             EventBus<EnemyDieEventData>.OnEventPublished += changeEnemyAliveCount; 
             EventBus<AdvanceStageEventData>.OnEventPublished += IncreaseStage;
+            PlayerDeathController.OnPlayerReset += ResetStage;
         }
 
         private void OnDisable()
         {
             EventBus<EnemyDieEventData>.OnEventPublished -= changeEnemyAliveCount;
             EventBus<AdvanceStageEventData>.OnEventPublished -= IncreaseStage;
+            PlayerDeathController.OnPlayerReset -= ResetStage;
         }
     }
 }

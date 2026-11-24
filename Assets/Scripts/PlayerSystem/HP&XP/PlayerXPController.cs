@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.PlayerSystem.Values;
 using JJN.ScriptableObjects;
 using System;
@@ -14,7 +15,8 @@ namespace PlayerSystem.Values
         public IntValueWithAction currentXP; 
         public IntValueWithAction currentLevel;
 
-        public static event Action<int> OnLevelUp;
+        public delegate void LVLHandler(int currentLVL, int MaxLvlCount);
+        public static event LVLHandler OnLevelUp;
 
         public delegate void XPHandler(int currentXP, int MaxXP);
         public static event XPHandler OnXPChange;
@@ -50,7 +52,7 @@ namespace PlayerSystem.Values
                 currentXP.value -= xpNeededForEachLevel[currentLevel.value - 1];
 
                 currentLevel.value++;
-                OnLevelUp?.Invoke(currentLevel.value);
+                OnLevelUp?.Invoke(currentLevel.value, xpNeededForEachLevel.Length);
 
                 if (currentLevel.value > xpNeededForEachLevel.Length)
                 {
@@ -75,12 +77,21 @@ namespace PlayerSystem.Values
             CheckForLevelUP();
         }
 
+        void ResetXPAndLevel()
+        {
+            currentXP.ResetValue();
+            currentLevel.ResetValue();
+            OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
+            OnLevelUp?.Invoke(currentLevel.value, xpNeededForEachLevel.Length);
+        }
+
         private void OnEnable()
         {
             OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
             EventBus<EnemyDieEventData>.OnEventPublished += OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished += OnQuestComplete;
             SceneManager.sceneLoaded += OnSceneLoaded;
+            PlayerDeathController.OnPlayerReset += ResetXPAndLevel;
         }
 
         private void OnDisable()
@@ -88,10 +99,12 @@ namespace PlayerSystem.Values
             EventBus<EnemyDieEventData>.OnEventPublished -= OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished -= OnQuestComplete;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            PlayerDeathController.OnPlayerReset -= ResetXPAndLevel;
         }
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
+            OnLevelUp?.Invoke(currentLevel.value, xpNeededForEachLevel.Length);
         }
 
 #if UNITY_EDITOR

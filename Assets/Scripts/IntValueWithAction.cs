@@ -28,6 +28,11 @@ namespace JJN.ScriptableObjects
 
         private void OnEnable()
         {
+            ResetValue();
+        }
+
+        public void ResetValue()
+        {
             value = initialValue;
         }
     }

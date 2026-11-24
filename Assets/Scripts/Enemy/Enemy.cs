@@ -161,6 +161,7 @@ namespace JJN.Enemy
         void DestorySelf(bool isDead)
         {
             if (!isDead) return;
+            EventBus<EnemyDieEventData>.Publish(new EnemyDieEventData(this, gameObject));
             Destroy(gameObject);
         }
 

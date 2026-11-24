@@ -1,11 +1,5 @@
-using JJN.PlayerSystem.Values;
-using JJN.ScriptableObjects;
 using PlayerSystem.Values;
-using System;
-using System.Xml;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace JJN.PlayerSystem.Presenters

@@ -1,24 +1,20 @@
-using JJN.ScriptableObjects;
 using PlayerSystem.Values;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace JJN.PlayerSystem.Presenters
 {
     public class XPLVLTextPresenter : MonoBehaviour
     {
-        [SerializeField]
-        private PlayerXPController playerXPController;
         private TMP_Text lvlText;
-        public void SetLvlText(int lvl)
+        public void SetLvlText(int lvl, int maxLvl)
         {
             if (lvlText == null)
             {
                 lvlText = GetComponent<TMP_Text>();
             }
 
-            if (lvl > playerXPController.xpNeededForEachLevel.Length)
+            if (lvl > maxLvl)
             {
                 lvlText.text = $"MaxLvl";
             }
@@ -29,19 +25,12 @@ namespace JJN.PlayerSystem.Presenters
         }
         private void OnEnable()
         {
-            playerXPController.currentLevel.OnValueChanged += SetLvlText;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            PlayerXPController.OnLevelUp += SetLvlText;
         }
 
         private void OnDisable()
         {
-            playerXPController.currentLevel.OnValueChanged -= SetLvlText;
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            SetLvlText(playerXPController.currentLevel.value);
+            PlayerXPController.OnLevelUp -= SetLvlText;
         }
     }
 }

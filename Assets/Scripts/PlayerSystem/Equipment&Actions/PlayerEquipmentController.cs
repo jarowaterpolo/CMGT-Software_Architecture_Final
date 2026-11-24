@@ -149,14 +149,21 @@ namespace JJN.PlayerSystem.Inventory
             //Debug.Log($"{equipItemEventData.itemToEquip.ItemName} was just equiped");
         }
 
+        void ResetPlayerEquipment()
+        {
+            StartCoroutine(GetStartingEquipment());
+        }
+
         private void OnEnable()
         {
             EventBus<EquipItemEventData>.OnEventPublished += EquipItem;
+            PlayerDeathController.OnPlayerReset += ResetPlayerEquipment;
         }
 
         private void OnDisable()
         {
             EventBus<EquipItemEventData>.OnEventPublished -= EquipItem;
+            PlayerDeathController.OnPlayerReset -= ResetPlayerEquipment;
         }
     }
 }

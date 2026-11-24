@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Unity.VisualScripting;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -19,14 +18,19 @@ namespace JJN.ScriptableObjects
         {
             set
             {
-                if (_HP_value != value && value >= 0)
+                if (_HP_value != value)
                 {
-                    _HP_value = value;
-                    onHPValueChanged?.Invoke(_HP_value);
-                }
-                else if (value <= 0)
-                {
-                    onDeath?.Invoke(true);
+                    if (value > 0)
+                    {
+                        _HP_value = value;
+                        onHPValueChanged?.Invoke(_HP_value);
+                    }
+                    else
+                    {
+                        _HP_value = 0;
+                        onHPValueChanged?.Invoke(_HP_value);
+                        onDeath?.Invoke(true);
+                    }
                 }
             }
             get => _HP_value;

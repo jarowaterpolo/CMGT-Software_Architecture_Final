@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.ItemSystem;
 using System;
 using System.Collections.Generic;
@@ -127,11 +128,13 @@ namespace JJN.PlayerSystem.Inventory
         private void OnEnable()
         {
             EventBus<ItemUseEventData>.OnEventPublished += RemoveOneUseItem;
+            PlayerDeathController.OnPlayerReset += GenerateInventory;
         }
 
         private void OnDisable()
         {
             EventBus<ItemUseEventData>.OnEventPublished -= RemoveOneUseItem;
+            PlayerDeathController.OnPlayerReset -= GenerateInventory;
         }
     }
 }

@@ -99,7 +99,22 @@ namespace JJN.QuestSystem
                 DummyQuest playerDead = DummyQuest.Create("DIED");
                 EventBus<QuestEventData>.Publish(new(playerDead, false));
                 //Debug.Log("DIED!");
+                UnRegisterAllQuest();
             }
+        }
+
+        void UnRegisterAllQuest()
+        {
+            foreach (var quest in quests)
+            {
+                quest.Unregister();
+            }
+        }
+
+        void ResetQuest()
+        {
+            _questIndex = 0;
+            Start();
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -121,7 +136,7 @@ namespace JJN.QuestSystem
 
             PlayerHP.onDeath += SetIsDead;
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
+            PlayerDeathController.OnPlayerReset += ResetQuest;
         }
 
         private void OnDisable()
@@ -130,13 +145,11 @@ namespace JJN.QuestSystem
 
             PlayerHP.onDeath -= SetIsDead;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            PlayerDeathController.OnPlayerReset -= ResetQuest;
 
             if (quests == null) return;
 
-            foreach (var quest in quests)
-            {
-                quest.Unregister();
-            }
+            UnRegisterAllQuest();
         } 
     }
 }

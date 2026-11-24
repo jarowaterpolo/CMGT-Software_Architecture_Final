@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.ScriptableObjects;
 using System.Collections;
 using UnityEngine;
@@ -12,7 +13,6 @@ namespace JJN.PlayerSystem.Presenters
 
         private Image _hurtEffect;
         private int lastSavedHP;
-        private bool _isDead;
 
         private void Start()
         {
@@ -41,16 +41,14 @@ namespace JJN.PlayerSystem.Presenters
         IEnumerator DisableHurtEffect()
         {
             yield return new WaitForSeconds(.2f);
-            if (!_isDead)
+            if (!PlayerDeathController.IsDead)
             {
                 _hurtEffect.enabled = false;
             }
         }
         void SetIsDead(bool isDead)
         {
-            _isDead = isDead;
-
-            if (_isDead)
+            if (isDead)
             {
                 StopAllCoroutines();
                 _hurtEffect.enabled = true;

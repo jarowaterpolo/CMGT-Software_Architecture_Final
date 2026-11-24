@@ -251,8 +251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefbf243e973ee044bcbb696ffeed966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Inventory.PlayerEquipmentController
+  inventoryController: {fileID: 5172487278447316643}
   playerInventory: {fileID: 0}
   equipmentPresenter: {fileID: 5330762426131789736}
+  inUseEquipment: {fileID: 11400000, guid: 187c98da995556349beb27f64161e12e, type: 2}
 --- !u!114 &6140917253219863673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,8 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe25baf7ee762674895cfd67bbb8e209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JJN.PathFinding.PlayerHPController
-  hpObject: {fileID: 11400000, guid: 3299c9671b1205c4c9160b9b60078f06, type: 2}
-  hpText: {fileID: 0}
+  hp: {fileID: 11400000, guid: 79737e48ee11ac540bbcc1cc537e922f, type: 2}
+  MaxHPGainBasedOnLevelUp: 5
 --- !u!114 &5845418595081599531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,10 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Values.PlayerXPController
   xpNeededForEachLevel: 0a0000001e0000003200000064000000c8000000
-  xpBar: {fileID: 0}
-  lvlText: {fileID: 0}
-  MaxHPGainBasedOnLevelUp: 5
-  hpObject: {fileID: 11400000, guid: 3299c9671b1205c4c9160b9b60078f06, type: 2}
+  currentXP: {fileID: 11400000, guid: 03b4479badc814e4eb66e620bc88f5f7, type: 2}
+  currentLevel: {fileID: 11400000, guid: 135171b039027e844bca0e9bd89e302f, type: 2}
 --- !u!1 &1007294205821904271
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,5 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219f1dd38655350429229ca3d46b6180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystem.Inventory.EquipmentPresenter
+  inUseEquipment: {fileID: 11400000, guid: 187c98da995556349beb27f64161e12e, type: 2}
   weaponTransform: {fileID: 628130126161493712}
   shieldTransform: {fileID: 4241914333368843768}

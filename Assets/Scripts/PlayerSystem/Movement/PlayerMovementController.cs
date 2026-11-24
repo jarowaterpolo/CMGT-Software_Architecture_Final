@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.PlayerSystem.Inventory;
 using JJN.ScriptableObjects;
 using UnityEngine;
@@ -41,8 +42,6 @@ namespace JJN.PlayerSystem.Movement
         private bool _isDefending;
         private float _defendingSlowdown = 1;
 
-        private bool _isDead;
-
         private void Start()
         {
             _rb = GetComponent<Rigidbody>();
@@ -54,7 +53,7 @@ namespace JJN.PlayerSystem.Movement
 
         private void Update()
         {
-            if (_isDead) return;
+            if (PlayerDeathController.IsDead) return;
             // Ground Check
             _isGrounded = Physics.Raycast(transform.position, Vector3.down, groundDistance);
             Debug.DrawLine(transform.position, transform.position + Vector3.down * groundDistance, Color.darkRed);
@@ -92,7 +91,7 @@ namespace JJN.PlayerSystem.Movement
 
         private void FixedUpdate()
         {
-            if (!inventoryController.inInventory && !_isDead)
+            if (!inventoryController.inInventory && !PlayerDeathController.IsDead)
             {
                 // Input
                 float moveX = Input.GetAxisRaw("Horizontal");
@@ -164,20 +163,13 @@ namespace JJN.PlayerSystem.Movement
             }
         }
 
-        void SetIsDead(bool isDead)
-        {
-            _isDead = isDead;
-        }
-
         private void OnEnable()
         {
-            PlayerHP.onDeath += SetIsDead;
             EventBus<DefendEventData>.OnEventPublished += SlowDown;
         }
 
         private void OnDisable()
         {
-            PlayerHP.onDeath -= SetIsDead;
             EventBus<DefendEventData>.OnEventPublished += SlowDown;
         }
     }

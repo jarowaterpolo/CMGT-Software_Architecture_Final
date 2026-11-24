@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.ItemSystem;
 using JJN.PlayerSystem.Movement;
 using JJN.ScriptableObjects;
@@ -20,7 +21,6 @@ namespace JJN.PlayerSystem.Inventory
         private InUseEquipment inUseEquipment;
 
         private bool _isCurrentlyBlocking = false;
-        private bool _isDead;
 
         private void Start()
         {
@@ -32,7 +32,7 @@ namespace JJN.PlayerSystem.Inventory
 
         private void Update()
         {
-            if (!inventoryController.inInventory && !_isDead)
+            if (!inventoryController.inInventory && !PlayerDeathController.IsDead)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -149,20 +149,13 @@ namespace JJN.PlayerSystem.Inventory
             //Debug.Log($"{equipItemEventData.itemToEquip.ItemName} was just equiped");
         }
 
-        void SetIsDead(bool isDead)
-        {
-            this._isDead = isDead;
-        }
-
         private void OnEnable()
         {
-            PlayerHP.onDeath += SetIsDead;
             EventBus<EquipItemEventData>.OnEventPublished += EquipItem;
         }
 
         private void OnDisable()
         {
-            PlayerHP.onDeath -= SetIsDead;
             EventBus<EquipItemEventData>.OnEventPublished -= EquipItem;
         }
     }

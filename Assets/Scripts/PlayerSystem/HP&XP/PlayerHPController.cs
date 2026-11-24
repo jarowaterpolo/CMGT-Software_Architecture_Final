@@ -1,8 +1,7 @@
 using JJN.Calculation;
+using JJN.FSM;
 using JJN.ScriptableObjects;
 using PlayerSystem.Values;
-using System.Collections;
-using TMPro;
 using UnityEngine;
 
 namespace JJN.PlayerSystem.Values
@@ -17,12 +16,7 @@ namespace JJN.PlayerSystem.Values
 
         private bool _isDefending;
         private int _defendValue;
-        private bool isDead;
 
-        private void Start()
-        {
-            SetIsDead(false);
-        }
         void GetHit(EventData eventData)
         {
             AttackEventData attackEventData = (AttackEventData)eventData;
@@ -36,7 +30,7 @@ namespace JJN.PlayerSystem.Values
                     bool didCrit;
                     int totalDamage;
                     (totalDamage, didCrit) = Calculator.CalculateDamage(attackEventData.weaponData.Attack, attackEventData.weaponData.CritChance, attackEventData.weaponData.CritDamageMult, _defendValue, _isDefending);
-                    if (totalDamage > 0 && !isDead)
+                    if (totalDamage > 0 && !PlayerDeathController.IsDead)
                     {
                         hp.HP_value -= totalDamage;
                     }
@@ -72,19 +66,6 @@ namespace JJN.PlayerSystem.Values
             }
         }
 
-        void SetIsDead(bool isDead)
-        {
-            this.isDead = isDead;
-            if (isDead)
-            {
-                Time.timeScale = 0.0f;
-            }
-            else
-            {
-                Time.timeScale = 1.0f;
-            }
-        }
-
         public void GainMaxHPOnLevelUp(int num)
         {
             hp.Max_HP_value += MaxHPGainBasedOnLevelUp;
@@ -95,7 +76,6 @@ namespace JJN.PlayerSystem.Values
 
         private void OnEnable()
         {
-            PlayerHP.onDeath += SetIsDead;
             PlayerXPController.OnLevelUp += GainMaxHPOnLevelUp;
             EventBus<AttackEventData>.OnEventPublished += GetHit;
             EventBus<ItemUseEventData>.OnEventPublished += HPPotionUsed;
@@ -104,7 +84,6 @@ namespace JJN.PlayerSystem.Values
 
         private void OnDisable()
         {
-            PlayerHP.onDeath -= SetIsDead;
             PlayerXPController.OnLevelUp -= GainMaxHPOnLevelUp;
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
             EventBus<ItemUseEventData>.OnEventPublished -= HPPotionUsed;

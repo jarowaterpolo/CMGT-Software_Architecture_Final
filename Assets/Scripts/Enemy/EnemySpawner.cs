@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.QuestSystem.Quests;
 using JJN.ScriptableObjects;
 using JJNDungeonGeneration;
@@ -23,7 +24,7 @@ namespace JJN.Enemy
 
         private NewDungeonGenerator _dungeonGen;
         private List<RectInt> _doneRooms = new();
-        private bool _isDead;
+
         private int enemiesAlive;
         private bool bossSpawned;
 
@@ -45,7 +46,7 @@ namespace JJN.Enemy
 
         private IEnumerator SpawnEnemies()
         {
-            while (!_isDead && enemiesAlive < maxEnemyCount)
+            while (!PlayerDeathController.IsDead && enemiesAlive < maxEnemyCount)
             {
                 yield return new WaitForSeconds(spawnDelay);
                 var randomRoom = _doneRooms[Random.Range(1, _doneRooms.Count)];
@@ -85,12 +86,6 @@ namespace JJN.Enemy
             yield return null;
             StartCoroutine(SpawnEnemies());
         }
-
-        void SetIsDead(bool isDead)
-        {
-            _isDead = isDead;
-        }
-
         void changeEnemyAliveCount(EventData eventData)
         {
             enemiesAlive--;
@@ -103,14 +98,12 @@ namespace JJN.Enemy
 
         private void OnEnable()
         {
-            PlayerHP.onDeath += SetIsDead;
             EventBus<EnemyDieEventData>.OnEventPublished += changeEnemyAliveCount; 
             EventBus<AdvanceStageEventData>.OnEventPublished += IncreaseStage;
         }
 
         private void OnDisable()
         {
-            PlayerHP.onDeath -= SetIsDead;
             EventBus<EnemyDieEventData>.OnEventPublished -= changeEnemyAliveCount;
             EventBus<AdvanceStageEventData>.OnEventPublished -= IncreaseStage;
         }

@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.PlayerSystem.Inventory;
 using JJN.ScriptableObjects;
 using UnityEngine;
@@ -14,8 +15,6 @@ namespace JJN.PlayerSystem.Movement
         public UnityEvent openInventory;
         public UnityEvent closeInventory;
 
-        private bool _isDead;
-
         private void Start()
         {
             // Locks mouse
@@ -24,7 +23,7 @@ namespace JJN.PlayerSystem.Movement
 
         private void Update()
         {
-            if (_isDead)
+            if (PlayerDeathController.IsDead)
             {
                 CursorON();
                 return;
@@ -79,21 +78,6 @@ namespace JJN.PlayerSystem.Movement
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
-
-        void SetIsDead(bool isDead)
-        {
-            _isDead = isDead;
-        }
-
-        private void OnEnable()
-        {
-            PlayerHP.onDeath += SetIsDead;
-        }
-
-        private void OnDisable()
-        {
-            PlayerHP.onDeath -= SetIsDead;
         }
     }
 }

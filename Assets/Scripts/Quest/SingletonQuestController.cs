@@ -1,3 +1,4 @@
+using JJN.FSM;
 using JJN.PlayerSystem.Inventory;
 using JJN.QuestSystem.Quests;
 using JJN.ScriptableObjects;
@@ -15,7 +16,6 @@ namespace JJN.QuestSystem
         private List<Quest> quests;
         private int _questIndex = 0;
         private Quest _currentQuest;
-        private bool _isDead;
 
         private void Awake()
         {
@@ -47,7 +47,7 @@ namespace JJN.QuestSystem
 
         void Update()
         {
-            if (_currentQuest == null || _currentQuest.IsComplete || _isDead) return;
+            if (_currentQuest == null || _currentQuest.IsComplete || PlayerDeathController.IsDead) return;
 
             _currentQuest.Evaluate();
 
@@ -94,7 +94,6 @@ namespace JJN.QuestSystem
 
         void SetIsDead(bool isDead)
         {
-            _isDead = isDead;
             if (isDead)
             {
                 DummyQuest playerDead = DummyQuest.Create("DIED");
@@ -105,8 +104,6 @@ namespace JJN.QuestSystem
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            _isDead = false;
-
             if (_currentQuest != null)
             {
                 EventBus<QuestEventData>.Publish(new(_currentQuest, false));

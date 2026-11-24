@@ -12,9 +12,9 @@ namespace PlayerSystem.Values
     {
         public int[] xpNeededForEachLevel; 
         public IntValueWithAction currentXP; 
-        public IntValueWithAction currentLevel; 
+        public IntValueWithAction currentLevel;
 
-        public static event Action<int> levelUp;
+        public static event Action<int> OnLevelUp;
 
         public delegate void XPHandler(int currentXP, int MaxXP);
         public static event XPHandler OnXPChange;
@@ -25,7 +25,6 @@ namespace PlayerSystem.Values
             {
                 EnemyDieEventData enemyDieEventData = (EnemyDieEventData)eventData;
                 GetXP(enemyDieEventData.enemy.enemyData.XP);
-                CheckForLevelUP();
             }
         }
         public void OnQuestComplete(EventData eventData)
@@ -43,6 +42,7 @@ namespace PlayerSystem.Values
 
         void CheckForLevelUP()
         {
+            if (currentLevel.value > xpNeededForEachLevel.Length) return;
             int previousLevel = currentLevel.value;
 
             while (currentXP.value >= xpNeededForEachLevel[currentLevel.value - 1])
@@ -50,18 +50,26 @@ namespace PlayerSystem.Values
                 currentXP.value -= xpNeededForEachLevel[currentLevel.value - 1];
 
                 currentLevel.value++;
-                levelUp?.Invoke(currentLevel.value);
+                OnLevelUp?.Invoke(currentLevel.value);
 
                 if (currentLevel.value > xpNeededForEachLevel.Length)
                 {
-                    OnXPChange?.Invoke(1, 1);
-                    break;
+                    if (currentLevel.value > xpNeededForEachLevel.Length)
+                    {
+                        OnXPChange?.Invoke(1, 1);
+                        break;
+                    }
+                }
+                else
+                {
+                    OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
                 }
             }
         }
 
         void GetXP(int value)
         {
+            if (currentLevel.value > xpNeededForEachLevel.Length) return;
             currentXP.value += value;
             OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
             CheckForLevelUP();
@@ -69,6 +77,7 @@ namespace PlayerSystem.Values
 
         private void OnEnable()
         {
+            OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
             EventBus<EnemyDieEventData>.OnEventPublished += OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished += OnQuestComplete;
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -90,8 +99,7 @@ namespace PlayerSystem.Values
         {
             if (Input.GetKeyDown(KeyCode.F3))
             {
-                currentXP.value += 10;
-                CheckForLevelUP();
+                GetXP(50);
             }
         }
 #endif

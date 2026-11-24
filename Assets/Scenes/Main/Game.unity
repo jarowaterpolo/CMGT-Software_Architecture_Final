@@ -1325,6 +1325,14 @@ PrefabInstance:
       propertyPath: currentLevel
       value: 
       objectReference: {fileID: 11400000, guid: 135171b039027e844bca0e9bd89e302f, type: 2}
+    - target: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: currentXPtest
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e5d61c16760ebf43a198390d0e464d6, type: 2}
+    - target: {fileID: 5845418595081599531, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
+      propertyPath: currentLeveltest
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a34c7ed2dd55e84ba37a6d4f05637b4, type: 2}
     - target: {fileID: 6140917253219863673, guid: 50fb80c5a04013c41a34f14164fb70d4, type: 3}
       propertyPath: hp
       value: 

@@ -29,13 +29,13 @@ namespace JJN.PlayerSystem.Presenters
         }
         private void OnEnable()
         {
-            playerXPController.currentLevel.onValueChanged += SetLvlText;
+            playerXPController.currentLevel.OnValueChanged += SetLvlText;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void OnDisable()
         {
-            playerXPController.currentLevel.onValueChanged -= SetLvlText;
+            playerXPController.currentLevel.OnValueChanged -= SetLvlText;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 

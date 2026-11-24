@@ -108,7 +108,7 @@ namespace JJN.PlayerSystem.Values
         private void OnEnable()
         {
             PlayerHP.onDeath += SetIsDead;
-            PlayerXPController.levelUp += GainMaxHPOnLevelUp;
+            PlayerXPController.OnLevelUp += GainMaxHPOnLevelUp;
             EventBus<AttackEventData>.OnEventPublished += GetHit;
             EventBus<ItemUseEventData>.OnEventPublished += HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished += SetDefendingVars;
@@ -117,7 +117,7 @@ namespace JJN.PlayerSystem.Values
         private void OnDisable()
         {
             PlayerHP.onDeath -= SetIsDead;
-            PlayerXPController.levelUp -= GainMaxHPOnLevelUp;
+            PlayerXPController.OnLevelUp -= GainMaxHPOnLevelUp;
             EventBus<AttackEventData>.OnEventPublished -= GetHit;
             EventBus<ItemUseEventData>.OnEventPublished -= HPPotionUsed;
             EventBus<DefendEventData>.OnEventPublished -= SetDefendingVars;

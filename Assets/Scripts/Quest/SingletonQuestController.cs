@@ -1,5 +1,4 @@
-using JJN.FSM;
-using JJN.PlayerSystem.Inventory;
+using JJN.PlayerSystem;
 using JJN.QuestSystem.Quests;
 using JJN.ScriptableObjects;
 using System.Collections.Generic;

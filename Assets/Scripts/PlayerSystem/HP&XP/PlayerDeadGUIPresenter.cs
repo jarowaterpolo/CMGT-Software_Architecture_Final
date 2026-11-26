@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace JJN.FSM
+namespace JJN.PlayerSystem
 {
     public class PlayerDeadGUIPresenter : MonoBehaviour
     {

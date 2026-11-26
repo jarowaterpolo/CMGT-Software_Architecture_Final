@@ -1,11 +1,6 @@
-using JJN.FSM;
-using JJN.PlayerSystem.Values;
+using JJN.PlayerSystem;
 using JJN.ScriptableObjects;
-using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace PlayerSystem.Values
 {
@@ -90,18 +85,18 @@ namespace PlayerSystem.Values
             OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
             EventBus<EnemyDieEventData>.OnEventPublished += OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished += OnQuestComplete;
-            SceneManager.sceneLoaded += OnSceneLoaded;
             PlayerDeathController.OnPlayerReset += ResetXPAndLevel;
+            UpdateXpPresenters();
         }
 
         private void OnDisable()
         {
             EventBus<EnemyDieEventData>.OnEventPublished -= OnEnemyKilled;
             EventBus<QuestEventData>.OnEventPublished -= OnQuestComplete;
-            SceneManager.sceneLoaded -= OnSceneLoaded;
             PlayerDeathController.OnPlayerReset -= ResetXPAndLevel;
         }
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+
+        void UpdateXpPresenters()
         {
             OnXPChange?.Invoke(currentXP.value, xpNeededForEachLevel[currentLevel.value - 1]);
             OnLevelUp?.Invoke(currentLevel.value, xpNeededForEachLevel.Length);

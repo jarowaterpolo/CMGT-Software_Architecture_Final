@@ -8,6 +8,7 @@ namespace JJN.Achievements
         {
             var achievementStr = $"{achievement.name} reached by {achievement.description} \n";
             Debug.Log(achievementStr);
+            achievement.hasBeenDisplayed = true;
         }
     }
 }

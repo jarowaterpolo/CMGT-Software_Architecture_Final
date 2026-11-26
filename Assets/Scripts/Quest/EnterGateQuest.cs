@@ -14,6 +14,7 @@ namespace JJN.QuestSystem.Quests
         public override void Register()
         {
             base.Register();
+            _gateEntered = false;
             EventBus<AdvanceStageEventData>.OnEventPublished += GateEntered;
         }
         public override void Unregister()

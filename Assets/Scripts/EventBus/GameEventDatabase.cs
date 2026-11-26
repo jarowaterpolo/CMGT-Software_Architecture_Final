@@ -1,6 +1,5 @@
 using JJN.Enemy;
 using JJN.ItemSystem;
-using JJN.PlayerSystem.Inventory;
 using JJN.QuestSystem.Quests;
 using UnityEngine;
 // All game events are listed here

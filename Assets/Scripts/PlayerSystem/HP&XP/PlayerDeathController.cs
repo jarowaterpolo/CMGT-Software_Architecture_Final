@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace JJN.FSM
+namespace JJN.PlayerSystem
 {
     public class PlayerDeathController : MonoBehaviour
     {
@@ -27,7 +27,7 @@ namespace JJN.FSM
         public void ResetPlayer()
         {
             SetIsDead(false);
-            OnPlayerReset.Invoke();
+            OnPlayerReset?.Invoke();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

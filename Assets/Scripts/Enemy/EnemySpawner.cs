@@ -1,4 +1,4 @@
-using JJN.FSM;
+using JJN.PlayerSystem;
 using JJN.ScriptableObjects;
 using JJNDungeonGeneration;
 using System.Collections;

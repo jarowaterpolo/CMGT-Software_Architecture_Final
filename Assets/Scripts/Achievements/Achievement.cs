@@ -1,27 +1,26 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-//[Serializable]
-public abstract class Achievement : ScriptableObject
+namespace JJN.Achievements
 {
-    public int id;
-    public string achievementName;
-    public string description;
-    public bool achieved;
-    public Image image;
+    public abstract class Achievement : ScriptableObject
+    {
+        public int id;
+        public string achievementName;
+        public string description;
+        public bool achieved { get; protected set; }
+        public Sprite sprite;
+        [HideInInspector]
+        public bool hasBeenDisplayed = false;
 
-    public bool MilestoneReached { get; protected set; }
-    public virtual void Register()
-    {
-        MilestoneReached = false;
-    }
-    public virtual void Unregister() { }
-    public abstract void Initialize();
-    public abstract void Evaluate();
-    public abstract void UpdateCurrentQuestText();
-    public void AchievementAchieved()
-    {
-        MilestoneReached = true;
+        public virtual void Initialize()
+        {
+            achieved = false;
+        }
+        public abstract void Evaluate();
+        public void AchieveAchievement()
+        {
+            achieved = true;
+        }
     }
 }

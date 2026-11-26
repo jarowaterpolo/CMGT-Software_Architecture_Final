@@ -18,6 +18,12 @@ namespace JJN.Achievements
             {
                 throw new Exception("No achievement display service found.");
             }
+
+            foreach (Achievement achievement in achievements)
+            {
+                achievement.Initialize();
+                achievement.hasBeenDisplayed = false;
+            }
         }
 
         private void Update()
@@ -31,19 +37,14 @@ namespace JJN.Achievements
             {
                 if (achievement.achieved)
                 {
-                    achievementService.DisplayAchievement(achievement);
+                    if (!achievement.hasBeenDisplayed)
+                    {
+                        achievementService.DisplayAchievement(achievement);
+                    }
                 }
                 else
                 {
-                    Match match = Regex.Match(achievement.description, @"-?\d+");
-
-                    if (match.Success && int.TryParse(match.Value, out int achievementValueToReach))
-                    {                       
-                        if ( >= achievementValueToReach)
-                        {
-                            achievement.achieved = true;
-                        }
-                    }
+                    achievement.Evaluate();
                 }
             }
         }

@@ -17,6 +17,7 @@ namespace JJN.QuestSystem.Quests
         public override void Register()
         {
             base.Register();
+            itemFetched = false;
             DroppedItem.onPickupItem += CheckItem;
             UpdateCurrentQuestText();
         }

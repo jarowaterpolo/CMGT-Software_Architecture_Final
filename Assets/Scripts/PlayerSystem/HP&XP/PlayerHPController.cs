@@ -66,8 +66,11 @@ namespace JJN.PlayerSystem.Values
             }
         }
 
-        public void GainMaxHPOnLevelUp(int num, int num2)
+        public void GainMaxHPOnLevelUp(int currentLvl, int maxLvl)
         {
+            // Don't grant bonus HP if we just reset to Level 1!
+            if (currentLvl <= 1) return;
+
             hp.Max_HP_value += MaxHPGainBasedOnLevelUp;
             hp.HP_value += MaxHPGainBasedOnLevelUp;
             //Debug.Log($"tried to increase player max hp by {MaxHPGainBasedOnLevelUp}");

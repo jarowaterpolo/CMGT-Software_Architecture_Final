@@ -11,3 +11,5 @@ NaughtyAttributes.Core.csproj
 NaughtyAttributes.Editor.csproj
 NaughtyAttributes.Test.csproj
 Builds
+Assembly-CSharp.csproj.user
+NaughtyAttributes.Test.csproj.user
